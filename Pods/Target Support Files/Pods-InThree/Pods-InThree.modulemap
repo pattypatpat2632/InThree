@@ -1,0 +1,6 @@
+framework module Pods_InThree {
+  umbrella header "Pods-InThree-umbrella.h"
+
+  export *
+  module * { export * }
+}
