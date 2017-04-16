@@ -28,7 +28,7 @@ class BeatView: UIView {
     }
     
     func commonInit() {
-        self.backgroundColor = UIColor.turquoise
+        self.backgroundColor = UIColor.phoneBoothRed
         
         self.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false

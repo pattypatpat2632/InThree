@@ -17,7 +17,7 @@ class SequencerVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.black
+        self.view.backgroundColor = UIColor.night
         
         self.view.addSubview(beat1View)
         beat1View.translatesAutoresizingMaskIntoConstraints = false
