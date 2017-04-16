@@ -14,7 +14,6 @@ class BeatView: UIView {
     let pad2 = PadView()
     let pad3 = PadView()
     let pad4 = PadView()
-    let pad5 = PadView()
     let stackView = UIStackView()
     let sliderView = UIView()
     
@@ -26,7 +25,6 @@ class BeatView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
-        
     }
     
     func commonInit() {
@@ -45,7 +43,6 @@ class BeatView: UIView {
         stackView.addArrangedSubview(pad2)
         stackView.addArrangedSubview(pad3)
         stackView.addArrangedSubview(pad4)
-        stackView.addArrangedSubview(pad5)
         
         self.addSubview(sliderView)
         sliderView.translatesAutoresizingMaskIntoConstraints = false
@@ -54,6 +51,26 @@ class BeatView: UIView {
         sliderView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         sliderView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         sliderView.backgroundColor = UIColor.watermelon
+        
+        let rightGesture = UISwipeGestureRecognizer(target: self, action: #selector(addPad))
+        rightGesture.direction = .right
+        sliderView.addGestureRecognizer(rightGesture)
+        
+        let leftGesuture = UISwipeGestureRecognizer(target: self, action: #selector(subtractPad))
+        leftGesuture.direction = .left
+        sliderView.addGestureRecognizer(leftGesuture)
     }
 
+    func addPad() {
+        guard stackView.arrangedSubviews.count < 5 else {return}
+        let pad = PadView()
+        self.stackView.addArrangedSubview(pad)
+    }
+    
+    func subtractPad() {
+        guard stackView.arrangedSubviews.count > 1 else {return}
+        guard let pad = stackView.arrangedSubviews.last else {return}
+        stackView.removeArrangedSubview(pad)
+        pad.removeFromSuperview()
+    }
 }

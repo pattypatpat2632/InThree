@@ -16,6 +16,7 @@
 		EC4BD2141EA2C7F30076B4D0 /* BeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4BD2131EA2C7F30076B4D0 /* BeatView.swift */; };
 		EC4BD2171EA2D2CB0076B4D0 /* UIColorExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4BD2161EA2D2CB0076B4D0 /* UIColorExtenstion.swift */; };
 		EC4BD2191EA2EEBE0076B4D0 /* SequencerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4BD2181EA2EEBE0076B4D0 /* SequencerVC.swift */; };
+		ECFDC4831EA3295F00902F15 /* SequencerEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		EC4BD2131EA2C7F30076B4D0 /* BeatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeatView.swift; sourceTree = "<group>"; };
 		EC4BD2161EA2D2CB0076B4D0 /* UIColorExtenstion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtenstion.swift; sourceTree = "<group>"; };
 		EC4BD2181EA2EEBE0076B4D0 /* SequencerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerVC.swift; sourceTree = "<group>"; };
+		ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 		EC4BD20C1EA29F990076B4D0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC4BD2191EA2EEBE0076B4D0 /* SequencerVC.swift in Sources */,
+				ECFDC4831EA3295F00902F15 /* SequencerEngine.swift in Sources */,
 				EC4BD2141EA2C7F30076B4D0 /* BeatView.swift in Sources */,
 				EC4BD2171EA2D2CB0076B4D0 /* UIColorExtenstion.swift in Sources */,
 				EC4BD1DD1EA29ECC0076B4D0 /* AppDelegate.swift in Sources */,
@@ -548,6 +552,7 @@
 				EC4BD2031EA29ECC0076B4D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EC4BD2041EA29ECC0076B4D0 /* Build configuration list for PBXNativeTarget "InThreeTests" */ = {
 			isa = XCConfigurationList;
@@ -556,6 +561,7 @@
 				EC4BD2061EA29ECC0076B4D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EC4BD2071EA29ECC0076B4D0 /* Build configuration list for PBXNativeTarget "InThreeUITests" */ = {
 			isa = XCConfigurationList;
@@ -564,6 +570,7 @@
 				EC4BD2091EA29ECC0076B4D0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
