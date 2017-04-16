@@ -28,7 +28,7 @@ class BeatView: UIView {
     }
     
     func commonInit() {
-        self.backgroundColor = UIColor.phoneBoothRed
+        self.backgroundColor = UIColor.night
         
         self.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -50,7 +50,7 @@ class BeatView: UIView {
         sliderView.topAnchor.constraint(equalTo: stackView.bottomAnchor).isActive = true
         sliderView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         sliderView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        sliderView.backgroundColor = UIColor.watermelon
+        sliderView.backgroundColor = UIColor.phoneBoothRed
         
         let rightGesture = UISwipeGestureRecognizer(target: self, action: #selector(addPad))
         rightGesture.direction = .right
