@@ -52,7 +52,6 @@ class SequencerVC: UIViewController {
         beat4View.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/5).isActive = true
         beat4View.backgroundColor = UIColor.night
         
-        
         sequencerEngine.setUpSequencer()
     }
 

@@ -75,6 +75,9 @@ struct SequencerEngine {
         for i in 0...15 {
             sequencer.tracks[0].add(noteNumber: 60, velocity: 127, position: AKDuration(beats: Double(i)/2), duration: AKDuration(beats: 0.5))
         }
+    }
+    
+    func generateSequence(fromScore score: Score) {
         
     }
     

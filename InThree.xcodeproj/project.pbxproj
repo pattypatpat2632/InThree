@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		049FBDCD4FEE2CDA4412793F /* Pods_InThreeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40946F1B9BFDE195451E928F /* Pods_InThreeTests.framework */; };
 		5ADCC3EA681CE6951324CD4B /* Pods_InThreeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF781159264C6DBCC003C090 /* Pods_InThreeUITests.framework */; };
+		EC05C7611EA4570D0031864A /* Rhythm.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC05C7601EA4570D0031864A /* Rhythm.swift */; };
+		EC05C7631EA45AC20031864A /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC05C7621EA45AC20031864A /* Score.swift */; };
+		EC05C7651EA460400031864A /* Beat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC05C7641EA460400031864A /* Beat.swift */; };
+		EC05C7671EA463A20031864A /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC05C7661EA463A20031864A /* Note.swift */; };
 		EC4BD1DD1EA29ECC0076B4D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4BD1DC1EA29ECC0076B4D0 /* AppDelegate.swift */; };
 		EC4BD1E41EA29ECC0076B4D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4BD1E31EA29ECC0076B4D0 /* Assets.xcassets */; };
 		EC4BD1E71EA29ECC0076B4D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC4BD1E51EA29ECC0076B4D0 /* LaunchScreen.storyboard */; };
@@ -49,6 +53,10 @@
 		A93D6BBCB77B4EB942C6C5AA /* Pods-InThreeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InThreeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InThreeUITests/Pods-InThreeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		BE165AF62EB552E59C6FC01F /* Pods_InThree.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InThree.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF781159264C6DBCC003C090 /* Pods_InThreeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InThreeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC05C7601EA4570D0031864A /* Rhythm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rhythm.swift; sourceTree = "<group>"; };
+		EC05C7621EA45AC20031864A /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		EC05C7641EA460400031864A /* Beat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beat.swift; sourceTree = "<group>"; };
+		EC05C7661EA463A20031864A /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		EC4BD1D91EA29ECC0076B4D0 /* InThree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InThree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4BD1DC1EA29ECC0076B4D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC4BD1E31EA29ECC0076B4D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -180,7 +188,11 @@
 		EC4BD20C1EA29F990076B4D0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				EC05C7621EA45AC20031864A /* Score.swift */,
 				ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */,
+				EC05C7641EA460400031864A /* Beat.swift */,
+				EC05C7601EA4570D0031864A /* Rhythm.swift */,
+				EC05C7661EA463A20031864A /* Note.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -496,10 +508,14 @@
 			files = (
 				EC4BD2191EA2EEBE0076B4D0 /* SequencerVC.swift in Sources */,
 				ECFDC4831EA3295F00902F15 /* SequencerEngine.swift in Sources */,
+				EC05C7631EA45AC20031864A /* Score.swift in Sources */,
 				EC4BD2141EA2C7F30076B4D0 /* BeatView.swift in Sources */,
+				EC05C7611EA4570D0031864A /* Rhythm.swift in Sources */,
+				EC05C7671EA463A20031864A /* Note.swift in Sources */,
 				EC4BD2171EA2D2CB0076B4D0 /* UIColorExtenstion.swift in Sources */,
 				EC4BD1DD1EA29ECC0076B4D0 /* AppDelegate.swift in Sources */,
 				EC4BD2101EA2A6B40076B4D0 /* PadView.swift in Sources */,
+				EC05C7651EA460400031864A /* Beat.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
