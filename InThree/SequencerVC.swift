@@ -14,6 +14,7 @@ class SequencerVC: UIViewController {
     let beat2View = BeatView()
     let beat3View = BeatView()
     let beat4View = BeatView()
+    var sequencerEngine = SequencerEngine()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +52,7 @@ class SequencerVC: UIViewController {
         beat4View.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 1/5).isActive = true
         beat4View.backgroundColor = UIColor.night
         
-        var sequencerEngine = SequencerEngine()
+        
         sequencerEngine.setUpSequencer()
     }
 
