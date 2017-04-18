@@ -7,9 +7,16 @@
 //
 
 import Foundation
+import AudioKit
 
 struct Score {
     
     var beats = [Beat]()
+    
+    mutating func add(beat: Beat) {
+        let beatNumber = AKDuration(beats: Double(beats.count))
+        beat.beatNumber = beatNumber
+        beats.append(beat)
+    }
     
 }
