@@ -15,5 +15,6 @@ struct Note {
     var position: AKDuration
     var noteNumber: MIDINoteNumber
     var velocity: MIDIVelocity
+    var noteOn: Bool
     
 }

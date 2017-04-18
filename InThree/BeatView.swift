@@ -14,8 +14,10 @@ class BeatView: UIView {
     let pad2 = PadView()
     let pad3 = PadView()
     let pad4 = PadView()
+    let pad5 = PadView()
     let stackView = UIStackView()
     let sliderView = UIView()
+    var displayedViewCount: Int = 4
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -43,6 +45,9 @@ class BeatView: UIView {
         stackView.addArrangedSubview(pad2)
         stackView.addArrangedSubview(pad3)
         stackView.addArrangedSubview(pad4)
+        stackView.addArrangedSubview(pad5)
+        pad5.isHidden = true
+        //pad5.transform = CGAffineTransform(translationX: 200, y: 0)
         
         self.addSubview(sliderView)
         sliderView.translatesAutoresizingMaskIntoConstraints = false
@@ -52,25 +57,47 @@ class BeatView: UIView {
         sliderView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         sliderView.backgroundColor = UIColor.phoneBoothRed
         
-        let rightGesture = UISwipeGestureRecognizer(target: self, action: #selector(addPad))
-        rightGesture.direction = .right
-        sliderView.addGestureRecognizer(rightGesture)
+        let addPadGesture = UISwipeGestureRecognizer(target: self, action: #selector(addPad))
+        addPadGesture.direction = .left
+        sliderView.addGestureRecognizer(addPadGesture)
         
-        let leftGesuture = UISwipeGestureRecognizer(target: self, action: #selector(subtractPad))
-        leftGesuture.direction = .left
-        sliderView.addGestureRecognizer(leftGesuture)
+        let subtractPadGesture = UISwipeGestureRecognizer(target: self, action: #selector(subtractPad))
+        subtractPadGesture.direction = .right
+        sliderView.addGestureRecognizer(subtractPadGesture)
     }
 
     func addPad() {
-        guard stackView.arrangedSubviews.count < 5 else {return}
-        let pad = PadView()
-        self.stackView.addArrangedSubview(pad)
+        guard displayedViewCount < 5 else {return}
+        let pad = stackView.arrangedSubviews[displayedViewCount]
+        UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: [], animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5, animations: {
+                pad.isHidden = false
+            })
+//            UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25, animations: {
+//                pad.transform = CGAffineTransform(translationX: -200, y: 0)
+//            })
+        }, completion: nil)
+        displayedViewCount += 1
     }
     
     func subtractPad() {
-        guard stackView.arrangedSubviews.count > 1 else {return}
-        guard let pad = stackView.arrangedSubviews.last else {return}
-        stackView.removeArrangedSubview(pad)
-        pad.removeFromSuperview()
+        guard displayedViewCount > 1 else {return}
+        let pad = stackView.arrangedSubviews[displayedViewCount - 1]
+        UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: [], animations: {
+//            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25, animations: {
+//                pad.transform = CGAffineTransform(translationX: 200.0, y: 0)
+//            })
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5, animations: {
+                pad.isHidden = true
+            })
+        }, completion: nil)
+        displayedViewCount -= 1
     }
+}
+
+protocol BeatViewDelegate {
+    
+    
+    
+    
 }

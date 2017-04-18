@@ -13,5 +13,6 @@ struct Beat {
     
     var rhythm: Rhythm
     var notes: [Note]
+    var beatNumber: Int
     
 }

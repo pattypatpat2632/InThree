@@ -8,23 +8,7 @@
 
 import Foundation
 
-enum Rhythm: String {
-    case one, two, three, four, five
-    
-    mutating func setValue(fromString str: String) {
-        switch str {
-        case "one":
-            self = .one
-            case "two":
-            self = .two
-            case "three":
-            self = .three
-            case "four":
-            self = .four
-            case "five":
-            self = .five
-        default:
-            print("Could not get rhythm value from string")
-        }
-    }
+enum Rhythm: Int {
+    case one = 1, two, three, four, five
+
 }
