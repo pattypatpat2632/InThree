@@ -10,5 +10,4 @@ import Foundation
 
 enum Rhythm: Int {
     case one = 1, two, three, four, five
-
 }

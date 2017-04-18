@@ -11,10 +11,11 @@ import AudioKit
 
 struct Note {
     
-    var duration: AKDuration
-    var position: AKDuration
+    var noteOn: Bool
     var noteNumber: MIDINoteNumber
     var velocity: MIDIVelocity
-    var noteOn: Bool
+    var duration: AKDuration
+    var position: AKDuration
     
 }
+

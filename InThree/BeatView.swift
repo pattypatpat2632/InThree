@@ -93,11 +93,12 @@ class BeatView: UIView {
         }, completion: nil)
         displayedViewCount -= 1
     }
+    
+    func reportBeat() {
+        let rhythm = Rhythm(rawValue: displayedViewCount)
+    }
 }
 
 protocol BeatViewDelegate {
-    
-    
-    
     
 }

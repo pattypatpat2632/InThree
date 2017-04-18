@@ -10,4 +10,6 @@ import Foundation
 
 struct Score {
     
+    var beats = [Beat]()
+    
 }
