@@ -15,7 +15,7 @@ struct Score {
     
     mutating func add(beat: Beat) {
         let beatNumber = AKDuration(beats: Double(beats.count))
-        beat.beatNumber = beatNumber
+        beat.setBeatNumber(to: beatNumber)
         beats.append(beat)
     }
     

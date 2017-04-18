@@ -15,6 +15,10 @@ struct Beat {
     var notes = [Note]()
     var beatNumber: AKDuration = AKDuration(beats: 0)
     
+    mutating func setBeatNumber(to beatNumber: AKDuration) {
+        self.beatNumber = beatNumber
+    }
+    
 }
 
 extension Beat {
