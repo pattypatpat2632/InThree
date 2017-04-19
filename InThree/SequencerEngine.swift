@@ -31,7 +31,8 @@ struct SequencerEngine {
         verb = AKReverb(midiNode)
         
         _ = sequencer.newTrack()
-        self.generateTestSequence()
+        //self.generateTestSequence()
+        createTestScore()
         
         AudioKit.output = verb
         AudioKit.start()
@@ -39,35 +40,12 @@ struct SequencerEngine {
         sequencer.setTempo(120.0)
         sequencer.enableLooping()
         sequencer.play()
+        
     }
-    
-//    func changeNote(atBeat beat: Int, withNote note: Int, onMessage: Bool) {
-//        if onMessage {
-//            score.add(note: note, atBeat: beat)
-//        } else {
-//            score.turnOff(beat: beat)
-//        }
-//        generateSequence(fromScore: score)
-//    }
     
     func changeTempo(_ newTempo: Double) {
         sequencer.setTempo(newTempo)
     }
-    
-//    func generateSequence(fromScore score: Score) {
-//        let sheet = score.sheet
-//        print("SEQUENCE GENERATED WITH SHEET: \(sheet)")
-//        sequencer.setLength(AKDuration(beats: Double(score.steps/4)))
-//        sequencer.tracks[0].clear()
-//        let numberOfSteps = score.steps - 1
-//        for i in 0 ... numberOfSteps {
-//            if let notes = sheet[i] {
-//                for note in notes {
-//                    sequencer.tracks[0].add(noteNumber: MIDINoteNumber(note), velocity: 127, position: AKDuration(beats: Double(i)/4), duration: AKDuration(beats: 0.25))
-//                }
-//            }
-//        }
-//    }
     
     func generateTestSequence() {
         sequencer.setLength(AKDuration(beats: 8.0))
@@ -78,7 +56,33 @@ struct SequencerEngine {
     }
     
     func generateSequence(fromScore score: Score) {
+        sequencer.setLength(AKDuration(beats: Double(score.beats.count)))
+        sequencer.tracks[0].clear()
+        var beatPostion = AKDuration(beats: 0)
+        for beat in score.beats {
+            for note in beat.notes{
+                sequencer.tracks[0].add(noteNumber: note.noteNumber, velocity: note.velocity, position: note.position + beatPostion, duration: note.duration)
+            }
+            beatPostion = beatPostion + AKDuration(beats: 1.0)
+        }
+    }
+    
+    func createTestScore(){
+        var beat1 = Beat(rhythm: .two)
+        beat1.notes[0].noteNumber = 60
+        beat1.notes[0].noteOn = true
+        beat1.notes[0].velocity = 127
+        beat1.notes[1].noteNumber = 61
+        beat1.notes[1].noteOn = true
+        beat1.notes[1].velocity = 127
         
+        var beat2 = Beat(rhythm: .one)
+        beat2.notes[0].noteNumber = 63
+        beat2.notes[0].noteOn = true
+        beat2.notes[0].velocity = 127
+        
+        let score = Score(beats: [beat1, beat2])
+        generateSequence(fromScore: score)
     }
     
 }
