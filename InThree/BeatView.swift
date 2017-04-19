@@ -15,6 +15,7 @@ class BeatView: UIView {
     let pad3 = PadView()
     let pad4 = PadView()
     let pad5 = PadView()
+    var allPads = [PadView]()
     let stackView = UIStackView()
     let sliderView = UIView()
     var displayedViewCount: Int = 4
@@ -31,6 +32,7 @@ class BeatView: UIView {
     
     func commonInit() {
         self.backgroundColor = UIColor.night
+        allPads = [pad1, pad2, pad3, pad4, pad5]
         
         self.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -96,9 +98,11 @@ class BeatView: UIView {
     
     func reportBeat() {
         let rhythm = Rhythm(rawValue: displayedViewCount)
+        
+        
     }
 }
 
 protocol BeatViewDelegate {
-    
+    func respondeToNew(beat: Beat)
 }
