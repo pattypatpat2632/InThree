@@ -13,12 +13,15 @@ class SequencerVC: UIViewController {
     
     var sequencerEngine = SequencerEngine()
     var sequencerView = SequencerView()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = sequencerView
         
         sequencerEngine.setUpSequencer()
+        
+        
     }
 
 

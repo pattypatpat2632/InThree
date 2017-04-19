@@ -14,6 +14,7 @@ class SequencerView: UIView {
     let beat2View = BeatView()
     let beat3View = BeatView()
     let beat4View = BeatView()
+    let keyboardView = KeyboardView()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -59,6 +60,14 @@ class SequencerView: UIView {
         beat4View.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         beat4View.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/5).isActive = true
         beat4View.backgroundColor = UIColor.night
+    
+        self.addSubview(keyboardView)
+        keyboardView.translatesAutoresizingMaskIntoConstraints = false
+        keyboardView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        keyboardView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        keyboardView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        keyboardView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5).isActive = true
+       
     }
 
 }

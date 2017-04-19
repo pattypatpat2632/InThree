@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -52,39 +53,38 @@
                     <rect key="frame" x="432.5" y="0.0" width="61.5" height="164"/>
                     <state key="normal" title="Button"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMU-Lc-tOo" userLabel="cSKey">
-                    <rect key="frame" x="30" y="0.0" width="53" height="59"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iMU-Lc-tOo" userLabel="cSKey">
+                    <rect key="frame" x="41" y="0.0" width="42" height="82"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <size key="titleShadowOffset" width="20" height="20"/>
+                    <state key="normal" title="Button">
+                        <color key="titleShadowColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTL-Ys-SlP" userLabel="fSKey">
+                    <rect key="frame" x="227" y="0.0" width="41.5" height="82"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Button"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nt6-lO-4m7" userLabel="dSKey">
-                    <rect key="frame" x="101" y="0.0" width="46" height="68"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r78-Kh-1Dm" userLabel="gSKey">
+                    <rect key="frame" x="288.5" y="0.0" width="41.5" height="82"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Button"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTL-Ys-SlP" userLabel="fSKey">
-                    <rect key="frame" x="224" y="-1" width="46" height="56"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoG-ge-LxN" userLabel="aSKey">
+                    <rect key="frame" x="350" y="0.0" width="41.5" height="82"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Button"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r78-Kh-1Dm" userLabel="gSKey">
-                    <rect key="frame" x="286" y="0.0" width="46" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <state key="normal" title="Button"/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zoG-ge-LxN" userLabel="aSKey">
-                    <rect key="frame" x="357" y="0.0" width="46" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nt6-lO-4m7" userLabel="dSKey">
+                    <rect key="frame" x="103" y="0.0" width="42" height="82"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <state key="normal" title="Button"/>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="CTL-Ys-SlP" firstAttribute="trailing" secondItem="Wdh-tN-3XG" secondAttribute="centerX" constant="-10" id="0Gv-yJ-F4U"/>
                 <constraint firstItem="9oe-NF-0ZQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0bS-T4-lyp"/>
                 <constraint firstItem="Wdh-tN-3XG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0qC-S1-uzf"/>
                 <constraint firstItem="aaG-Sy-OK0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1Sh-gR-AWI"/>
@@ -92,31 +92,50 @@
                 <constraint firstItem="Km7-0v-b4I" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.125" id="2Gh-tV-rtz"/>
                 <constraint firstItem="Km7-0v-b4I" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="3Ec-z9-4jX"/>
                 <constraint firstItem="Km7-0v-b4I" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="3ju-lS-x6k"/>
+                <constraint firstItem="Nt6-lO-4m7" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" id="5Uj-mk-8vr"/>
                 <constraint firstItem="Wdh-tN-3XG" firstAttribute="leading" secondItem="Xt7-1M-q1X" secondAttribute="trailing" id="6JJ-Xe-bZd"/>
                 <constraint firstItem="Xt7-1M-q1X" firstAttribute="leading" secondItem="aaG-Sy-OK0" secondAttribute="trailing" id="7aC-kU-A40"/>
+                <constraint firstItem="CTL-Ys-SlP" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" id="8E7-Em-3AI"/>
+                <constraint firstItem="iMU-Lc-tOo" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" id="9W7-gf-ZFS"/>
                 <constraint firstItem="XfM-z0-3Pv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ACM-4u-tSL"/>
+                <constraint firstItem="iMU-Lc-tOo" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="AGe-Cl-RjL"/>
+                <constraint firstItem="r78-Kh-1Dm" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="F7N-Hx-Bfy"/>
                 <constraint firstItem="9oe-NF-0ZQ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.125" id="FPz-k1-cgW"/>
+                <constraint firstItem="iMU-Lc-tOo" firstAttribute="trailing" secondItem="Km7-0v-b4I" secondAttribute="centerX" constant="-10" id="H5W-cO-GxQ"/>
                 <constraint firstItem="QfP-ju-EPd" firstAttribute="leading" secondItem="Wdh-tN-3XG" secondAttribute="trailing" id="HJn-eb-R3O"/>
+                <constraint firstItem="zoG-ge-LxN" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" id="Hzi-80-rxP"/>
                 <constraint firstItem="QfP-ju-EPd" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.125" id="Iab-xw-JCb"/>
+                <constraint firstItem="r78-Kh-1Dm" firstAttribute="trailing" secondItem="QfP-ju-EPd" secondAttribute="centerX" constant="-10" id="KKi-N8-z31"/>
+                <constraint firstItem="iMU-Lc-tOo" firstAttribute="leading" secondItem="9oe-NF-0ZQ" secondAttribute="centerX" constant="10" id="KzV-As-0PR"/>
+                <constraint firstItem="Nt6-lO-4m7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="RJi-bu-N7T"/>
                 <constraint firstItem="NJ9-Ys-VOQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="RvH-7j-IeV"/>
                 <constraint firstItem="NJ9-Ys-VOQ" firstAttribute="leading" secondItem="XfM-z0-3Pv" secondAttribute="trailing" id="W7W-hp-y3h"/>
                 <constraint firstItem="XfM-z0-3Pv" firstAttribute="leading" secondItem="QfP-ju-EPd" secondAttribute="trailing" id="XOj-yA-IpI"/>
                 <constraint firstItem="NJ9-Ys-VOQ" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="YG1-1a-Kdx"/>
                 <constraint firstItem="XfM-z0-3Pv" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="YOh-rI-g2X"/>
                 <constraint firstItem="Km7-0v-b4I" firstAttribute="leading" secondItem="9oe-NF-0ZQ" secondAttribute="trailing" id="a6K-zI-c2r"/>
+                <constraint firstItem="r78-Kh-1Dm" firstAttribute="leading" secondItem="Wdh-tN-3XG" secondAttribute="centerX" constant="10" id="b2z-VE-ZeT"/>
+                <constraint firstItem="CTL-Ys-SlP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cbg-1Y-ozU"/>
                 <constraint firstItem="Xt7-1M-q1X" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-1" id="dJ8-Ko-mLW"/>
                 <constraint firstItem="Wdh-tN-3XG" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="dVj-s0-0SN"/>
                 <constraint firstItem="NJ9-Ys-VOQ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.125" id="fBJ-Lg-4re"/>
+                <constraint firstItem="zoG-ge-LxN" firstAttribute="leading" secondItem="QfP-ju-EPd" secondAttribute="centerX" constant="10" id="iIP-Vw-v3U"/>
                 <constraint firstItem="aaG-Sy-OK0" firstAttribute="leading" secondItem="Km7-0v-b4I" secondAttribute="trailing" id="jWg-3B-Uhy"/>
                 <constraint firstItem="aaG-Sy-OK0" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="kfx-4c-z0i"/>
                 <constraint firstItem="XfM-z0-3Pv" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.125" id="lMA-1V-wOW"/>
+                <constraint firstItem="zoG-ge-LxN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="lOl-4e-PsG"/>
                 <constraint firstAttribute="bottom" secondItem="Xt7-1M-q1X" secondAttribute="bottom" constant="1" id="mk2-2z-OL4"/>
+                <constraint firstItem="CTL-Ys-SlP" firstAttribute="leading" secondItem="Xt7-1M-q1X" secondAttribute="centerX" constant="10" id="nLJ-rK-5UJ"/>
                 <constraint firstItem="QfP-ju-EPd" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="oOq-SO-LMv"/>
                 <constraint firstItem="9oe-NF-0ZQ" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="oex-No-yDq"/>
+                <constraint firstItem="zoG-ge-LxN" firstAttribute="trailing" secondItem="XfM-z0-3Pv" secondAttribute="centerX" constant="-10" id="oxa-8o-AKB"/>
                 <constraint firstItem="9oe-NF-0ZQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pQ1-D5-OfC"/>
                 <constraint firstItem="NJ9-Ys-VOQ" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="qBD-Gs-2dh"/>
+                <constraint firstItem="Nt6-lO-4m7" firstAttribute="trailing" secondItem="aaG-Sy-OK0" secondAttribute="centerX" constant="-10" id="qSI-Tf-ZgA"/>
                 <constraint firstItem="QfP-ju-EPd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qbk-OI-klz"/>
+                <constraint firstItem="r78-Kh-1Dm" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" id="rl7-Qi-H1U"/>
                 <constraint firstItem="aaG-Sy-OK0" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.125" id="v7B-fC-OnD"/>
+                <constraint firstItem="Nt6-lO-4m7" firstAttribute="leading" secondItem="Km7-0v-b4I" secondAttribute="centerX" constant="10" id="wgf-5A-kpf"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
