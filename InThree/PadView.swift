@@ -13,6 +13,7 @@ class PadView: UIView {
     
     let button = UIButton()
     var buttonIsOn: Bool = false
+    let colorScheme: ColorScheme = .normal
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -25,7 +26,7 @@ class PadView: UIView {
     }
     
     func commonInit() {
-        self.backgroundColor = UIColor.pearl
+        self.backgroundColor = colorScheme.model.highlightColor
         self.translatesAutoresizingMaskIntoConstraints = false
         self.widthAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         
@@ -35,7 +36,7 @@ class PadView: UIView {
         button.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         button.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.9).isActive = true
         button.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.9).isActive = true
-        button.backgroundColor = UIColor.flash
+        button.backgroundColor = colorScheme.model.foregroundColor
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         
         self.layer.cornerRadius = 5
@@ -52,5 +53,7 @@ class PadView: UIView {
             button.alpha = 1
         }
     }
-
 }
+
+
+

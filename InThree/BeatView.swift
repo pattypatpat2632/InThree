@@ -19,6 +19,13 @@ class BeatView: UIView {
     let stackView = UIStackView()
     let sliderView = UIView()
     var displayedViewCount: Int = 4
+    let colorScheme: ColorScheme = .normal
+    
+    
+    var beatNumber: Int = 0
+    var rhythm: Rhythm {
+        return Rhythm(rawValue: displayedViewCount) ?? .four
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -31,9 +38,13 @@ class BeatView: UIView {
     }
     
     func commonInit() {
-        self.backgroundColor = UIColor.night
+
+        self.backgroundColor = colorScheme.model.baseColor
         allPads = [pad1, pad2, pad3, pad4, pad5]
+
         
+        allPads = [pad1, pad2, pad3, pad4, pad5]
+
         self.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
@@ -49,7 +60,6 @@ class BeatView: UIView {
         stackView.addArrangedSubview(pad4)
         stackView.addArrangedSubview(pad5)
         pad5.isHidden = true
-        //pad5.transform = CGAffineTransform(translationX: 200, y: 0)
         
         self.addSubview(sliderView)
         sliderView.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +67,7 @@ class BeatView: UIView {
         sliderView.topAnchor.constraint(equalTo: stackView.bottomAnchor).isActive = true
         sliderView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         sliderView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        sliderView.backgroundColor = UIColor.phoneBoothRed
+        sliderView.backgroundColor = colorScheme.model.backgroundColor
         
         let addPadGesture = UISwipeGestureRecognizer(target: self, action: #selector(addPad))
         addPadGesture.direction = .left
@@ -75,9 +85,6 @@ class BeatView: UIView {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5, animations: {
                 pad.isHidden = false
             })
-//            UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25, animations: {
-//                pad.transform = CGAffineTransform(translationX: -200, y: 0)
-//            })
         }, completion: nil)
         displayedViewCount += 1
     }
@@ -86,23 +93,11 @@ class BeatView: UIView {
         guard displayedViewCount > 1 else {return}
         let pad = stackView.arrangedSubviews[displayedViewCount - 1]
         UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: [], animations: {
-//            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25, animations: {
-//                pad.transform = CGAffineTransform(translationX: 200.0, y: 0)
-//            })
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5, animations: {
                 pad.isHidden = true
             })
         }, completion: nil)
         displayedViewCount -= 1
     }
-    
-    func reportBeat() {
-        let rhythm = Rhythm(rawValue: displayedViewCount)
-        
-        
-    }
 }
 
-protocol BeatViewDelegate {
-    func respondeToNew(beat: Beat)
-}
