@@ -29,9 +29,6 @@ class CircleOfFifthsView: UIView {
     
     var noteButtons = [NoteButton]()
     
-    
-    
-
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
@@ -60,12 +57,16 @@ class CircleOfFifthsView: UIView {
         noteButtons = noteButtons.map { (noteButton) -> NoteButton in
             noteButton.noteValue = noteCount
             noteCount += 1
-            
             return noteButton
         }
     }
     
+}
+
+extension CircleOfFifthsView: NoteButtonDelegate {
     
-    
+    func respondTo(newNoteValue noteValue: MIDINoteNumber) {
+        
+    }
     
 }
