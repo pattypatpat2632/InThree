@@ -191,14 +191,14 @@
 		EC4BD20B1EA29F8B0076B4D0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EC4BD2131EA2C7F30076B4D0 /* BeatView.swift */,
+				EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */,
 				EC4BD20F1EA2A6B40076B4D0 /* PadView.swift */,
+				EC4BD2131EA2C7F30076B4D0 /* BeatView.swift */,
 				EC9559751EA59EFB008FA5FA /* SequencerView.swift */,
 				ECAE16EF1EA6FD210013696C /* KeyboardView.swift */,
 				ECAE16ED1EA6FCD10013696C /* KeyboardView.xib */,
 				ECCE22F51EA84E28006691D8 /* CircleOfFifthsView.swift */,
 				ECCE22F31EA84C95006691D8 /* CircleOfFifthsView.xib */,
-				EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";

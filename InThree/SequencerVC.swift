@@ -21,7 +21,6 @@ class SequencerVC: UIViewController {
         
         sequencerEngine.setUpSequencer()
         
-        
     }
 
 

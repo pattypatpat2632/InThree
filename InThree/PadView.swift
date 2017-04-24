@@ -52,5 +52,7 @@ class PadView: UIView {
             button.alpha = 1
         }
     }
-
 }
+
+
+
