@@ -19,6 +19,8 @@ class BeatView: UIView {
     let stackView = UIStackView()
     let sliderView = UIView()
     var displayedViewCount: Int = 4
+    let colorScheme: ColorScheme = .normal
+    
     
     var beatNumber: Int = 0
     var rhythm: Rhythm {
@@ -36,7 +38,10 @@ class BeatView: UIView {
     }
     
     func commonInit() {
-        self.backgroundColor = UIColor.night
+
+        self.backgroundColor = colorScheme.model.baseColor
+        allPads = [pad1, pad2, pad3, pad4, pad5]
+
         
         allPads = [pad1, pad2, pad3, pad4, pad5]
 
@@ -62,7 +67,7 @@ class BeatView: UIView {
         sliderView.topAnchor.constraint(equalTo: stackView.bottomAnchor).isActive = true
         sliderView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         sliderView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        sliderView.backgroundColor = UIColor.phoneBoothRed
+        sliderView.backgroundColor = colorScheme.model.backgroundColor
         
         let addPadGesture = UISwipeGestureRecognizer(target: self, action: #selector(addPad))
         addPadGesture.direction = .left
