@@ -22,6 +22,7 @@
 		EC4BD2141EA2C7F30076B4D0 /* BeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4BD2131EA2C7F30076B4D0 /* BeatView.swift */; };
 		EC4BD2171EA2D2CB0076B4D0 /* UIColorExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4BD2161EA2D2CB0076B4D0 /* UIColorExtenstion.swift */; };
 		EC4BD2191EA2EEBE0076B4D0 /* SequencerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4BD2181EA2EEBE0076B4D0 /* SequencerVC.swift */; };
+		EC7FEDEE1EAE59CF00E50A62 /* ColorSchemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */; };
 		EC9559761EA59EFB008FA5FA /* SequencerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9559751EA59EFB008FA5FA /* SequencerView.swift */; };
 		ECFDC4831EA3295F00902F15 /* SequencerEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */; };
 		FEC6EACC79488617263FC929 /* Pods_InThree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE165AF62EB552E59C6FC01F /* Pods_InThree.framework */; };
@@ -73,6 +74,7 @@
 		EC4BD2131EA2C7F30076B4D0 /* BeatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeatView.swift; sourceTree = "<group>"; };
 		EC4BD2161EA2D2CB0076B4D0 /* UIColorExtenstion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtenstion.swift; sourceTree = "<group>"; };
 		EC4BD2181EA2EEBE0076B4D0 /* SequencerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerVC.swift; sourceTree = "<group>"; };
+		EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSchemeModel.swift; sourceTree = "<group>"; };
 		EC9559751EA59EFB008FA5FA /* SequencerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerView.swift; sourceTree = "<group>"; };
 		ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -196,6 +198,7 @@
 				EC05C7641EA460400031864A /* Beat.swift */,
 				EC05C7601EA4570D0031864A /* Rhythm.swift */,
 				EC05C7661EA463A20031864A /* Note.swift */,
+				EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 			files = (
 				EC4BD2191EA2EEBE0076B4D0 /* SequencerVC.swift in Sources */,
 				ECFDC4831EA3295F00902F15 /* SequencerEngine.swift in Sources */,
+				EC7FEDEE1EAE59CF00E50A62 /* ColorSchemeModel.swift in Sources */,
 				EC05C7631EA45AC20031864A /* Score.swift in Sources */,
 				EC4BD2141EA2C7F30076B4D0 /* BeatView.swift in Sources */,
 				EC05C7611EA4570D0031864A /* Rhythm.swift in Sources */,
