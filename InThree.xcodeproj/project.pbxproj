@@ -25,6 +25,8 @@
 		EC9559761EA59EFB008FA5FA /* SequencerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9559751EA59EFB008FA5FA /* SequencerView.swift */; };
 		ECAE16EE1EA6FCD10013696C /* KeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECAE16ED1EA6FCD10013696C /* KeyboardView.xib */; };
 		ECAE16F01EA6FD210013696C /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAE16EF1EA6FD210013696C /* KeyboardView.swift */; };
+		ECCE22F41EA84C95006691D8 /* CircleOfFifthsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECCE22F31EA84C95006691D8 /* CircleOfFifthsView.xib */; };
+		ECCE22F61EA84E28006691D8 /* CircleOfFifthsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE22F51EA84E28006691D8 /* CircleOfFifthsView.swift */; };
 		ECFDC4831EA3295F00902F15 /* SequencerEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */; };
 		FEC6EACC79488617263FC929 /* Pods_InThree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE165AF62EB552E59C6FC01F /* Pods_InThree.framework */; };
 /* End PBXBuildFile section */
@@ -78,6 +80,8 @@
 		EC9559751EA59EFB008FA5FA /* SequencerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerView.swift; sourceTree = "<group>"; };
 		ECAE16ED1EA6FCD10013696C /* KeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeyboardView.xib; sourceTree = "<group>"; };
 		ECAE16EF1EA6FD210013696C /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		ECCE22F31EA84C95006691D8 /* CircleOfFifthsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleOfFifthsView.xib; sourceTree = "<group>"; };
+		ECCE22F51EA84E28006691D8 /* CircleOfFifthsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleOfFifthsView.swift; sourceTree = "<group>"; };
 		ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,6 +194,8 @@
 				EC9559751EA59EFB008FA5FA /* SequencerView.swift */,
 				ECAE16EF1EA6FD210013696C /* KeyboardView.swift */,
 				ECAE16ED1EA6FCD10013696C /* KeyboardView.xib */,
+				ECCE22F51EA84E28006691D8 /* CircleOfFifthsView.swift */,
+				ECCE22F31EA84C95006691D8 /* CircleOfFifthsView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -352,6 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC4BD1E71EA29ECC0076B4D0 /* LaunchScreen.storyboard in Resources */,
+				ECCE22F41EA84C95006691D8 /* CircleOfFifthsView.xib in Resources */,
 				EC4BD1E41EA29ECC0076B4D0 /* Assets.xcassets in Resources */,
 				ECAE16EE1EA6FCD10013696C /* KeyboardView.xib in Resources */,
 			);
@@ -519,6 +526,7 @@
 				EC4BD2191EA2EEBE0076B4D0 /* SequencerVC.swift in Sources */,
 				ECFDC4831EA3295F00902F15 /* SequencerEngine.swift in Sources */,
 				EC05C7631EA45AC20031864A /* Score.swift in Sources */,
+				ECCE22F61EA84E28006691D8 /* CircleOfFifthsView.swift in Sources */,
 				EC4BD2141EA2C7F30076B4D0 /* BeatView.swift in Sources */,
 				EC05C7611EA4570D0031864A /* Rhythm.swift in Sources */,
 				EC9559761EA59EFB008FA5FA /* SequencerView.swift in Sources */,

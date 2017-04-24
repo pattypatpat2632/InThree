@@ -14,7 +14,7 @@ class SequencerView: UIView {
     let beat2View = BeatView()
     let beat3View = BeatView()
     let beat4View = BeatView()
-    let keyboardView = KeyboardView()
+    let circleOfFithsView = CircleOfFifthsView()
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -61,12 +61,12 @@ class SequencerView: UIView {
         beat4View.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/5).isActive = true
         beat4View.backgroundColor = UIColor.night
     
-        self.addSubview(keyboardView)
-        keyboardView.translatesAutoresizingMaskIntoConstraints = false
-        keyboardView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        keyboardView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        keyboardView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        keyboardView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.5).isActive = true
+        self.addSubview(circleOfFithsView)
+        circleOfFithsView.translatesAutoresizingMaskIntoConstraints = false
+        circleOfFithsView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        circleOfFithsView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        circleOfFithsView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        circleOfFithsView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
        
     }
 
