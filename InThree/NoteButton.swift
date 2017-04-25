@@ -12,6 +12,9 @@ import AudioKit
 class NoteButton: UIButton {
     
     var noteValue: MIDINoteNumber = 60
+    var beatNumber: Int?
+    var padNumber: Int?
+    var delegate: NoteButtonDelegate?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -31,8 +34,16 @@ class NoteButton: UIButton {
     
     func buttonTapped() {
         print("NOTE BUTTON TAPPED WITH NOTE VALUE : \(self.noteValue)")
+        delegate?.respondTo(noteNumber: self.noteValue, atBeatNumber: self.beatNumber, atPadNumber: self.padNumber)
+        
     }
     
 }
+
+protocol NoteButtonDelegate {
+    func respondTo(noteNumber: MIDINoteNumber, atBeatNumber beatNumber: Int?, atPadNumber padNumber: Int?)
+}
+
+
 
 

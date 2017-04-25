@@ -14,6 +14,7 @@ class SequencerView: UIView {
     let beat2View = BeatView()
     let beat3View = BeatView()
     let beat4View = BeatView()
+    let circleOfFifthsView = CircleOfFifthsView()
 
     var allBeatViews = [BeatView]()
 
@@ -65,11 +66,17 @@ class SequencerView: UIView {
         beat4View.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/5).isActive = true
         beat4View.backgroundColor = colorScheme.model.baseColor
         
+        self.addSubview(circleOfFifthsView)
+        circleOfFifthsView.translatesAutoresizingMaskIntoConstraints = false
+        circleOfFifthsView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        circleOfFifthsView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        circleOfFifthsView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        circleOfFifthsView.heightAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+        circleOfFifthsView.isHidden = true
+        
         allBeatViews = [beat1View, beat2View, beat3View, beat4View]
     }
 
 }
 
-protocol SequencerViewDelegate {
-    
-}
+

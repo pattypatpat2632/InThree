@@ -74,7 +74,6 @@ class CircleOfFifthsView: UIView {
             return noteButton
         })
     }
-    
 }
 
 

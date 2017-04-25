@@ -93,7 +93,7 @@ class BeatView: UIView {
             })
         }, completion: nil)
         displayedViewCount += 1
-        reportBeatChange()
+        reportRhythmChange()
     }
     
     func subtractPad() {
@@ -105,13 +105,21 @@ class BeatView: UIView {
             })
         }, completion: nil)
         displayedViewCount -= 1
-        reportBeatChange()
+        reportRhythmChange()
     }
     
-    func reportBeatChange () {
+    func reportRhythmChange() {
         if let rhythm = Rhythm(rawValue: self.displayedViewCount) {
-            beat = Beat(rhythm: rhythm)
-            delegate?.beatChange(forBeat: beat)
+            var newBeat = Beat(rhythm: rhythm)
+            for (index, note) in self.beat.notes.enumerated() {
+                guard index < newBeat.notes.count else {continue}
+                newBeat.notes[index].noteNumber = note.noteNumber
+                newBeat.notes[index].noteOn = note.noteOn
+                newBeat.notes[index].velocity = note.velocity
+                print("new beat note \(index): \(newBeat.notes[index].noteOn)")
+            }
+            self.beat = newBeat
+            delegate?.rhythmChange(forBeatView: self)
         }
     }
     
@@ -125,7 +133,7 @@ extension BeatView: PadViewDelegate {
 
 // MARK: Delegate protocol
 protocol BeatViewDelegate {
-    func beatChange(forBeat beat: Beat)
+    func rhythmChange(forBeatView beatView: BeatView)
     func noteChange(padIsOn: Bool, beatNumber: Int, padNumber: Int)
 }
 
