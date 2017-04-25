@@ -59,7 +59,6 @@ struct SequencerEngine {
     func generateSequence(fromScore score: Score) {
         print("*****Generate Sequence*****")
         sequencer.tracks[0].clear()
-//        sequencer.setLength(AKDuration(beats: Double(score.beats.count)))
         print("sequencer length: \(score.beats.count)")
         var beatPostion = AKDuration(beats: 0)
         for beat in score.beats {
