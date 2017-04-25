@@ -18,15 +18,17 @@ class BeatView: UIView {
     var allPads = [PadView]()
     let stackView = UIStackView()
     let sliderView = UIView()
-    var displayedViewCount: Int = 4
     let colorScheme: ColorScheme = .normal
+    
+    var delegate: BeatViewDelegate?
+    
+    var beat = Beat(rhythm: .four)
+    var displayedViewCount: Int = 4
     
     
     var beatNumber: Int = 0
-    var rhythm: Rhythm {
-        return Rhythm(rawValue: displayedViewCount) ?? .four
-    }
     
+// MARK: Init
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
@@ -77,7 +79,8 @@ class BeatView: UIView {
         subtractPadGesture.direction = .right
         sliderView.addGestureRecognizer(subtractPadGesture)
     }
-
+    
+//MARK: Methods
     func addPad() {
         guard displayedViewCount < 5 else {return}
         let pad = stackView.arrangedSubviews[displayedViewCount]
@@ -87,6 +90,7 @@ class BeatView: UIView {
             })
         }, completion: nil)
         displayedViewCount += 1
+        reportBeatChange()
     }
     
     func subtractPad() {
@@ -98,6 +102,19 @@ class BeatView: UIView {
             })
         }, completion: nil)
         displayedViewCount -= 1
+        reportBeatChange()
     }
+    
+    func reportBeatChange () {
+        if let rhythm = Rhythm(rawValue: self.displayedViewCount) {
+            beat = Beat(rhythm: rhythm)
+            delegate?.beatChange(forBeat: beat)
+        }
+    }
+}
+
+// MARK: Delegate protocol
+protocol BeatViewDelegate {
+    func beatChange(forBeat beat: Beat)
 }
 

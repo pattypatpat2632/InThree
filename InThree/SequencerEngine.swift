@@ -25,19 +25,20 @@ struct SequencerEngine {
         let midiNode = AKMIDINode(node: oscBank)
         
         oscBank.attackDuration = 0.1
-        oscBank.decayDuration = 0.1
+        oscBank.decayDuration = 0.01
         oscBank.sustainLevel = 0.1
-        oscBank.releaseDuration = 0.5
+        oscBank.releaseDuration = 0.01
         verb = AKReverb(midiNode)
         
         _ = sequencer.newTrack()
         //self.generateTestSequence()
-        createTestScore()
+        //createTestScore()
         
         AudioKit.output = verb
         AudioKit.start()
         midiNode.enableMIDI(midi.client, name: "midiNode midi in")
         sequencer.setTempo(120.0)
+        sequencer.setLength(AKDuration(beats: 4.0))
         sequencer.enableLooping()
         sequencer.play()
         
@@ -51,13 +52,15 @@ struct SequencerEngine {
         sequencer.setLength(AKDuration(beats: 8.0))
         sequencer.tracks[0].clear()
         for i in 0...15 {
-            sequencer.tracks[0].add(noteNumber: 60, velocity: 127, position: AKDuration(beats: Double(i)/2), duration: AKDuration(beats: 0.5))
+            sequencer.tracks[0].add(noteNumber: 60, velocity: 127, position: AKDuration(beats: Double(i)/2), duration: AKDuration(beats: (0.5)))
         }
     }
     
     func generateSequence(fromScore score: Score) {
-        sequencer.setLength(AKDuration(beats: Double(score.beats.count)))
+        print("*****Generate Sequence*****")
         sequencer.tracks[0].clear()
+//        sequencer.setLength(AKDuration(beats: Double(score.beats.count)))
+        print("sequencer length: \(score.beats.count)")
         var beatPostion = AKDuration(beats: 0)
         for beat in score.beats {
             for note in beat.notes{

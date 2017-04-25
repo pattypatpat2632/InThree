@@ -15,7 +15,7 @@ class SequencerView: UIView {
     let beat3View = BeatView()
     let beat4View = BeatView()
 
-    let allBeats = [BeatView]()
+    var allBeatViews = [BeatView]()
 
     let colorScheme: ColorScheme = .normal
 
@@ -64,7 +64,12 @@ class SequencerView: UIView {
         beat4View.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         beat4View.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/5).isActive = true
         beat4View.backgroundColor = colorScheme.model.baseColor
-
+        
+        allBeatViews = [beat1View, beat2View, beat3View, beat4View]
     }
 
+}
+
+protocol SequencerViewDelegate {
+    
 }
