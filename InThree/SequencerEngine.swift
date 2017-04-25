@@ -31,8 +31,6 @@ struct SequencerEngine {
         verb = AKReverb(midiNode)
         
         _ = sequencer.newTrack()
-        //self.generateTestSequence()
-        //createTestScore()
         
         AudioKit.output = verb
         AudioKit.start()

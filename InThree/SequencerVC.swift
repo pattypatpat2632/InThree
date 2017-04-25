@@ -50,6 +50,7 @@ extension SequencerVC: BeatViewDelegate {
     }
     
     func getNote(beatNumber: Int, padNumber: Int) {
+
         sequencerView.circleOfFifthsView.isHidden = false
         for beatView in sequencerView.allBeatViews {
             beatView.isUserInteractionEnabled = false

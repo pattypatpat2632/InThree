@@ -25,8 +25,14 @@ class CircleOfFifthsView: UIView {
     @IBOutlet weak var dS: NoteButton!
     @IBOutlet weak var aS: NoteButton!
     @IBOutlet weak var f: NoteButton!
+    @IBOutlet weak var octaveLabel: UILabel!
     
     var noteButtons = [NoteButton]()
+    var octaveNumber: Int = 4 {
+        didSet {
+            self.octaveLabel.text = "Octave \(octaveNumber)"
+        }
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -40,9 +46,10 @@ class CircleOfFifthsView: UIView {
     
     func commonInit() {
         Bundle.main.loadNibNamed("CircleOfFifthsView", owner: self, options: nil)
+        let colorScheme: ColorScheme = .normal
         
         self.backgroundColor = UIColor.clear
-        self.contentView.backgroundColor = UIColor.green
+        self.contentView.backgroundColor = UIColor.clear
         
         self.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -60,20 +67,30 @@ class CircleOfFifthsView: UIView {
             noteCount += 1
             return noteButton
         }
+        
+        octaveLabel.text = "Octave 4"
+        octaveLabel.backgroundColor = colorScheme.model.highlightColor
+        octaveLabel.textColor = colorScheme.model.foregroundColor
+        
     }
     
     @IBAction func octaveUpTapped(_ sender: UIButton) {
+        guard octaveNumber < 7 else {return}
         noteButtons = noteButtons.map({ (noteButton) -> NoteButton in
             noteButton.noteValue = noteButton.noteValue + 12
             return noteButton
         })
+        octaveNumber += 1
     }
     @IBAction func octaveDownTapped(_ sender: UIButton) {
+        guard octaveNumber > 1 else {return}
         noteButtons = noteButtons.map({ (noteButton) -> NoteButton in
             noteButton.noteValue = noteButton.noteValue - 12
             return noteButton
         })
+        octaveNumber -= 1
     }
+    
 }
 
 
