@@ -27,7 +27,7 @@ extension Beat {
         self.rhythm = rhythm
         for i in 1...rhythm.rawValue {
             let position = AKDuration(beats: Double(i - 1) / rhythm.rawValue)
-            let duration = AKDuration(beats: 1.0/rhythm.rawValue)
+            let duration = AKDuration(beats: 1.0/rhythm.rawValue/2)
             let note = Note(noteOn: true, noteNumber: 60, velocity: 127, duration: duration, position: position)
             self.notes.append(note)
         }
