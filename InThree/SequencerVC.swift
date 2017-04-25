@@ -68,6 +68,8 @@ extension SequencerVC: NoteButtonDelegate {
     
     func respondTo(noteNumber: MIDINoteNumber, atBeatNumber beatNumber: Int?, atPadNumber padNumber: Int?) {
         guard let beatNumber = beatNumber, let padNumber = padNumber else {return}
+        sequencerView.allBeatViews[beatNumber].beat.notes[padNumber].noteOn = true
+        sequencerView.allBeatViews[beatNumber].beat.notes[padNumber].noteNumber = noteNumber
         score.beats[beatNumber].notes[padNumber].noteOn = true
         score.beats[beatNumber].notes[padNumber].noteNumber = noteNumber
         sequencerEngine.generateSequence(fromScore: score)

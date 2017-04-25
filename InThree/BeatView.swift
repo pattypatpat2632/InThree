@@ -104,6 +104,8 @@ class BeatView: UIView {
                 pad.isHidden = true
             })
         }, completion: nil)
+        self.beat.notes[displayedViewCount - 1].noteOn = false
+        self.allPads[displayedViewCount - 1].turnOff()
         displayedViewCount -= 1
         reportRhythmChange()
     }
@@ -117,6 +119,7 @@ class BeatView: UIView {
                 newBeat.notes[index].noteOn = note.noteOn
                 newBeat.notes[index].velocity = note.velocity
                 print("new beat note \(index): \(newBeat.notes[index].noteOn)")
+                print("old beat note \(index): \(note.noteOn)")
             }
             self.beat = newBeat
             delegate?.rhythmChange(forBeatView: self)

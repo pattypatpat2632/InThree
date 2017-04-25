@@ -57,6 +57,11 @@ class PadView: UIView {
             delegate?.padValueChanged(padNumber: padNumber, padIsOn: true)
         }
     }
+    
+    func turnOff() {
+        self.buttonIsOn = false
+        self.button.alpha = 0.5
+    }
 }
 
 protocol PadViewDelegate {
