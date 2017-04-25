@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class SequencerVC: UIViewController {
     
     
@@ -20,16 +21,13 @@ class SequencerVC: UIViewController {
         self.view = sequencerView
         
        sequencerEngine.setUpSequencer()
-        score.add(beat: Beat(rhythm: .four))
-        sequencerEngine.generateSequence(fromScore: score)
         
-        for beatView in sequencerView.allBeatViews {
+        for (index, beatView) in sequencerView.allBeatViews.enumerated() {
             beatView.delegate = self
+            beatView.beatNumber = index
         }
         
     }
-
-
 }
 
 extension SequencerVC: BeatViewDelegate {
@@ -39,5 +37,23 @@ extension SequencerVC: BeatViewDelegate {
             score.add(beat: beatView.beat)
         }
         sequencerEngine.generateSequence(fromScore: score)
+    }
+    
+    func noteChange(padIsOn: Bool, beatNumber: Int, padNumber: Int) {
+        print("PAD ON: \(padIsOn) beatNumber: \(beatNumber) padNumber: \(padNumber)")
+        if padIsOn {
+            getNote {
+                
+            }
+            score.beats[beatNumber].notes[padNumber].noteOn = true
+            sequencerEngine.generateSequence(fromScore: score)
+        } else {
+            score.beats[beatNumber].notes[padNumber].noteOn = false
+            sequencerEngine.generateSequence(fromScore: score)
+        }
+    }
+    
+    func getNote(completion: () -> Void){
+        completion()
     }
 }

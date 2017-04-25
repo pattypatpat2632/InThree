@@ -14,6 +14,8 @@ class PadView: UIView {
     let button = UIButton()
     var buttonIsOn: Bool = false
     let colorScheme: ColorScheme = .normal
+    var padNumber: Int = 0
+    var delegate: PadViewDelegate?
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -48,11 +50,17 @@ class PadView: UIView {
         if buttonIsOn {
             buttonIsOn = false
             button.alpha = 0.5
+            delegate?.padValueChanged(padNumber: padNumber, padIsOn: false)
         } else {
             buttonIsOn = true
             button.alpha = 1
+            delegate?.padValueChanged(padNumber: padNumber, padIsOn: true)
         }
     }
+}
+
+protocol PadViewDelegate {
+    func padValueChanged(padNumber: Int, padIsOn: Bool)
 }
 
 

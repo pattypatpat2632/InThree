@@ -43,9 +43,12 @@ class BeatView: UIView {
 
         self.backgroundColor = colorScheme.model.baseColor
         allPads = [pad1, pad2, pad3, pad4, pad5]
-
         
-        allPads = [pad1, pad2, pad3, pad4, pad5]
+        for (index, pad) in allPads.enumerated() {
+            pad.padNumber = index
+            pad.delegate = self
+        }
+        
 
         self.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -111,10 +114,18 @@ class BeatView: UIView {
             delegate?.beatChange(forBeat: beat)
         }
     }
+    
+}
+
+extension BeatView: PadViewDelegate {
+    func padValueChanged(padNumber: Int, padIsOn: Bool) {
+        delegate?.noteChange(padIsOn: padIsOn, beatNumber: self.beatNumber, padNumber: padNumber)
+    }
 }
 
 // MARK: Delegate protocol
 protocol BeatViewDelegate {
     func beatChange(forBeat beat: Beat)
+    func noteChange(padIsOn: Bool, beatNumber: Int, padNumber: Int)
 }
 

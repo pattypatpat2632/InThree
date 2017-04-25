@@ -12,7 +12,6 @@ import AudioKit
 class NoteButton: UIButton {
     
     var noteValue: MIDINoteNumber = 60
-    weak var delegate: NoteButtonDelegate?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -32,10 +31,8 @@ class NoteButton: UIButton {
     
     func buttonTapped() {
         print("NOTE BUTTON TAPPED WITH NOTE VALUE : \(self.noteValue)")
-        delegate?.respondTo(newNoteValue: self.noteValue)
     }
+    
 }
 
-protocol NoteButtonDelegate: class {
-    func respondTo(newNoteValue noteValue: MIDINoteNumber)
-}
+

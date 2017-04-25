@@ -77,10 +77,4 @@ class CircleOfFifthsView: UIView {
     
 }
 
-extension CircleOfFifthsView: NoteButtonDelegate {
-    
-    func respondTo(newNoteValue noteValue: MIDINoteNumber) {
-        
-    }
-    
-}
+
