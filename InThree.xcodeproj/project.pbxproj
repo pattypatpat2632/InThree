@@ -22,11 +22,9 @@
 		EC4BD2141EA2C7F30076B4D0 /* BeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4BD2131EA2C7F30076B4D0 /* BeatView.swift */; };
 		EC4BD2171EA2D2CB0076B4D0 /* UIColorExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4BD2161EA2D2CB0076B4D0 /* UIColorExtenstion.swift */; };
 		EC4BD2191EA2EEBE0076B4D0 /* SequencerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4BD2181EA2EEBE0076B4D0 /* SequencerVC.swift */; };
-
-		EC7FEDF01EAE65D500E50A62 /* NoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */; };
-
+		EC5B3F9D1EB0DB0000410BD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC5B3F9C1EB0DB0000410BD2 /* GoogleService-Info.plist */; };
 		EC7FEDEE1EAE59CF00E50A62 /* ColorSchemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */; };
-
+		EC7FEDF01EAE65D500E50A62 /* NoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */; };
 		EC9559761EA59EFB008FA5FA /* SequencerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9559751EA59EFB008FA5FA /* SequencerView.swift */; };
 		ECAE16EE1EA6FCD10013696C /* KeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECAE16ED1EA6FCD10013696C /* KeyboardView.xib */; };
 		ECAE16F01EA6FD210013696C /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAE16EF1EA6FD210013696C /* KeyboardView.swift */; };
@@ -82,11 +80,9 @@
 		EC4BD2131EA2C7F30076B4D0 /* BeatView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeatView.swift; sourceTree = "<group>"; };
 		EC4BD2161EA2D2CB0076B4D0 /* UIColorExtenstion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtenstion.swift; sourceTree = "<group>"; };
 		EC4BD2181EA2EEBE0076B4D0 /* SequencerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerVC.swift; sourceTree = "<group>"; };
-
-		EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteButton.swift; sourceTree = "<group>"; };
-
+		EC5B3F9C1EB0DB0000410BD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSchemeModel.swift; sourceTree = "<group>"; };
-
+		EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteButton.swift; sourceTree = "<group>"; };
 		EC9559751EA59EFB008FA5FA /* SequencerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerView.swift; sourceTree = "<group>"; };
 		ECAE16ED1EA6FCD10013696C /* KeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeyboardView.xib; sourceTree = "<group>"; };
 		ECAE16EF1EA6FD210013696C /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
@@ -158,6 +154,7 @@
 		EC4BD1DB1EA29ECC0076B4D0 /* InThree */ = {
 			isa = PBXGroup;
 			children = (
+				EC5B3F9B1EB0D87C00410BD2 /* Utility */,
 				EC4BD2151EA2D2B60076B4D0 /* Extensions */,
 				EC4BD20C1EA29F990076B4D0 /* Models */,
 				EC4BD20B1EA29F8B0076B4D0 /* Views */,
@@ -165,6 +162,7 @@
 				EC4BD1E31EA29ECC0076B4D0 /* Assets.xcassets */,
 				EC4BD1E51EA29ECC0076B4D0 /* LaunchScreen.storyboard */,
 				EC4BD1E81EA29ECC0076B4D0 /* Info.plist */,
+				EC5B3F9C1EB0DB0000410BD2 /* GoogleService-Info.plist */,
 			);
 			path = InThree;
 			sourceTree = "<group>";
@@ -230,6 +228,13 @@
 				EC4BD2161EA2D2CB0076B4D0 /* UIColorExtenstion.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		EC5B3F9B1EB0D87C00410BD2 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Utility;
 			sourceTree = "<group>";
 		};
 		FF7F3A395CF2D5D980872EEC /* Pods */ = {
@@ -369,6 +374,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC5B3F9D1EB0DB0000410BD2 /* GoogleService-Info.plist in Resources */,
 				EC4BD1E71EA29ECC0076B4D0 /* LaunchScreen.storyboard in Resources */,
 				ECCE22F41EA84C95006691D8 /* CircleOfFifthsView.xib in Resources */,
 				EC4BD1E41EA29ECC0076B4D0 /* Assets.xcassets in Resources */,
@@ -699,7 +705,7 @@
 				DEVELOPMENT_TEAM = 7994H36MAA;
 				INFOPLIST_FILE = InThree/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = SweetPea.InThree;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SweetPea.BlipBloop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -713,7 +719,7 @@
 				DEVELOPMENT_TEAM = 7994H36MAA;
 				INFOPLIST_FILE = InThree/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = SweetPea.InThree;
+				PRODUCT_BUNDLE_IDENTIFIER = com.SweetPea.BlipBloop;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
