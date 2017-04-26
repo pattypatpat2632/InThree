@@ -8,10 +8,15 @@
 
 import Foundation
 import Firebase
+import FirebaseAuth
 
 class LoginManager {
     
-    
+    func createUser(fromEmail email: String, password: String, username: String, completion:() -> Void) {
+        FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (firUser, error) in
+            
+        })
+    }
     
     
     
