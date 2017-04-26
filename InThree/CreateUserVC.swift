@@ -16,6 +16,7 @@ class CreateUserVC: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
         self.view = createUserView
+        self.hideKeyboardWhenTappedAround()
         createUserView.submitButton.addTarget(self, action: #selector(submitTapped), for: .touchUpInside)
     }
 

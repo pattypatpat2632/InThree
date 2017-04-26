@@ -36,6 +36,7 @@
 		EC5B3FB31EB0FF3800410BD2 /* CreateUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B3FB21EB0FF3800410BD2 /* CreateUserVC.swift */; };
 		EC5B3FB51EB0FF6300410BD2 /* CreateUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B3FB41EB0FF6300410BD2 /* CreateUserView.swift */; };
 		EC5B3FBC1EB10A9000410BD2 /* BlipBloopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B3FBB1EB10A9000410BD2 /* BlipBloopView.swift */; };
+		EC5B3FBE1EB13A6700410BD2 /* UIVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B3FBD1EB13A6700410BD2 /* UIVCExtension.swift */; };
 		EC7FEDEE1EAE59CF00E50A62 /* ColorSchemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */; };
 		EC7FEDF01EAE65D500E50A62 /* NoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */; };
 		EC9559761EA59EFB008FA5FA /* SequencerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9559751EA59EFB008FA5FA /* SequencerView.swift */; };
@@ -107,6 +108,7 @@
 		EC5B3FB21EB0FF3800410BD2 /* CreateUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserVC.swift; sourceTree = "<group>"; };
 		EC5B3FB41EB0FF6300410BD2 /* CreateUserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserView.swift; sourceTree = "<group>"; };
 		EC5B3FBB1EB10A9000410BD2 /* BlipBloopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlipBloopView.swift; sourceTree = "<group>"; };
+		EC5B3FBD1EB13A6700410BD2 /* UIVCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVCExtension.swift; sourceTree = "<group>"; };
 		EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSchemeModel.swift; sourceTree = "<group>"; };
 		EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteButton.swift; sourceTree = "<group>"; };
 		EC9559751EA59EFB008FA5FA /* SequencerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerView.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				EC4BD2161EA2D2CB0076B4D0 /* UIColorExtenstion.swift */,
+				EC5B3FBD1EB13A6700410BD2 /* UIVCExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				EC5B3FAD1EB0EDFE00410BD2 /* DashboardNavC.swift in Sources */,
 				EC5B3FA31EB0E25000410BD2 /* BlipUser.swift in Sources */,
 				ECAE16F01EA6FD210013696C /* KeyboardView.swift in Sources */,
+				EC5B3FBE1EB13A6700410BD2 /* UIVCExtension.swift in Sources */,
 				EC4BD2101EA2A6B40076B4D0 /* PadView.swift in Sources */,
 				EC5B3FB31EB0FF3800410BD2 /* CreateUserVC.swift in Sources */,
 				EC05C7651EA460400031864A /* Beat.swift in Sources */,

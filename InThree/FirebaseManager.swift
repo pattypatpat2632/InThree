@@ -18,14 +18,7 @@ final class FirebaseManager {
     var allBlipUsers = [BlipUser]()
     
     private init() {
-//        FirebaseManager.sharedInstance.observeAllBlipUsers { response in
-//            switch response {
-//            case .success(let successString):
-//                print(successString)
-//            case .failure(let failString):
-//                print(failString)
-//            }
-//        }
+
     }
     
     private func observeAllBlipUsers(completion: @escaping (FirebaseResponse) -> Void) {

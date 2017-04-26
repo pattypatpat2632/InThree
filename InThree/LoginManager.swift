@@ -21,7 +21,7 @@ final class LoginManager {
     
     func loginUser(fromEmail email: String, password: String, completion: @escaping (FirebaseResponse) -> Void) {
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (firUser, error) in
-            if error != nil {
+            if error == nil {
                 guard let uid = firUser?.uid else {
                     completion(.failure("Could not log in user"))
                     return

@@ -15,6 +15,7 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = loginView
+        self.hideKeyboardWhenTappedAround()
         addTargets()
     }
     
@@ -37,10 +38,26 @@ class LoginVC: UIViewController {
         if loginView.emailField.text == "" {
             loginView.indicateRequired(fieldView: loginView.emailField)
             return
-        } else if loginView.passwordField.text == ""{
+        } else if loginView.passwordField.text == "" {
             loginView.indicateRequired(fieldView: loginView.passwordField)
             return
+        } else {
+            guard let email = loginView.emailField.text, let password = loginView.passwordField.text else {return} //TODO: handle this better
+            LoginManager.sharedInstance.loginUser(fromEmail: email, password: password, completion: { (firResponse) in
+                switch firResponse {
+                case .success(let successString):
+                    print(successString)
+                    DispatchQueue.main.async {
+                        let sequencerVC = SequencerVC() //TODO: change this to dashboard view after it is working and enabled
+                        self.navigationController?.pushViewController(sequencerVC, animated: true)
+                    }
+                case .failure(let failString):
+                    print(failString)
+                }
+            })
         }
+        
+        
     }
     
 }
