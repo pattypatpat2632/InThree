@@ -34,7 +34,7 @@ class CreateUserVC: UIViewController {
                 print(successString)
                 let sequencerVC = SequencerVC()
                 DispatchQueue.main.async {
-                    self.navigationController?.pushViewController(sequencerVC, animated: true) //TODO: change this to push to the dashboard VC once that's working
+                    NotificationCenter.default.post(name: .closeLoginVC, object: nil)
                 }
             case .failure(let failString):
                 print(failString)

@@ -8,12 +8,19 @@
 
 import UIKit
 
-class DashboardVC: UIViewController {
-
+class DashboardVC: UIViewController, DashboardViewDelegate {
+    
+    let dashboardView = DashboardView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.view = dashboardView
+        dashboardView.delegate = self
+    }
+    
+    func goToPartyMode() {//TODO: this function will probbly change as party mode is furthered
+        let sequencerVC = SequencerVC()
+        self.navigationController?.pushViewController(sequencerVC, animated: true)
     }
 
 }

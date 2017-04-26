@@ -49,7 +49,7 @@ class LoginVC: UIViewController {
                     print(successString)
                     DispatchQueue.main.async {
                         let sequencerVC = SequencerVC() //TODO: change this to dashboard view after it is working and enabled
-                        self.navigationController?.pushViewController(sequencerVC, animated: true)
+                        NotificationCenter.default.post(name: .closeLoginVC, object: nil)
                     }
                 case .failure(let failString):
                     print(failString)
