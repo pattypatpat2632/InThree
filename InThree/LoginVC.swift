@@ -18,13 +18,29 @@ class LoginVC: UIViewController {
         addTargets()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     func addTargets() {
         loginView.createUserButton.addTarget(self, action: #selector(createUserTapped), for: .touchUpInside)
+        loginView.loginButton.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
     }
     
     func createUserTapped() {
         let createUserVC = CreateUserVC()
         self.navigationController?.pushViewController(createUserVC, animated: true)
+    }
+    
+    func loginTapped() {
+        if loginView.emailField.text == "" {
+            loginView.indicateRequired(fieldView: loginView.emailField)
+            return
+        } else if loginView.passwordField.text == ""{
+            loginView.indicateRequired(fieldView: loginView.passwordField)
+            return
+        }
     }
     
 }

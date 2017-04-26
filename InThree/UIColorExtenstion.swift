@@ -63,10 +63,33 @@ extension UIColor {
         return UIColor(displayP3Red: 237/255, green: 184/255, blue: 61/255, alpha: 1)
     }
     
+    //Scheme 4 - Gameboy
+    
+    open class var darkestGreen: UIColor {
+        return UIColor(displayP3Red: 15/255, green: 156/255, blue: 15/255, alpha: 1)
+    }
+    
+    open class var darkGreen: UIColor {
+        return UIColor(displayP3Red: 48/255, green: 98/255, blue: 48/255, alpha: 1)
+    }
+    
+    open class var lightGreen: UIColor {
+        return UIColor(displayP3Red: 1390/255, green: 172/255, blue: 15/255, alpha: 1)
+    }
+    
+    open class var lightestGreen: UIColor {
+        return UIColor(displayP3Red: 155/255, green: 188/255, blue: 15/255, alpha: 1)
+    }
+    
+    
+    //MARK: Random color generator
     open class var randomColor: UIColor {
         let red = drand48()
         let green = drand48()
         let blue = drand48()
         return UIColor(displayP3Red: CGFloat(red), green: CGFloat(green), blue: CGFloat(blue), alpha: 1)
     }
+    
+    
+    
 }

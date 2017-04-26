@@ -21,6 +21,7 @@ class SequencerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = sequencerView
+        self.navigationController?.navigationBar.isHidden = true
         
         sequencerEngine.setUpSequencer()
         

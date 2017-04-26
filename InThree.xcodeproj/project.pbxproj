@@ -35,6 +35,7 @@
 		EC5B3FB11EB0EF9500410BD2 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B3FB01EB0EF9500410BD2 /* LoginView.swift */; };
 		EC5B3FB31EB0FF3800410BD2 /* CreateUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B3FB21EB0FF3800410BD2 /* CreateUserVC.swift */; };
 		EC5B3FB51EB0FF6300410BD2 /* CreateUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B3FB41EB0FF6300410BD2 /* CreateUserView.swift */; };
+		EC5B3FBC1EB10A9000410BD2 /* BlipBloopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B3FBB1EB10A9000410BD2 /* BlipBloopView.swift */; };
 		EC7FEDEE1EAE59CF00E50A62 /* ColorSchemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */; };
 		EC7FEDF01EAE65D500E50A62 /* NoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */; };
 		EC9559761EA59EFB008FA5FA /* SequencerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9559751EA59EFB008FA5FA /* SequencerView.swift */; };
@@ -105,6 +106,7 @@
 		EC5B3FB01EB0EF9500410BD2 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		EC5B3FB21EB0FF3800410BD2 /* CreateUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserVC.swift; sourceTree = "<group>"; };
 		EC5B3FB41EB0FF6300410BD2 /* CreateUserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUserView.swift; sourceTree = "<group>"; };
+		EC5B3FBB1EB10A9000410BD2 /* BlipBloopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlipBloopView.swift; sourceTree = "<group>"; };
 		EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSchemeModel.swift; sourceTree = "<group>"; };
 		EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteButton.swift; sourceTree = "<group>"; };
 		EC9559751EA59EFB008FA5FA /* SequencerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerView.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 		EC4BD1DB1EA29ECC0076B4D0 /* InThree */ = {
 			isa = PBXGroup;
 			children = (
+				EC5B3FB81EB1097D00410BD2 /* Protocols */,
 				EC5B3F9B1EB0D87C00410BD2 /* Utility */,
 				EC4BD2151EA2D2B60076B4D0 /* Extensions */,
 				EC4BD20C1EA29F990076B4D0 /* Models */,
@@ -271,6 +274,14 @@
 				EC5B3FA41EB0E31100410BD2 /* FirebaseManager.swift */,
 			);
 			name = Utility;
+			sourceTree = "<group>";
+		};
+		EC5B3FB81EB1097D00410BD2 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				EC5B3FBB1EB10A9000410BD2 /* BlipBloopView.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		FF7F3A395CF2D5D980872EEC /* Pods */ = {
@@ -589,6 +600,7 @@
 				EC9559761EA59EFB008FA5FA /* SequencerView.swift in Sources */,
 				EC5B3FA51EB0E31100410BD2 /* FirebaseManager.swift in Sources */,
 				EC5B3FAF1EB0EEB100410BD2 /* LoginNavC.swift in Sources */,
+				EC5B3FBC1EB10A9000410BD2 /* BlipBloopView.swift in Sources */,
 				EC05C7671EA463A20031864A /* Note.swift in Sources */,
 				EC5B3FB11EB0EF9500410BD2 /* LoginView.swift in Sources */,
 				EC5B3FA71EB0E81100410BD2 /* AppController.swift in Sources */,

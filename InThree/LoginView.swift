@@ -8,9 +8,8 @@
 
 import UIKit
 
-class LoginView: UIView {
+class LoginView: UIView, BlipBloopView {
     
-    let colorScheme: ColorScheme = .normal
     let titleLabel = UILabel()
     let emailField = UITextField()
     let passwordField = UITextField()

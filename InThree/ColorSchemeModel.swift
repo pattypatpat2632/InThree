@@ -17,7 +17,7 @@ struct ColorSchemeModel {
 }
 
 enum ColorScheme {
-    case normal, paint, night
+    case normal, paint, night, gameboy
     
     var model: ColorSchemeModel {
         switch self {
@@ -27,6 +27,8 @@ enum ColorScheme {
             return ColorSchemeModel(baseColor: UIColor.ultraMarine, backgroundColor: UIColor.watermelon, highlightColor: UIColor.sunshine, foregroundColor: UIColor.turquoise)
         case .night:
             return ColorSchemeModel(baseColor: UIColor.nightCyan, backgroundColor: UIColor.nightMagenta, highlightColor: UIColor.nightYellow, foregroundColor: UIColor.nightBlack)
+        case .gameboy:
+            return ColorSchemeModel(baseColor: UIColor.lightestGreen, backgroundColor: .lightGreen, highlightColor: .darkestGreen, foregroundColor: .darkGreen)
         }
     }
 }

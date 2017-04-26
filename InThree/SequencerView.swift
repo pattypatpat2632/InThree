@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SequencerView: UIView {
+class SequencerView: UIView, BlipBloopView {
     
     let beat1View = BeatView()
     let beat2View = BeatView()
@@ -17,8 +17,6 @@ class SequencerView: UIView {
     let circleOfFifthsView = CircleOfFifthsView()
 
     var allBeatViews = [BeatView]()
-
-    let colorScheme: ColorScheme = .normal
 
     
     required init?(coder aDecoder: NSCoder) {

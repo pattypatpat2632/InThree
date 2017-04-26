@@ -11,16 +11,16 @@ import Foundation
 struct BlipUser {
     
     let name: String
-    let userName: String
+    let uid: String
     let email: String
     
 }
 
 extension BlipUser {
     
-    init(dictionary: [String: Any]) {
+    init(uid: String, dictionary: [String: Any]) {
+        self.uid = uid
         self.name = dictionary["name"] as? String ?? "No Name"
-        self.userName = dictionary["userName"] as? String ?? "No User Name"
         self.email = dictionary["email"] as? String ?? "No Email"
     }
 }
