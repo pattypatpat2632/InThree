@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BeatView: UIView {
+class BeatView: UIView, BlipBloopView {
     
     let pad1 = PadView()
     let pad2 = PadView()
@@ -18,7 +18,6 @@ class BeatView: UIView {
     var allPads = [PadView]()
     let stackView = UIStackView()
     let sliderView = UIView()
-    let colorScheme: ColorScheme = .normal
     
     var delegate: BeatViewDelegate?
     

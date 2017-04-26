@@ -9,11 +9,10 @@
 import UIKit
 import AudioKit
 
-class PadView: UIView {
+class PadView: UIView, BlipBloopView {
     
     let button = UIButton()
     var buttonIsOn: Bool = false
-    let colorScheme: ColorScheme = .normal
     var padNumber: Int = 0
     var delegate: PadViewDelegate?
 
