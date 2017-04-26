@@ -9,10 +9,13 @@
 import Foundation
 import Firebase
 import FirebaseAuth
+import FirebaseDatabase
 
-class LoginManager {
+final class LoginManager {
     
-    func createUser(fromEmail email: String, password: String, username: String, completion:() -> Void) {
+    let userRef = FIRDatabase.database().reference().child("users")
+    
+    static func createUser(fromEmail email: String, password: String, username: String, completion:() -> Void) {
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (firUser, error) in
             
         })

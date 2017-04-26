@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        
         self.window = UIWindow(frame: UIScreen.main.bounds)
         guard let window = self.window else { fatalError("no window") }
-        window.rootViewController = SequencerVC()
+        window.rootViewController = AppController()
         window.makeKeyAndVisible()
         return true
     }
