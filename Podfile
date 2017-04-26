@@ -8,6 +8,7 @@ target 'InThree' do
   # Pods for InThree
   pod 'AudioKit'
   pod 'Firebase'
+  pod 'Firebase/Auth'
 
   target 'InThreeTests' do
     inherit! :search_paths
