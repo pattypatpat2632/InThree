@@ -43,6 +43,7 @@
 		EC9559761EA59EFB008FA5FA /* SequencerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9559751EA59EFB008FA5FA /* SequencerView.swift */; };
 		ECAE16EE1EA6FCD10013696C /* KeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECAE16ED1EA6FCD10013696C /* KeyboardView.xib */; };
 		ECAE16F01EA6FD210013696C /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAE16EF1EA6FD210013696C /* KeyboardView.swift */; };
+		ECB181661EB2424E0025F017 /* MultipeerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB181651EB2424E0025F017 /* MultipeerManager.swift */; };
 		ECCE22F41EA84C95006691D8 /* CircleOfFifthsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECCE22F31EA84C95006691D8 /* CircleOfFifthsView.xib */; };
 		ECCE22F61EA84E28006691D8 /* CircleOfFifthsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE22F51EA84E28006691D8 /* CircleOfFifthsView.swift */; };
 		ECFDC4831EA3295F00902F15 /* SequencerEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */; };
@@ -116,6 +117,7 @@
 		EC9559751EA59EFB008FA5FA /* SequencerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerView.swift; sourceTree = "<group>"; };
 		ECAE16ED1EA6FCD10013696C /* KeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeyboardView.xib; sourceTree = "<group>"; };
 		ECAE16EF1EA6FD210013696C /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		ECB181651EB2424E0025F017 /* MultipeerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerManager.swift; sourceTree = "<group>"; };
 		ECCE22F31EA84C95006691D8 /* CircleOfFifthsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleOfFifthsView.xib; sourceTree = "<group>"; };
 		ECCE22F51EA84E28006691D8 /* CircleOfFifthsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleOfFifthsView.swift; sourceTree = "<group>"; };
 		ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerEngine.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 				EC5B3F9E1EB0DE2F00410BD2 /* LoginManager.swift */,
 				EC5B3FA01EB0E04E00410BD2 /* FirebaseResponse.swift */,
 				EC5B3FA41EB0E31100410BD2 /* FirebaseManager.swift */,
+				ECB181651EB2424E0025F017 /* MultipeerManager.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				EC5B3FBE1EB13A6700410BD2 /* UIVCExtension.swift in Sources */,
 				EC4BD2101EA2A6B40076B4D0 /* PadView.swift in Sources */,
 				EC5B3FB31EB0FF3800410BD2 /* CreateUserVC.swift in Sources */,
+				ECB181661EB2424E0025F017 /* MultipeerManager.swift in Sources */,
 				EC05C7651EA460400031864A /* Beat.swift in Sources */,
 				EC7FEDF01EAE65D500E50A62 /* NoteButton.swift in Sources */,
 			);
