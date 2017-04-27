@@ -44,6 +44,8 @@
 		ECAE16EE1EA6FCD10013696C /* KeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECAE16ED1EA6FCD10013696C /* KeyboardView.xib */; };
 		ECAE16F01EA6FD210013696C /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAE16EF1EA6FD210013696C /* KeyboardView.swift */; };
 		ECB181661EB2424E0025F017 /* MultipeerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB181651EB2424E0025F017 /* MultipeerManager.swift */; };
+		ECB181681EB245BD0025F017 /* LocalPeerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB181671EB245BD0025F017 /* LocalPeerView.swift */; };
+		ECB1816A1EB245DB0025F017 /* LocalPeerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB181691EB245DB0025F017 /* LocalPeerVC.swift */; };
 		ECCE22F41EA84C95006691D8 /* CircleOfFifthsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECCE22F31EA84C95006691D8 /* CircleOfFifthsView.xib */; };
 		ECCE22F61EA84E28006691D8 /* CircleOfFifthsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE22F51EA84E28006691D8 /* CircleOfFifthsView.swift */; };
 		ECFDC4831EA3295F00902F15 /* SequencerEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */; };
@@ -118,6 +120,8 @@
 		ECAE16ED1EA6FCD10013696C /* KeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeyboardView.xib; sourceTree = "<group>"; };
 		ECAE16EF1EA6FD210013696C /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		ECB181651EB2424E0025F017 /* MultipeerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerManager.swift; sourceTree = "<group>"; };
+		ECB181671EB245BD0025F017 /* LocalPeerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalPeerView.swift; sourceTree = "<group>"; };
+		ECB181691EB245DB0025F017 /* LocalPeerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalPeerVC.swift; sourceTree = "<group>"; };
 		ECCE22F31EA84C95006691D8 /* CircleOfFifthsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleOfFifthsView.xib; sourceTree = "<group>"; };
 		ECCE22F51EA84E28006691D8 /* CircleOfFifthsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleOfFifthsView.swift; sourceTree = "<group>"; };
 		ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerEngine.swift; sourceTree = "<group>"; };
@@ -229,6 +233,7 @@
 				EC5B3FAC1EB0EDFE00410BD2 /* DashboardNavC.swift */,
 				EC5B3FAE1EB0EEB100410BD2 /* LoginNavC.swift */,
 				EC5B3FB21EB0FF3800410BD2 /* CreateUserVC.swift */,
+				ECB181691EB245DB0025F017 /* LocalPeerVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -247,6 +252,7 @@
 				EC5B3FB01EB0EF9500410BD2 /* LoginView.swift */,
 				EC5B3FB41EB0FF6300410BD2 /* CreateUserView.swift */,
 				EC5B3FBF1EB13EE800410BD2 /* DashboardView.swift */,
+				ECB181671EB245BD0025F017 /* LocalPeerView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -597,6 +603,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ECB1816A1EB245DB0025F017 /* LocalPeerVC.swift in Sources */,
 				EC4BD2191EA2EEBE0076B4D0 /* SequencerVC.swift in Sources */,
 				EC5B3F9F1EB0DE2F00410BD2 /* LoginManager.swift in Sources */,
 				EC5B3FA91EB0E92100410BD2 /* LoginVC.swift in Sources */,
@@ -625,6 +632,7 @@
 				EC5B3FBE1EB13A6700410BD2 /* UIVCExtension.swift in Sources */,
 				EC4BD2101EA2A6B40076B4D0 /* PadView.swift in Sources */,
 				EC5B3FB31EB0FF3800410BD2 /* CreateUserVC.swift in Sources */,
+				ECB181681EB245BD0025F017 /* LocalPeerView.swift in Sources */,
 				ECB181661EB2424E0025F017 /* MultipeerManager.swift in Sources */,
 				EC05C7651EA460400031864A /* Beat.swift in Sources */,
 				EC7FEDF01EAE65D500E50A62 /* NoteButton.swift in Sources */,
