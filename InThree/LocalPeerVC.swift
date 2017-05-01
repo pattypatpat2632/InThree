@@ -74,6 +74,7 @@ extension LocalPeerVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+//MARK: Local Peer View Delegate
 extension LocalPeerVC: LocalPeerViewDelegate {
     
     func goToPartySquencer() {

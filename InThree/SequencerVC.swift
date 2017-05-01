@@ -16,6 +16,7 @@ class SequencerVC: UIViewController {
     var sequencerEngine = SequencerEngine()
     var sequencerView = SequencerView()
     var score = Score()
+    var selectedUsers = [BlipUser]()
     
     
     override func viewDidLoad() {
@@ -24,6 +25,10 @@ class SequencerVC: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         sequencerEngine.setUpSequencer()
+        
+        if sequencerEngine.mode == .party {
+            MultipeerManager.sharedInstance.delegate = self
+        }
         
         for (index, beatView) in sequencerView.allBeatViews.enumerated() {
             beatView.delegate = self
@@ -81,6 +86,21 @@ extension SequencerVC: NoteButtonDelegate {
             beatView.isUserInteractionEnabled = true
             beatView.alpha = beatView.alpha * 5
         }
+    }
+}
+
+extension SequencerVC: MultipeerManagerDelegate {
+    
+    func musicChanged(forUID uid: String, score: Score, manager: MultipeerManager) {
+        for (index, blipUser) in selectedUsers.enumerated() {
+            if blipUser.uid == uid {
+                sequencerEngine.generateSequence(fromScore: score, forUserNumber: index + 1)
+            }
+        }
+    }
+    
+    func connectedDevicesChanged(manager: MultipeerManager, connectedDevices: [String]) {
+        
     }
 }
 

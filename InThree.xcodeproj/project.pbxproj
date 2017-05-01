@@ -38,6 +38,7 @@
 		EC5B3FBE1EB13A6700410BD2 /* UIVCExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B3FBD1EB13A6700410BD2 /* UIVCExtension.swift */; };
 		EC5B3FC01EB13EE800410BD2 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B3FBF1EB13EE800410BD2 /* DashboardView.swift */; };
 		EC7C14661EB67D52009FACDA /* BlipUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C14651EB67D51009FACDA /* BlipUserCell.swift */; };
+		EC7C14681EB780FF009FACDA /* SequencerMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C14671EB780FF009FACDA /* SequencerMode.swift */; };
 		EC7FEDEE1EAE59CF00E50A62 /* ColorSchemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */; };
 		EC7FEDF01EAE65D500E50A62 /* NoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */; };
 		EC9559761EA59EFB008FA5FA /* SequencerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9559751EA59EFB008FA5FA /* SequencerView.swift */; };
@@ -114,6 +115,7 @@
 		EC5B3FBD1EB13A6700410BD2 /* UIVCExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIVCExtension.swift; sourceTree = "<group>"; };
 		EC5B3FBF1EB13EE800410BD2 /* DashboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		EC7C14651EB67D51009FACDA /* BlipUserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlipUserCell.swift; sourceTree = "<group>"; };
+		EC7C14671EB780FF009FACDA /* SequencerMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerMode.swift; sourceTree = "<group>"; };
 		EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSchemeModel.swift; sourceTree = "<group>"; };
 		EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteButton.swift; sourceTree = "<group>"; };
 		EC9559751EA59EFB008FA5FA /* SequencerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerView.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				EC05C7661EA463A20031864A /* Note.swift */,
 				EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */,
 				EC5B3FA21EB0E25000410BD2 /* BlipUser.swift */,
+				EC7C14671EB780FF009FACDA /* SequencerMode.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				EC5B3FA31EB0E25000410BD2 /* BlipUser.swift in Sources */,
 				ECAE16F01EA6FD210013696C /* KeyboardView.swift in Sources */,
 				EC5B3FBE1EB13A6700410BD2 /* UIVCExtension.swift in Sources */,
+				EC7C14681EB780FF009FACDA /* SequencerMode.swift in Sources */,
 				EC4BD2101EA2A6B40076B4D0 /* PadView.swift in Sources */,
 				EC5B3FB31EB0FF3800410BD2 /* CreateUserVC.swift in Sources */,
 				ECB181681EB245BD0025F017 /* LocalPeerView.swift in Sources */,

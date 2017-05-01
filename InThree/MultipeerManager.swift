@@ -19,7 +19,7 @@ final class MultipeerManager: NSObject {
     private let serviceAdvertiser: MCNearbyServiceAdvertiser
     private let serviceBrowser: MCNearbyServiceBrowser
     
-    var delegate: PeerManagerDelegate?
+    var delegate: MultipeerManagerDelegate?
     
     lazy var session : MCSession = {
         let session = MCSession(peer: self.myPeerID, securityIdentity: nil, encryptionPreference: .required)
@@ -47,12 +47,14 @@ final class MultipeerManager: NSObject {
     
     func send(score: Score) { //Send a score to another user
         //TODO: add function to Score that returns a JSON object
-        let json = try? JSONSerialization.data(withJSONObject: score, options: [])
-        guard let jsonUW = json else {return}
+        guard let scoreData = score.asData() else {
+            print("Score data returned nil")
+            return
+        }
         if session.connectedPeers.count > 0 {
             do {
-                try self.session.send(jsonUW, toPeers: session.connectedPeers, with: .reliable)
-                print("Sent \(score)")
+                try self.session.send(scoreData, toPeers: session.connectedPeers, with: .reliable)
+                print("Sent score to connected peers")
             } catch{
                 print("Errah")
             }
@@ -99,10 +101,16 @@ extension MultipeerManager: MCNearbyServiceBrowserDelegate {
 
 extension MultipeerManager: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        let dataArray = try? JSONSerialization.jsonObject(with: data, options: []) as! [String: [Bool]]
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] ?? [:]
+            if let newScore = Score(dictionary: json) {
+                delegate?.musicChanged(forUID: peerID.displayName, score: newScore, manager: self)
+            }
+        } catch {
+            print("Could not create JSON from received data")
+        }
         
-        guard let dataArrayUW = dataArray else {return}
-        delegate?.musicChanged(manager: self, dataArray: dataArrayUW)
+        
     }
     
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
@@ -122,9 +130,9 @@ extension MultipeerManager: MCSessionDelegate {
     }
 }
 
-protocol PeerManagerDelegate {
+protocol MultipeerManagerDelegate {
     
     func connectedDevicesChanged(manager: MultipeerManager, connectedDevices: [String])
-    func musicChanged(manager: MultipeerManager, dataArray: [String: [Bool]])
+    func musicChanged(forUID uid: String, score: Score, manager: MultipeerManager)
     
 }

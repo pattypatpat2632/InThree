@@ -16,6 +16,7 @@ struct SequencerEngine {
     let sequencer = AKSequencer()
     let midi = AKMIDI()
     var verb: AKReverb?
+    var mode: SequencerMode = .solo
     
     init() {}
     
@@ -61,6 +62,17 @@ struct SequencerEngine {
                 }
             }
             beatPostion = beatPostion + AKDuration(beats: 1.0)
+        }
+        if userNum == 0 {
+            send(score: score)
+        }
+    }
+    
+    func send(score: Score) {
+        if mode == .party {
+            MultipeerManager.sharedInstance.send(score: score)
+        } else if mode == .neighborhood {
+            //TODO: send score to neighborhood
         }
     }
     
