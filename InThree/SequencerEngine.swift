@@ -71,6 +71,7 @@ struct SequencerEngine {
     func send(score: Score) {
         if mode == .party {
             MultipeerManager.sharedInstance.send(score: score)
+            print("SCORE SEND******************")
         } else if mode == .neighborhood {
             //TODO: send score to neighborhood
         }

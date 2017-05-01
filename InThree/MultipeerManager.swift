@@ -114,25 +114,41 @@ extension MultipeerManager: MCSessionDelegate {
     }
     
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        delegate?.connectedDevicesChanged(manager: self, connectedDevices: session.connectedPeers.map{$0.displayName})
+        switch state {
+        case .notConnected:
+            remove(blipUserWithUID: peerID.displayName)
+        case .connecting:
+            print("connecting") //TODO: Enable notifications for newly connected users
+        case .connected:
+            print("connected")
+        }
     }
     
+    private func remove(blipUserWithUID uid: String) {
+        for (index, blipUser) in peers.enumerated() {
+            if uid == blipUser.uid {
+                peers.remove(at: index)
+                delegate?.connectionLost(forUID: uid, manager: self)
+            }
+        }
+    }
+    
+// Unused delegate functions
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
-        //
     }
     
     func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
-        //
     }
     
     func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL, withError error: Error?) {
-        //
     }
+    
+    
 }
 
 protocol MultipeerManagerDelegate {
     
-    func connectedDevicesChanged(manager: MultipeerManager, connectedDevices: [String])
+    func connectionLost(forUID uid: String, manager: MultipeerManager)
     func musicChanged(forUID uid: String, score: Score, manager: MultipeerManager)
     
 }

@@ -26,7 +26,7 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
         
     }
     
-    func goToPartyMode() {//TODO: this function will probbly change as party mode is furthered
+    func goToPartyMode() {
         let localPeerVC = LocalPeerVC()
         self.navigationController?.pushViewController(localPeerVC, animated: true)
     }

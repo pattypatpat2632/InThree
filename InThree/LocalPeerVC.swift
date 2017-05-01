@@ -79,6 +79,8 @@ extension LocalPeerVC: LocalPeerViewDelegate {
     
     func goToPartySquencer() {
         let sequenerVC = SequencerVC()
+        sequenerVC.selectedPeers = self.selectedPeers
+        sequenerVC.sequencerEngine.mode = .party
         navigationController?.pushViewController(sequenerVC, animated: true)
     }
     

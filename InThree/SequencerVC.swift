@@ -16,7 +16,7 @@ class SequencerVC: UIViewController {
     var sequencerEngine = SequencerEngine()
     var sequencerView = SequencerView()
     var score = Score()
-    var selectedUsers = [BlipUser]()
+    var selectedPeers = [BlipUser]()
     
     
     override func viewDidLoad() {
@@ -28,6 +28,8 @@ class SequencerVC: UIViewController {
         
         if sequencerEngine.mode == .party {
             MultipeerManager.sharedInstance.delegate = self
+        } else if sequencerEngine.mode == .neighborhood {
+            //TODO: set self as the neighbordhood mode delegate
         }
         
         for (index, beatView) in sequencerView.allBeatViews.enumerated() {
@@ -92,15 +94,20 @@ extension SequencerVC: NoteButtonDelegate {
 extension SequencerVC: MultipeerManagerDelegate {
     
     func musicChanged(forUID uid: String, score: Score, manager: MultipeerManager) {
-        for (index, blipUser) in selectedUsers.enumerated() {
+        for (index, blipUser) in selectedPeers.enumerated() {
             if blipUser.uid == uid {
                 sequencerEngine.generateSequence(fromScore: score, forUserNumber: index + 1)
             }
         }
     }
     
-    func connectedDevicesChanged(manager: MultipeerManager, connectedDevices: [String]) {
-        
+    func connectionLost(forUID uid: String, manager: MultipeerManager) {
+        for (index, blipUser) in self.selectedPeers.enumerated() {
+            if blipUser.uid == uid {
+                self.selectedPeers.remove(at: index)
+            }
+            //TODO: remove peer that has disconnected, and fade out their score
+        }
     }
 }
 
