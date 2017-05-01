@@ -77,6 +77,15 @@ struct SequencerEngine {
         }
     }
     
+    func stopAll() {
+        for track in sequencer.tracks {
+            track.clear()
+        }
+        self.sequencer.stop()
+        AudioKit.output = nil
+        AudioKit.stop()
+    }
+    
 }
 
 

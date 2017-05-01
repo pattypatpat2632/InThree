@@ -114,10 +114,9 @@ extension SequencerVC: MultipeerManagerDelegate {
 
 extension SequencerVC: SequencerViewDelegate {
     func returnToDashboard() {
+        sequencerEngine.stopAll() //TODO: add audio fadeout
         navigationController?.popViewController(animated: true)
-        for track in sequencerEngine.sequencer.tracks {
-            track.clear()
-        }//TODO: add a fadeout to sequencer as view exits
+        
     }
 }
 
