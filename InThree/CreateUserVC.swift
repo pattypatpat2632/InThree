@@ -32,7 +32,6 @@ class CreateUserVC: UIViewController {
             switch firResponse {
             case .success(let successString):
                 print(successString)
-                let sequencerVC = SequencerVC()
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: .closeLoginVC, object: nil)
                 }

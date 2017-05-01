@@ -21,3 +21,40 @@ struct Score {
     }
     
 }
+
+extension Score {
+    init?(dictionary: [String: Any]) {
+        guard let beats = dictionary["beats"] as? [[String: Any]] else {return nil}
+        for beat in beats {
+            guard let newBeat = Beat(dictionary: beat) else { return nil }
+            self.beats.append(newBeat)
+        }
+    }
+}
+
+extension Score {
+    
+    func asDictionary() -> [String: Any] {
+        
+        var beatDict = [[String: Any]]()
+        for beat in beats {
+            beatDict.append(beat.asDictionary())
+        }
+        let scoreDict = [
+            "beats": beatDict
+        ]
+        return scoreDict
+    }
+    
+    func asData() -> Data? {
+        let scoreDict = self.asDictionary()
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: scoreDict, options: [])
+            return jsonData
+        } catch {
+            print("Could not convert dictionary to JSON Data")
+            return nil
+        }
+    }
+    
+}

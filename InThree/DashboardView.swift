@@ -10,6 +10,7 @@ import UIKit
 
 class DashboardView: UIView, BlipBloopView {
     
+    let soloModeButton = UIButton()
     let partyModeButton = UIButton()
     var delegate: DashboardViewDelegate? = nil
 
@@ -31,6 +32,13 @@ class DashboardView: UIView, BlipBloopView {
     }
     
     private func setConstraints() {
+        addSubview(soloModeButton)
+        soloModeButton.translatesAutoresizingMaskIntoConstraints = false
+        soloModeButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        soloModeButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
+        soloModeButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
+        soloModeButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
+        
         addSubview(partyModeButton)
         partyModeButton.translatesAutoresizingMaskIntoConstraints = false
         partyModeButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
@@ -47,14 +55,28 @@ class DashboardView: UIView, BlipBloopView {
         partyModeButton.layer.borderWidth = 2
         partyModeButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
         partyModeButton.addTarget(self, action: #selector(partyModeButtonPressed), for: .touchUpInside)
+        
+        soloModeButton.setTitle("Solo Mode", for: .normal)
+        soloModeButton.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
+        soloModeButton.backgroundColor = colorScheme.model.baseColor
+        soloModeButton.layer.cornerRadius = 5
+        soloModeButton.layer.borderWidth = 2
+        soloModeButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
+        soloModeButton.addTarget(self, action: #selector(soloModeButtonPressed), for: .touchUpInside)
+        
     }
     
     func partyModeButtonPressed() {
         delegate?.goToPartyMode()
         //TODO: add some cool animation for button being pressed
     }
+    
+    func soloModeButtonPressed() {
+        delegate?.goToSoloMode()
+    }
 }
 
 protocol DashboardViewDelegate {
     func goToPartyMode()
+    func goToSoloMode()
 }

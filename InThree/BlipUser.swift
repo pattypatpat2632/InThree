@@ -23,4 +23,18 @@ extension BlipUser {
         self.name = dictionary["name"] as? String ?? "No Name"
         self.email = dictionary["email"] as? String ?? "No Email"
     }
+    
+    func jsonData() -> Data? {
+        let jsonDict: [String: Any] = [
+            "name": self.uid,
+            "email": self.email
+        ]
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: jsonDict, options: [])
+            return jsonData
+        } catch {
+            print("unable to write user as JSON data")
+            return nil
+        }
+    }
 }

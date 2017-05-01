@@ -19,3 +19,29 @@ struct Note {
     
 }
 
+extension Note {
+    init(dictionary: [String: Any]) {//TODO: handle force unwraps betterer
+        self.noteOn = dictionary["noteOn"] as! Bool
+        self.noteNumber = MIDINoteNumber(dictionary["noteNumber"] as! Int)
+        self.velocity = MIDIVelocity(dictionary["velocity"] as! Int)
+        self.duration = AKDuration(beats: dictionary["duration"] as! Double)
+        self.position = AKDuration(beats: dictionary["position"] as! Double)
+    }
+}
+
+extension Note {
+    
+    func asDictionary() -> [String: Any] {
+        let noteDict: [String: Any] = [
+            "noteOn": noteOn,
+            "noteNumber": Int(noteNumber),
+            "velocity": Int(velocity),
+            "duration": duration.beats,
+            "position": position.beats
+            
+        ]
+        return noteDict
+    }
+    
+}
+

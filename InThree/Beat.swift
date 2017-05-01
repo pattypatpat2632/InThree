@@ -32,4 +32,32 @@ extension Beat {
             self.notes.append(note)
         }
     }
+    
+    init?(dictionary: [String: Any]) {
+        guard let rhythmRawValue = dictionary["rhythm"] as? Int else { return nil }
+        guard let rhythm = Rhythm(rawValue: rhythmRawValue) else { return nil }
+        self.rhythm = rhythm
+        guard let notes = dictionary["notes"] as? [[String: Any]] else { return nil }
+        for note in notes {
+            let newNote = Note(dictionary: note)
+            self.notes.append(newNote)
+        }
+        guard let beatNumber = dictionary["beatNumber"] as? Double else { return nil }
+        self.beatNumber = AKDuration(beats: beatNumber)
+    }
+    
+    func asDictionary() -> [String: Any] {
+        var notesDict = [[String: Any]]()
+        for note in notes {
+            notesDict.append(note.asDictionary())
+        }
+        
+        let beatDict: [String: Any] = [
+            "rhythm": rhythm.rawValue,
+            "notes": notesDict,
+            "beatNumber": self.beatNumber.beats
+        ]
+        
+        return beatDict
+    }
 }
