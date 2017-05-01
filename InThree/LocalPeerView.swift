@@ -9,7 +9,7 @@
 import UIKit
 
 class LocalPeerView: UIView, BlipBloopView {
-
+    
     let titleLabel = UILabel()
     let peerTable = UITableView()
     let continueButton = UIButton()
@@ -55,6 +55,8 @@ class LocalPeerView: UIView, BlipBloopView {
     }
     
     func setSubviewProperties() {
+        self.backgroundColor = colorScheme.model.baseColor
+        
         titleLabel.text = "Select users to play music with:"
         titleLabel.textAlignment = .center
         titleLabel.backgroundColor = UIColor.clear
@@ -68,6 +70,7 @@ class LocalPeerView: UIView, BlipBloopView {
         continueButton.layer.cornerRadius = 5
         continueButton.layer.borderWidth = 2
         continueButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
+        continueButton.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
     }
     
     func continueButtonTapped() {

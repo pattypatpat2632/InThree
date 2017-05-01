@@ -19,9 +19,7 @@ final class FirebaseManager {
     var allBlipUsers = [BlipUser]()
     var currentBlipUser: BlipUser? = nil
     
-    private init() {
-        
-    }
+    private init() {}
     
     private func observeAllBlipUsers(completion: @escaping (FirebaseResponse) -> Void) {
         dataRef.child("users").observe(.value, with: { (snapshot) in
@@ -47,6 +45,9 @@ final class FirebaseManager {
             let newBlipUser = BlipUser(name: name, uid: firUser.uid, email: email)
             self.storeNew(blipUser: newBlipUser) {
                 completion(.success("New user created: \(newBlipUser.name)"))
+                self.observeCurrentBlipUser(uid: newBlipUser.uid, completion: {
+                    print("Observing current blip user: \(self.currentBlipUser?.uid)")
+                })
                 
             }
         })
@@ -80,7 +81,17 @@ extension FirebaseManager {
         })
     }
     
-    private func observeCurrentBlipUser(uid: String, completion: @escaping () -> Void) {
+    func checkForCurrentUser(completion: @escaping (Bool) -> Void) {
+        guard let uid = FIRAuth.auth()?.currentUser?.uid else {
+            completion(false)
+            return
+        }
+        self.observeCurrentBlipUser(uid: uid) { 
+            completion(true)
+        }
+    }
+    
+    fileprivate func observeCurrentBlipUser(uid: String, completion: @escaping () -> Void) {
         userRef.child("uid").observe(.value, with: { (snapshot) in
             let userProperties = snapshot.value as? [String: Any] ?? [:]
             self.currentBlipUser = BlipUser(uid: uid, dictionary: userProperties)

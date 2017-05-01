@@ -13,7 +13,7 @@ final class MultipeerManager: NSObject {
     
     static let sharedInstance = MultipeerManager()
     let service = "blipbloop-2632"
-    let myPeerID = MCPeerID(displayName: (LoginManager.sharedInstance.currentBlipUser?.uid)!)//TODO: fix this force unwrap
+    let myPeerID = MCPeerID(displayName: (FirebaseManager.sharedInstance.currentBlipUser?.uid)!)//TODO: fix this force unwrap
     var peers = [BlipUser]()
     
     private let serviceAdvertiser: MCNearbyServiceAdvertiser
@@ -89,7 +89,7 @@ extension MultipeerManager: MCNearbyServiceBrowserDelegate {
         print("Did not start browsing for peers")//TODO: INdicate to user that browser could not be established
     }
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        guard let data = LoginManager.sharedInstance.currentBlipUser?.jsonData() else {return} //TODO: handle error mo bettah
+        guard let data = FirebaseManager.sharedInstance.currentBlipUser?.jsonData() else {return} //TODO: handle error mo bettah
         
         browser.invitePeer(peerID, to: session, withContext: data, timeout: 10)
         print("SENT INVITE")

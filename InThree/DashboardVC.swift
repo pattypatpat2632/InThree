@@ -8,15 +8,22 @@
 
 import UIKit
 
+
 class DashboardVC: UIViewController, DashboardViewDelegate {
     
     let dashboardView = DashboardView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("logged in with user UID: \(LoginManager.sharedInstance.currentBlipUser?.uid)")
-        self.view = dashboardView
-        dashboardView.delegate = self
+        FirebaseManager.sharedInstance.checkForCurrentUser { (userExists) in
+            if userExists {
+                self.view = self.dashboardView
+                self.dashboardView.delegate = self
+            } else {
+                NotificationCenter.default.post(name: .closeDashboardVC, object: nil)
+            }
+        }
+        
     }
     
     func goToPartyMode() {//TODO: this function will probbly change as party mode is furthered
@@ -28,5 +35,6 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
         let sequencerVC = SequencerVC()
         self.navigationController?.pushViewController(sequencerVC, animated: true)
     }
+    
 
 }

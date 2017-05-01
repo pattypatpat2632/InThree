@@ -43,7 +43,7 @@ class LoginVC: UIViewController {
             return
         } else {
             guard let email = loginView.emailField.text, let password = loginView.passwordField.text else {return} //TODO: handle this better
-            LoginManager.sharedInstance.loginUser(fromEmail: email, password: password, completion: { (firResponse) in
+            FirebaseManager.sharedInstance.loginUser(fromEmail: email, password: password, completion: { (firResponse) in
                 switch firResponse {
                 case .success(let successString):
                     print(successString)

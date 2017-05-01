@@ -20,6 +20,8 @@ class LocalPeerVC: UIViewController {
         localPeerView.peerTable.dataSource = self
         localPeerView.peerTable.register(BlipUserCell.self, forCellReuseIdentifier: BlipUserCell.identifier)
         
+        localPeerView.delegate = self
+        
         self.view = localPeerView
     }
     
