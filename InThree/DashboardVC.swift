@@ -36,5 +36,10 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
         self.navigationController?.pushViewController(sequencerVC, animated: true)
     }
     
+    func goToNeighborhoodMode() {
+        let sequencerVC = SequencerVC()
+        sequencerVC.sequencerEngine.mode = .neighborhood
+        self.navigationController?.pushViewController(sequencerVC, animated: true)//TODO: update if I decide to put a view in between dashboard and neighborhood sequencer
+    }
 
 }
