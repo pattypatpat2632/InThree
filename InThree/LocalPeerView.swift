@@ -13,7 +13,9 @@ class LocalPeerView: UIView, BlipBloopView {
     let titleLabel = UILabel()
     let peerTable = UITableView()
     let continueButton = UIButton()
+    var backButton = UIButton()
     var delegate: LocalPeerViewDelegate?
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -52,6 +54,13 @@ class LocalPeerView: UIView, BlipBloopView {
         continueButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
         continueButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
         
+        self.addSubview(backButton)
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.topAnchor.constraint(equalTo: continueButton.bottomAnchor, constant: 10).isActive = true
+        backButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        backButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
+        backButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
+        
     }
     
     func setSubviewProperties() {
@@ -71,14 +80,27 @@ class LocalPeerView: UIView, BlipBloopView {
         continueButton.layer.borderWidth = 2
         continueButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
         continueButton.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
+        
+        backButton.setTitle("Back", for: .normal)
+        backButton.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
+        backButton.backgroundColor = colorScheme.model.baseColor
+        backButton.layer.cornerRadius = 5
+        backButton.layer.borderWidth = 2
+        backButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
     
     func continueButtonTapped() {
         delegate?.goToPartySquencer()
     }
     
+    func backButtonTapped() {
+        delegate?.returnToDashboard()
+    }
+    
 }
 
 protocol LocalPeerViewDelegate {
     func goToPartySquencer()
+    func returnToDashboard()
 }

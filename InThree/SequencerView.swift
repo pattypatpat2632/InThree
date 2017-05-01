@@ -15,6 +15,9 @@ class SequencerView: UIView, BlipBloopView {
     let beat3View = BeatView()
     let beat4View = BeatView()
     let circleOfFifthsView = CircleOfFifthsView()
+    let backButton = UIButton()
+    
+    var delegate: SequencerViewDelegate?
 
     var allBeatViews = [BeatView]()
 
@@ -22,11 +25,14 @@ class SequencerView: UIView, BlipBloopView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setUpViews()
+        setSubviewProperties()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpViews()
+        setSubviewProperties()
+        
     }
     
     func setUpViews() {
@@ -64,6 +70,13 @@ class SequencerView: UIView, BlipBloopView {
         beat4View.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/5).isActive = true
         beat4View.backgroundColor = colorScheme.model.baseColor
         
+        self.addSubview(backButton)
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.topAnchor.constraint(equalTo: beat4View.bottomAnchor, constant: 10).isActive = true
+        backButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        backButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
+        backButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
+        
         self.addSubview(circleOfFifthsView)
         circleOfFifthsView.translatesAutoresizingMaskIntoConstraints = false
         circleOfFifthsView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
@@ -74,7 +87,24 @@ class SequencerView: UIView, BlipBloopView {
         
         allBeatViews = [beat1View, beat2View, beat3View, beat4View]
     }
+    
+    func setSubviewProperties() {
+        backButton.setTitle("Back", for: .normal)
+        backButton.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
+        backButton.backgroundColor = colorScheme.model.baseColor
+        backButton.layer.cornerRadius = 5
+        backButton.layer.borderWidth = 2
+        backButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+    }
+    
+    func backButtonTapped() {
+        delegate?.returnToDashboard()
+    }
 
 }
 
+protocol SequencerViewDelegate {
+    func returnToDashboard()
+}
 

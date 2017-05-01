@@ -22,6 +22,7 @@ class SequencerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = sequencerView
+        self.sequencerView.delegate = self
         self.navigationController?.navigationBar.isHidden = true
         
         sequencerEngine.setUpSequencer()
@@ -108,6 +109,15 @@ extension SequencerVC: MultipeerManagerDelegate {
             }
             //TODO: remove peer that has disconnected, and fade out their score
         }
+    }
+}
+
+extension SequencerVC: SequencerViewDelegate {
+    func returnToDashboard() {
+        navigationController?.popViewController(animated: true)
+        for track in sequencerEngine.sequencer.tracks {
+            track.clear()
+        }//TODO: add a fadeout to sequencer as view exits
     }
 }
 

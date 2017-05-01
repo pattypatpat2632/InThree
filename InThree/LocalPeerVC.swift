@@ -93,5 +93,9 @@ extension LocalPeerVC: LocalPeerViewDelegate {
         navigationController?.pushViewController(sequenerVC, animated: true)
     }
     
+    func returnToDashboard() {
+        navigationController?.popViewController(animated: true)
+    }
+    
 }
 
