@@ -25,6 +25,10 @@ final class MultipeerTestManager: NSObject {
     let service = "blipbloop-2632"
     let myPeerID = MCPeerID(displayName: "Test User")//TODO: fix this force unwrap
     var peers = [BlipUser]()
+    let testUser = BlipUser(uid: "Test User", dictionary: [
+            "name": "Test User",
+            "email": "test@test.com"
+        ])
     
     private let serviceAdvertiser: MCNearbyServiceAdvertiser
     private let serviceBrowser: MCNearbyServiceBrowser
@@ -111,7 +115,7 @@ extension MultipeerTestManager: MCNearbyServiceBrowserDelegate {
         print("Did not start browsing for peers")//TODO: Indicate to user that browser could not be established
     }
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        guard let data = FirebaseManager.sharedInstance.currentBlipUser?.jsonData() else {return} //TODO: handle error mo bettah
+        guard let data = self.testUser.jsonData() else {return}
         
         browser.invitePeer(peerID, to: session, withContext: data, timeout: 10)
         print("SENT INVITE")
