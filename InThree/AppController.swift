@@ -104,5 +104,6 @@ extension AppController {
 extension Notification.Name {
     static let closeLoginVC = Notification.Name("close-login-view-controller")
     static let closeDashboardVC = Notification.Name("close-dashboard-view-controller")
+    static let newPeerFound = Notification.Name("new-peer-found")
 }
 

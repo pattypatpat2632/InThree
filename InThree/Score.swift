@@ -57,4 +57,12 @@ extension Score {
         }
     }
     
+    static func random() -> Score {
+        let beat0 = Beat.randomBeat()
+        let beat1 = Beat.randomBeat(position: 1)
+        let beat2 = Beat.randomBeat(position: 2)
+        let beat3 = Beat.randomBeat(position: 3)
+        return Score(beats: [beat0, beat1, beat2, beat3])
+    }
+    
 }

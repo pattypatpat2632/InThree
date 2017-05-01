@@ -43,5 +43,14 @@ extension Note {
         return noteDict
     }
     
+    static func random() -> Note {
+        let noteOn: Bool = drand48() < 0.5
+        let noteNumber = UInt8(arc4random_uniform(127))
+        let velocity = UInt8(arc4random_uniform(127))
+        let duration = AKDuration(beats: 0.25)
+        let position = AKDuration(beats: Double(arc4random_uniform(3)))
+        return Note(noteOn: noteOn, noteNumber: noteNumber, velocity: velocity, duration: duration, position: position)
+    }
+    
 }
 

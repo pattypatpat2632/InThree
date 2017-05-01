@@ -60,4 +60,10 @@ extension Beat {
         
         return beatDict
     }
+    
+    static func randomBeat(position: Double = 0) -> Beat {
+        let rhythm: Rhythm = .four
+        let notes = [Note.random(), Note.random(), Note.random(), Note.random()]
+        return Beat(rhythm: rhythm, notes: notes, beatNumber: AKDuration(beats: position))
+    }
 }

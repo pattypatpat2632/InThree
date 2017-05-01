@@ -42,6 +42,7 @@
 		EC7FEDEE1EAE59CF00E50A62 /* ColorSchemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */; };
 		EC7FEDF01EAE65D500E50A62 /* NoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */; };
 		EC9559761EA59EFB008FA5FA /* SequencerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9559751EA59EFB008FA5FA /* SequencerView.swift */; };
+		ECA6D4A51EB7C6B1008A027B /* MultipeerTestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA6D4A41EB7C6B1008A027B /* MultipeerTestManager.swift */; };
 		ECAE16EE1EA6FCD10013696C /* KeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECAE16ED1EA6FCD10013696C /* KeyboardView.xib */; };
 		ECAE16F01EA6FD210013696C /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAE16EF1EA6FD210013696C /* KeyboardView.swift */; };
 		ECB181661EB2424E0025F017 /* MultipeerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB181651EB2424E0025F017 /* MultipeerManager.swift */; };
@@ -119,6 +120,7 @@
 		EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSchemeModel.swift; sourceTree = "<group>"; };
 		EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteButton.swift; sourceTree = "<group>"; };
 		EC9559751EA59EFB008FA5FA /* SequencerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerView.swift; sourceTree = "<group>"; };
+		ECA6D4A41EB7C6B1008A027B /* MultipeerTestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerTestManager.swift; sourceTree = "<group>"; };
 		ECAE16ED1EA6FCD10013696C /* KeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeyboardView.xib; sourceTree = "<group>"; };
 		ECAE16EF1EA6FD210013696C /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		ECB181651EB2424E0025F017 /* MultipeerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerManager.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				EC5B3FA01EB0E04E00410BD2 /* FirebaseResponse.swift */,
 				EC5B3FA41EB0E31100410BD2 /* FirebaseManager.swift */,
 				ECB181651EB2424E0025F017 /* MultipeerManager.swift */,
+				ECA6D4A41EB7C6B1008A027B /* MultipeerTestManager.swift */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -632,6 +635,7 @@
 				EC5B3FA31EB0E25000410BD2 /* BlipUser.swift in Sources */,
 				ECAE16F01EA6FD210013696C /* KeyboardView.swift in Sources */,
 				EC5B3FBE1EB13A6700410BD2 /* UIVCExtension.swift in Sources */,
+				ECA6D4A51EB7C6B1008A027B /* MultipeerTestManager.swift in Sources */,
 				EC7C14681EB780FF009FACDA /* SequencerMode.swift in Sources */,
 				EC4BD2101EA2A6B40076B4D0 /* PadView.swift in Sources */,
 				EC5B3FB31EB0FF3800410BD2 /* CreateUserVC.swift in Sources */,

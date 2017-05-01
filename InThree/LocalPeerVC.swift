@@ -23,11 +23,20 @@ class LocalPeerVC: UIViewController {
         localPeerView.delegate = self
         
         self.view = localPeerView
+        MultipeerTestManager.sharedInstance.generateRandomScores()
+        
+        NotificationCenter.default.addObserver(forName: .newPeerFound, object: nil, queue: nil) { (notification) in
+            DispatchQueue.main.async {
+                self.localPeers = MultipeerManager.sharedInstance.peers
+                self.localPeerView.peerTable.reloadData()
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.localPeers = MultipeerManager.sharedInstance.peers
+        print("Local peers: \(self.localPeers)")
         localPeerView.peerTable.reloadData()
     }
     

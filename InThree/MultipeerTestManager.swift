@@ -1,4 +1,14 @@
 //
+//  MultipeerTestUser.swift
+//  InThree
+//
+//  Created by Patrick O'Leary on 5/1/17.
+//  Copyright © 2017 Patrick O'Leary. All rights reserved.
+//
+
+import Foundation
+
+//
 //  MultipeerManager.swift
 //  InThree
 //
@@ -9,17 +19,17 @@
 import Foundation
 import MultipeerConnectivity
 
-final class MultipeerManager: NSObject {
+final class MultipeerTestManager: NSObject {
     
-    static let sharedInstance = MultipeerManager()
+    static let sharedInstance = MultipeerTestManager()
     let service = "blipbloop-2632"
-    let myPeerID = MCPeerID(displayName: (FirebaseManager.sharedInstance.currentBlipUser?.uid)!)//TODO: fix this force unwrap
+    let myPeerID = MCPeerID(displayName: "Test User")//TODO: fix this force unwrap
     var peers = [BlipUser]()
     
     private let serviceAdvertiser: MCNearbyServiceAdvertiser
     private let serviceBrowser: MCNearbyServiceBrowser
     
-    var delegate: MultipeerManagerDelegate?
+    var delegate: MultipeerTestManagerDelegate?
     
     lazy var session : MCSession = {
         let session = MCSession(peer: self.myPeerID, securityIdentity: nil, encryptionPreference: .required)
@@ -46,7 +56,7 @@ final class MultipeerManager: NSObject {
     }
     
     func send(score: Score) { //Send a score to another user
-        //TODO: add function to Score that returns a JSON object
+
         guard let scoreData = score.asData() else {
             print("Score data returned nil")
             return
@@ -60,9 +70,19 @@ final class MultipeerManager: NSObject {
             }
         }
     }
+    
+    func generateRandomScores() {
+        DispatchQueue.global().async {
+            let score = Score.random()
+            self.send(score: score)
+            print("RANDOM SCORE SENT BY TEST USER")
+            sleep(8)
+            self.generateRandomScores()
+        }
+    }
 }
 //MARK: Advertiser Delegate
-extension MultipeerManager: MCNearbyServiceAdvertiserDelegate {
+extension MultipeerTestManager: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
         print("Boo")// TODO: indicate to user that there is no available connection to broadcast advertiser
     }
@@ -76,7 +96,6 @@ extension MultipeerManager: MCNearbyServiceAdvertiserDelegate {
             let jsonDict = jsonData as? [String: Any] ?? [:]
             let newPeer = BlipUser(uid: peerID.displayName, dictionary: jsonDict)
             self.peers.append(newPeer)
-            NotificationCenter.default.post(name: .newPeerFound, object: nil)
         } catch {
             print("UNABLE TO CREATE NEW PEER FROM PEER DATA")
         }
@@ -84,12 +103,12 @@ extension MultipeerManager: MCNearbyServiceAdvertiserDelegate {
 }
 
 //MARK: Browser Delegate
-extension MultipeerManager: MCNearbyServiceBrowserDelegate {
+extension MultipeerTestManager: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
         print("Boo")
     }
     func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
-        print("Did not start browsing for peers")//TODO: INdicate to user that browser could not be established
+        print("Did not start browsing for peers")//TODO: Indicate to user that browser could not be established
     }
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
         guard let data = FirebaseManager.sharedInstance.currentBlipUser?.jsonData() else {return} //TODO: handle error mo bettah
@@ -100,41 +119,17 @@ extension MultipeerManager: MCNearbyServiceBrowserDelegate {
     }
 }
 
-extension MultipeerManager: MCSessionDelegate {
+extension MultipeerTestManager: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        do {
-            let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] ?? [:]
-            if let newScore = Score(dictionary: json) {
-                delegate?.musicChanged(forUID: peerID.displayName, score: newScore, manager: self)
-            }
-        } catch {
-            print("Could not create JSON from received data")
-        }
-        
         
     }
     
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        switch state {
-        case .notConnected:
-            remove(blipUserWithUID: peerID.displayName)
-        case .connecting:
-            print("connecting") //TODO: Enable notifications for newly connected users
-        case .connected:
-            print("connected")
-        }
+        
     }
     
-    private func remove(blipUserWithUID uid: String) {
-        for (index, blipUser) in peers.enumerated() {
-            if uid == blipUser.uid {
-                peers.remove(at: index)
-                delegate?.connectionLost(forUID: uid, manager: self)
-            }
-        }
-    }
     
-// Unused delegate functions
+    // Unused delegate functions
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
     }
     
@@ -147,11 +142,6 @@ extension MultipeerManager: MCSessionDelegate {
     
 }
 
-protocol MultipeerManagerDelegate {
-    
-    func connectionLost(forUID uid: String, manager: MultipeerManager)
+protocol MultipeerTestManagerDelegate {
     func musicChanged(forUID uid: String, score: Score, manager: MultipeerManager)
-
 }
-
-

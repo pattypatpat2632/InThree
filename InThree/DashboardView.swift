@@ -36,7 +36,7 @@ class DashboardView: UIView, BlipBloopView {
         addSubview(soloModeButton)
         soloModeButton.translatesAutoresizingMaskIntoConstraints = false
         soloModeButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        soloModeButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+        soloModeButton.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
         soloModeButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
         soloModeButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
         
@@ -49,8 +49,8 @@ class DashboardView: UIView, BlipBloopView {
         
         addSubview(neighborhoodModeButton)
         neighborhoodModeButton.translatesAutoresizingMaskIntoConstraints = false
-        neighborhoodModeButton.topAnchor.constraint(equalTo: partyModeButton.bottomAnchor, constant: 10).isActive = true
         neighborhoodModeButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        neighborhoodModeButton.topAnchor.constraint(equalTo: partyModeButton.bottomAnchor, constant: 10).isActive = true
         neighborhoodModeButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
         neighborhoodModeButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
         
@@ -73,13 +73,13 @@ class DashboardView: UIView, BlipBloopView {
         soloModeButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
         soloModeButton.addTarget(self, action: #selector(soloModeButtonPressed), for: .touchUpInside)
         
-        soloModeButton.setTitle("Neighborhood Mode", for: .normal)
-        soloModeButton.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
-        soloModeButton.backgroundColor = colorScheme.model.baseColor
-        soloModeButton.layer.cornerRadius = 5
-        soloModeButton.layer.borderWidth = 2
-        soloModeButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
-        soloModeButton.addTarget(self, action: #selector(neighborhoodModeButtonPressed), for: .touchUpInside)
+        neighborhoodModeButton.setTitle("'hood Mode", for: .normal)
+        neighborhoodModeButton.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
+        neighborhoodModeButton.backgroundColor = colorScheme.model.baseColor
+        neighborhoodModeButton.layer.cornerRadius = 5
+        neighborhoodModeButton.layer.borderWidth = 2
+        neighborhoodModeButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
+        neighborhoodModeButton.addTarget(self, action: #selector(neighborhoodModeButtonPressed), for: .touchUpInside)
         
     }
     

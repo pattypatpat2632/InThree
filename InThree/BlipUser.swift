@@ -26,7 +26,7 @@ extension BlipUser {
     
     func jsonData() -> Data? {
         let jsonDict: [String: Any] = [
-            "name": self.uid,
+            "name": self.name,
             "email": self.email
         ]
         do {

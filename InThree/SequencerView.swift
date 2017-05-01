@@ -35,7 +35,7 @@ class SequencerView: UIView, BlipBloopView {
         self.addSubview(beat1View)
         beat1View.translatesAutoresizingMaskIntoConstraints = false
         beat1View.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        beat1View.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        beat1View.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
         beat1View.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         beat1View.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/5).isActive = true
         beat1View.backgroundColor = colorScheme.model.baseColor
