@@ -14,13 +14,14 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("logged in with user UID: \(LoginManager.sharedInstance.currentBlipUser?.uid)")
         self.view = dashboardView
         dashboardView.delegate = self
     }
     
     func goToPartyMode() {//TODO: this function will probbly change as party mode is furthered
-        let sequencerVC = SequencerVC()
-        self.navigationController?.pushViewController(sequencerVC, animated: true)
+        let localPeerVC = LocalPeerVC()
+        self.navigationController?.pushViewController(localPeerVC, animated: true)
     }
     
     func goToSoloMode() {

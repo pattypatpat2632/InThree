@@ -23,7 +23,6 @@
 		EC4BD2171EA2D2CB0076B4D0 /* UIColorExtenstion.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4BD2161EA2D2CB0076B4D0 /* UIColorExtenstion.swift */; };
 		EC4BD2191EA2EEBE0076B4D0 /* SequencerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4BD2181EA2EEBE0076B4D0 /* SequencerVC.swift */; };
 		EC5B3F9D1EB0DB0000410BD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC5B3F9C1EB0DB0000410BD2 /* GoogleService-Info.plist */; };
-		EC5B3F9F1EB0DE2F00410BD2 /* LoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B3F9E1EB0DE2F00410BD2 /* LoginManager.swift */; };
 		EC5B3FA11EB0E04E00410BD2 /* FirebaseResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B3FA01EB0E04E00410BD2 /* FirebaseResponse.swift */; };
 		EC5B3FA31EB0E25000410BD2 /* BlipUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B3FA21EB0E25000410BD2 /* BlipUser.swift */; };
 		EC5B3FA51EB0E31100410BD2 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5B3FA41EB0E31100410BD2 /* FirebaseManager.swift */; };
@@ -100,7 +99,6 @@
 		EC4BD2161EA2D2CB0076B4D0 /* UIColorExtenstion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtenstion.swift; sourceTree = "<group>"; };
 		EC4BD2181EA2EEBE0076B4D0 /* SequencerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerVC.swift; sourceTree = "<group>"; };
 		EC5B3F9C1EB0DB0000410BD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		EC5B3F9E1EB0DE2F00410BD2 /* LoginManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginManager.swift; sourceTree = "<group>"; };
 		EC5B3FA01EB0E04E00410BD2 /* FirebaseResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseResponse.swift; sourceTree = "<group>"; };
 		EC5B3FA21EB0E25000410BD2 /* BlipUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlipUser.swift; sourceTree = "<group>"; };
 		EC5B3FA41EB0E31100410BD2 /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
@@ -286,7 +284,6 @@
 		EC5B3F9B1EB0D87C00410BD2 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				EC5B3F9E1EB0DE2F00410BD2 /* LoginManager.swift */,
 				EC5B3FA01EB0E04E00410BD2 /* FirebaseResponse.swift */,
 				EC5B3FA41EB0E31100410BD2 /* FirebaseManager.swift */,
 				ECB181651EB2424E0025F017 /* MultipeerManager.swift */,
@@ -608,7 +605,6 @@
 			files = (
 				ECB1816A1EB245DB0025F017 /* LocalPeerVC.swift in Sources */,
 				EC4BD2191EA2EEBE0076B4D0 /* SequencerVC.swift in Sources */,
-				EC5B3F9F1EB0DE2F00410BD2 /* LoginManager.swift in Sources */,
 				EC5B3FA91EB0E92100410BD2 /* LoginVC.swift in Sources */,
 				ECFDC4831EA3295F00902F15 /* SequencerEngine.swift in Sources */,
 				EC7FEDEE1EAE59CF00E50A62 /* ColorSchemeModel.swift in Sources */,

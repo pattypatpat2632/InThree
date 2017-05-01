@@ -31,6 +31,9 @@ struct SequencerEngine {
         verb = AKReverb(midiNode)
         
         _ = sequencer.newTrack()
+        _ = sequencer.newTrack()
+        _ = sequencer.newTrack()
+        _ = sequencer.newTrack()
         
         AudioKit.output = verb
         AudioKit.start()
@@ -46,15 +49,15 @@ struct SequencerEngine {
         sequencer.setTempo(newTempo)
     }
     
-    func generateSequence(fromScore score: Score) {
+    func generateSequence(fromScore score: Score, forUserNumber userNum: Int = 0) {
         print("*****Generate Sequence*****")
-        sequencer.tracks[0].clear()
+        sequencer.tracks[userNum].clear()
         print("sequencer length: \(score.beats.count)")
         var beatPostion = AKDuration(beats: 0)
         for beat in score.beats {
             for note in beat.notes{
                 if note.noteOn {
-                    sequencer.tracks[0].add(noteNumber: note.noteNumber, velocity: note.velocity, position: note.position + beatPostion, duration: note.duration)
+                    sequencer.tracks[userNum].add(noteNumber: note.noteNumber, velocity: note.velocity, position: note.position + beatPostion, duration: note.duration)
                 }
             }
             beatPostion = beatPostion + AKDuration(beats: 1.0)

@@ -13,7 +13,7 @@ final class MultipeerManager: NSObject {
     
     static let sharedInstance = MultipeerManager()
     let service = "blipbloop-2632"
-    let myPeerId = MCPeerID(displayName: (LoginManager.sharedInstance.currentBlipUser?.uid)!) //TODO: deal with this optional mo betta
+    let myPeerID = MCPeerID(displayName: (LoginManager.sharedInstance.currentBlipUser?.uid)!)//TODO: fix this force unwrap
     var peers = [BlipUser]()
     
     private let serviceAdvertiser: MCNearbyServiceAdvertiser
@@ -22,16 +22,17 @@ final class MultipeerManager: NSObject {
     var delegate: PeerManagerDelegate?
     
     lazy var session : MCSession = {
-        let session = MCSession(peer: self.myPeerId, securityIdentity: nil, encryptionPreference: .required)
+        let session = MCSession(peer: self.myPeerID, securityIdentity: nil, encryptionPreference: .required)
         session.delegate = self
         return session
     }()
     
     private override init() {
-        serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerId, discoveryInfo: nil, serviceType: service)
-        serviceBrowser = MCNearbyServiceBrowser(peer: myPeerId, serviceType: service)
+        serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: nil, serviceType: service)
+        serviceBrowser = MCNearbyServiceBrowser(peer: myPeerID, serviceType: service)
         
         super.init()
+        
         
         serviceAdvertiser.delegate = self
         serviceAdvertiser.startAdvertisingPeer()

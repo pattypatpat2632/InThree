@@ -13,7 +13,6 @@ class LocalPeerVC: UIViewController {
     let localPeerView = LocalPeerView()
     var localPeers = [BlipUser]()
     var selectedPeers = [BlipUser]()
-    var selectedPeerCount: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +30,7 @@ class LocalPeerVC: UIViewController {
     }
     
 }
-
+// MARK: Tableview delegate and data source
 extension LocalPeerVC: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -49,7 +48,12 @@ extension LocalPeerVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard selectedPeers.count <= 3 else {
+            print("Selected peer count is already at maximum")
+            return
+        }
         selectedPeers.append(localPeers[indexPath.row])
+        print("Number of selected peers: \(selectedPeers.count)")
         for peer in selectedPeers {
             print("Users listed in selected peers: \(peer.name)")
         }
@@ -66,5 +70,14 @@ extension LocalPeerVC: UITableViewDelegate, UITableViewDataSource {
             }
         }
     }
+}
+
+extension LocalPeerVC: LocalPeerViewDelegate {
+    
+    func goToPartySquencer() {
+        let sequenerVC = SequencerVC()
+        navigationController?.pushViewController(sequenerVC, animated: true)
+    }
+    
 }
 

@@ -13,6 +13,7 @@ class LocalPeerView: UIView, BlipBloopView {
     let titleLabel = UILabel()
     let peerTable = UITableView()
     let continueButton = UIButton()
+    var delegate: LocalPeerViewDelegate?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -69,4 +70,12 @@ class LocalPeerView: UIView, BlipBloopView {
         continueButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
     }
     
+    func continueButtonTapped() {
+        delegate?.goToPartySquencer()
+    }
+    
+}
+
+protocol LocalPeerViewDelegate {
+    func goToPartySquencer()
 }

@@ -15,10 +15,12 @@ final class FirebaseManager {
     static let sharedInstance = FirebaseManager()
     
     let dataRef = FIRDatabase.database().reference()
+    let userRef = FIRDatabase.database().reference().child("users")
     var allBlipUsers = [BlipUser]()
+    var currentBlipUser: BlipUser? = nil
     
     private init() {
-
+        
     }
     
     private func observeAllBlipUsers(completion: @escaping (FirebaseResponse) -> Void) {
@@ -45,6 +47,7 @@ final class FirebaseManager {
             let newBlipUser = BlipUser(name: name, uid: firUser.uid, email: email)
             self.storeNew(blipUser: newBlipUser) {
                 completion(.success("New user created: \(newBlipUser.name)"))
+                
             }
         })
     }
@@ -58,4 +61,30 @@ final class FirebaseManager {
         completion()
     }
     
+}
+//MARK: Login manager
+extension FirebaseManager {
+    func loginUser(fromEmail email: String, password: String, completion: @escaping (FirebaseResponse) -> Void) {
+        FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (firUser, error) in
+            if error == nil {
+                guard let uid = firUser?.uid else {
+                    completion(.failure("Could not log in user"))
+                    return
+                }
+                self.observeCurrentBlipUser(uid: uid, completion: {
+                    completion(.success("Login successful for user: \(FirebaseManager.sharedInstance.currentBlipUser?.name ?? "No Name")"))
+                })
+            } else {
+                completion(.failure("Could not log in user"))
+            }
+        })
+    }
+    
+    private func observeCurrentBlipUser(uid: String, completion: @escaping () -> Void) {
+        userRef.child("uid").observe(.value, with: { (snapshot) in
+            let userProperties = snapshot.value as? [String: Any] ?? [:]
+            self.currentBlipUser = BlipUser(uid: uid, dictionary: userProperties)
+            completion()
+        })
+    }
 }
