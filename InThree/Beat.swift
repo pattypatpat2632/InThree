@@ -26,9 +26,9 @@ extension Beat {
     init(rhythm: Rhythm) {
         self.rhythm = rhythm
         for i in 1...rhythm.rawValue {
-            let position = AKDuration(beats: Double(i - 1) / rhythm.rawValue)
-            let duration = AKDuration(beats: 1.0/rhythm.rawValue * 0.9)
-            let note = Note(noteOn: false, noteNumber: 0, velocity: 127, duration: duration, position: position)
+//            let position = AKDuration(beats: Double(i - 1) / rhythm.rawValue)
+//            let duration = AKDuration(beats: 1.0/rhythm.rawValue * 0.9)
+            let note = Note(noteOn: false, noteNumber: 0, velocity: 127)//, duration: duration, position: position)
             self.notes.append(note)
         }
     }
@@ -50,7 +50,12 @@ extension Beat {
 extension Beat {
     
     mutating func add(note: Note, forNewRhythm rhythm: Rhythm) {
-        //continue tomorrow
+        self.notes.append(note)
+        self.rhythm = rhythm
+    }
+    
+    mutating func removeNote(forNewRhythm rhythm: Rhythm) {
+        //finish with this shit!!!!!
     }
 
     func asDictionary() -> [String: Any] {

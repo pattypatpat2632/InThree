@@ -72,4 +72,13 @@ extension Score {
         return Score(beats: [beat0, beat1, beat2, beat3])
     }
     
+    mutating func addStep(toBeatNum beatNum: Int, newRhythm: Rhythm) {
+        let note = Note(noteOn: false, noteNumber: 0, velocity: 127)
+        beats[beatNum].add(note: note, forNewRhythm: newRhythm)
+    }
+    
+    func removeStep(toBeatNum beatNum: Int, newRhythm: Rhythm) {
+        
+    }
+    
 }
