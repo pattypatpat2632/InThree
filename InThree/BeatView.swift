@@ -113,12 +113,13 @@ class BeatView: UIView, BlipBloopView {
         if let rhythm = Rhythm(rawValue: self.displayedViewCount) {
             var newBeat = Beat(rhythm: rhythm)
             for (index, note) in self.beat.notes.enumerated() {
-                guard index < newBeat.notes.count else {continue}
-                newBeat.notes[index].noteNumber = note.noteNumber
-                newBeat.notes[index].noteOn = note.noteOn
-                newBeat.notes[index].velocity = note.velocity
-                print("new beat note \(index): \(newBeat.notes[index].noteOn)")
-                print("old beat note \(index): \(note.noteOn)")
+                if index < newBeat.notes.count {
+                    newBeat.notes[index].noteNumber = note.noteNumber
+                    newBeat.notes[index].noteOn = note.noteOn
+                    newBeat.notes[index].velocity = note.velocity
+                    print("new beat note \(index): \(newBeat.notes[index].noteOn)")
+                    print("old beat note \(index): \(note.noteOn)")
+                }
             }
             self.beat = newBeat
             delegate?.rhythmChange(forBeatView: self)

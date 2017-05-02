@@ -85,7 +85,6 @@ struct SequencerEngine {
         AudioKit.output = nil
         AudioKit.stop()
     }
-    
 }
 
 
