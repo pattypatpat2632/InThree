@@ -14,6 +14,7 @@ class DashboardView: UIView, BlipBloopView {
     let partyModeButton = UIButton()
     let neighborhoodModeButton = UIButton()
     var delegate: DashboardViewDelegate? = nil
+    let logoutButton = UIButton()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -54,6 +55,13 @@ class DashboardView: UIView, BlipBloopView {
         neighborhoodModeButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
         neighborhoodModeButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
         
+        addSubview(logoutButton)
+        logoutButton.translatesAutoresizingMaskIntoConstraints = false
+        logoutButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        logoutButton.topAnchor.constraint(equalTo: neighborhoodModeButton.bottomAnchor, constant: 10).isActive = true
+        logoutButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
+        logoutButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
+        
     }
     
     private func setSubviewProperties() {
@@ -81,6 +89,14 @@ class DashboardView: UIView, BlipBloopView {
         neighborhoodModeButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
         neighborhoodModeButton.addTarget(self, action: #selector(neighborhoodModeButtonPressed), for: .touchUpInside)
         
+        logoutButton.setTitle("Logout", for: .normal)
+        logoutButton.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
+        logoutButton.backgroundColor = colorScheme.model.baseColor
+        logoutButton.layer.cornerRadius = 5
+        logoutButton.layer.borderWidth = 2
+        logoutButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
+        logoutButton.addTarget(self, action: #selector(logoutButtonPressed), for: .touchUpInside)
+        
     }
     
     func partyModeButtonPressed() {
@@ -95,10 +111,15 @@ class DashboardView: UIView, BlipBloopView {
     func neighborhoodModeButtonPressed() {
         delegate?.goToNeighborhoodMode()
     }
+    
+    func logoutButtonPressed() {
+        delegate?.logout()
+    }
 }
 
 protocol DashboardViewDelegate {
     func goToPartyMode()
     func goToSoloMode()
     func goToNeighborhoodMode()
+    func logout()
 }

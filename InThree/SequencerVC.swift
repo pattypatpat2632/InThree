@@ -32,9 +32,11 @@ class SequencerVC: UIViewController {
         case .party:
             MultipeerManager.sharedInstance.delegate = self
         case .neighborhood( _):
+            FirebaseManager.sharedInstance.delegate = self
             locationManager = CLLocationManager()
             locationManager?.delegate = self
             locationManager?.requestWhenInUseAuthorization()
+            FirebaseManager.sharedInstance.observeAllScoresIn(locationID: "No Neighborhood")
         case .solo:
             print("sequencer entering solo mode")
         }
@@ -150,6 +152,7 @@ extension SequencerVC: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        print("DID ENTER REGION*****************")
         sequencerEngine.mode = .neighborhood(region.identifier)
         grabLocalSequence()
     }
@@ -170,6 +173,11 @@ extension SequencerVC {
     }
 }
 
+extension SequencerVC: FirebaseManagerDelegate {
+    func updateLocationScores() {
+        grabLocalSequence()
+    }
+}
 
 
 

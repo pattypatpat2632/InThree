@@ -44,6 +44,19 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
         self.navigationController?.pushViewController(sequencerVC, animated: true)//TODO: update if I decide to put a view in between dashboard and neighborhood sequencer
     }
     
+    func logout() {
+        FirebaseManager.sharedInstance.logoutUser { (response) in
+            switch response {
+            case .success(let logoutString):
+                print(logoutString)
+                NotificationCenter.default.post(name: .closeDashboardVC, object: nil)
+            case .failure(let failString):
+                print(failString)
+            }
+        }
+        
+    }
+    
     func disableNeighborhoodMode() {
         self.dashboardView.neighborhoodModeButton.alpha = 0.5
         self.dashboardView.neighborhoodModeButton.isUserInteractionEnabled = false
