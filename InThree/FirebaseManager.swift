@@ -16,8 +16,11 @@ final class FirebaseManager {
     
     let dataRef = FIRDatabase.database().reference()
     let userRef = FIRDatabase.database().reference().child("users")
+    let locationRef = FIRDatabase.database().reference().child("locations")
     var allBlipUsers = [BlipUser]()
+    var allLocationScores = [Score]()
     var currentBlipUser: BlipUser? = nil
+    var delegate: FirebaseManagerDelegate?
     
     private init() {}
     
@@ -81,12 +84,22 @@ extension FirebaseManager {
         })
     }
     
+    func logoutUser(completion: @escaping (FirebaseResponse) -> Void) {
+        do {
+            try FIRAuth.auth()?.signOut()
+            completion(.success("Logged out user"))
+        } catch {
+            completion(.failure("Could not log out user"))
+        }
+        
+    }
+    
     func checkForCurrentUser(completion: @escaping (Bool) -> Void) {
         guard let uid = FIRAuth.auth()?.currentUser?.uid else {
             completion(false)
             return
         }
-        self.observeCurrentBlipUser(uid: uid) { 
+        self.observeCurrentBlipUser(uid: uid) {
             completion(true)
         }
     }
@@ -98,4 +111,36 @@ extension FirebaseManager {
             completion()
         })
     }
+}
+
+//MARK: City mode functions
+extension FirebaseManager {
+    
+    func send(score: Score, toUUID uuid: String) {
+        guard let uid = FIRAuth.auth()?.currentUser?.uid else {return}
+        locationRef.child(uuid).child(uid).updateChildValues(score.asDictionary())
+    }
+    
+    func observeAllScoresIn(locationID lid: String) {
+        locationRef.observe(.value, with: { (snapshot) in
+            self.allLocationScores.removeAll()
+            let allLocations = snapshot.value as? [String: Any] ?? [:]
+            for location in allLocations {
+                if location.key == lid {
+                    let allUsersInLocation = location.value as? [String: Any] ?? [:]
+                    for user in allUsersInLocation {
+                        let scoreDict = user.value as? [String: Any] ?? [:]
+                        if let newScore = Score(dictionary: scoreDict) {
+                            self.allLocationScores.append(newScore)
+                        }
+                    }
+                }
+            }
+            self.delegate?.updateLocationScores()
+        })
+    }
+}
+
+protocol FirebaseManagerDelegate {
+    func updateLocationScores()
 }

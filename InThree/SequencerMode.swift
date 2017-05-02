@@ -9,5 +9,5 @@
 import Foundation
 
 enum SequencerMode {
-    case solo, party, neighborhood
+    case solo, party, neighborhood(String)
 }

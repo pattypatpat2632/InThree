@@ -8,6 +8,7 @@
 
 import UIKit
 import AudioKit
+import CoreLocation
 
 
 class SequencerVC: UIViewController {
@@ -17,6 +18,7 @@ class SequencerVC: UIViewController {
     var sequencerView = SequencerView()
     var score = Score()
     var selectedPeers = [BlipUser]()
+    var locationManager: CLLocationManager?
     
     
     override func viewDidLoad() {
@@ -26,11 +28,17 @@ class SequencerVC: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         sequencerEngine.setUpSequencer()
-        
-        if sequencerEngine.mode == .party {
+        switch sequencerEngine.mode {
+        case .party:
             MultipeerManager.sharedInstance.delegate = self
-        } else if sequencerEngine.mode == .neighborhood {
-            //TODO: set self as the neighbordhood mode delegate
+        case .neighborhood( _):
+            FirebaseManager.sharedInstance.delegate = self
+            locationManager = CLLocationManager()
+            locationManager?.delegate = self
+            locationManager?.requestWhenInUseAuthorization()
+            FirebaseManager.sharedInstance.observeAllScoresIn(locationID: "No Neighborhood")
+        case .solo:
+            print("sequencer entering solo mode")
         }
         
         for (index, beatView) in sequencerView.allBeatViews.enumerated() {
@@ -59,7 +67,7 @@ extension SequencerVC: BeatViewDelegate {
     }
     
     func getNote(beatNumber: Int, padNumber: Int) {
-
+        
         sequencerView.circleOfFifthsView.isHidden = false
         for beatView in sequencerView.allBeatViews {
             beatView.isUserInteractionEnabled = false
@@ -120,6 +128,56 @@ extension SequencerVC: SequencerViewDelegate {
     }
 }
 
+//MARK: Core location delegate
+extension SequencerVC: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            setLocationData()
+        } else if status == .denied {
+            returnToDashboard()
+        }
+    }
+    
+    func setLocationData() {
+        if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+            let title = "Flatiron"
+            let coordinate = CLLocationCoordinate2DMake(40.705253, -74.014070)
+            let regionRadius = 300.0
+            let clCoordinate = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            let region = CLCircularRegion(center: clCoordinate, radius: regionRadius, identifier: title)
+            locationManager?.startMonitoring(for: region)
+            
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        print("DID ENTER REGION*****************")
+        sequencerEngine.mode = .neighborhood(region.identifier)
+        grabLocalSequence()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        //TODO: stop local sequence
+    }
+    
+}
+//MARK: Location based sequencer
+extension SequencerVC {
+    func grabLocalSequence() {
+        let scoredIndex = UInt32(FirebaseManager.sharedInstance.allLocationScores.count - 1)
+        let randNum = Int(arc4random_uniform(scoredIndex))
+        let randomScore = FirebaseManager.sharedInstance.allLocationScores[randNum]
+        sequencerEngine.generateSequence(fromScore: randomScore, forUserNumber: 1)
+        
+    }
+}
+
+extension SequencerVC: FirebaseManagerDelegate {
+    func updateLocationScores() {
+        grabLocalSequence()
+    }
+}
 
 
 

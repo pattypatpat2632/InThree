@@ -26,6 +26,7 @@ class CreateUserVC: UIViewController {
         print("All fields entered")
         guard let email = createUserView.emailField.text, let name = createUserView.nameField.text, let password = createUserView.passwordField.text, let confirm = createUserView.confirmField.text else {return} //TODO: this error should never occur since we're already checking for empty fields in the allFieldsEntered function. Refactor
         guard password == confirm else {return} //TODO: indicate to the user that the password and confirm fields do not match
+        createUserView.indicateSelected(view: createUserView.submitButton)
         print("passwords match, creating user")
         FirebaseManager.sharedInstance.createUser(fromEmail: email, name: name, andPassword: password) { (firResponse) in
             print("create user responded")

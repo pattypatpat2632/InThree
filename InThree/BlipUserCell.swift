@@ -18,6 +18,15 @@ class BlipUserCell: UITableViewCell, BlipBloopView {
     }
     
     let nameLabel = UILabel()
+    var chosen: Bool = false {
+        willSet {
+            if newValue == true {
+                self.highlight()
+            } else {
+                self.unHighlight()
+            }
+        }
+    }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -31,6 +40,7 @@ class BlipUserCell: UITableViewCell, BlipBloopView {
     }
     
     func commonInit() {
+        self.selectionStyle = .none
         self.backgroundColor = colorScheme.model.baseColor
         
         setConstraints()
@@ -61,5 +71,15 @@ class BlipUserCell: UITableViewCell, BlipBloopView {
     
     func setLabel() {
         self.nameLabel.text = blipUser?.name
+    }
+    
+    func highlight() {
+        self.backgroundColor = colorScheme.model.highlightColor
+        self.nameLabel.backgroundColor = colorScheme.model.highlightColor
+    }
+    
+    func unHighlight() {
+        self.backgroundColor = colorScheme.model.baseColor
+        self.nameLabel.backgroundColor = colorScheme.model.baseColor
     }
 }
