@@ -109,7 +109,7 @@ class BeatView: UIView, BlipBloopView {
         reportRhythmChange()
     }
     
-    func reportRhythmChange() {
+    func reportRhythmChange() { //TODO: fix bug here
         if let rhythm = Rhythm(rawValue: self.displayedViewCount) {
             var newBeat = Beat(rhythm: rhythm)
             for (index, note) in self.beat.notes.enumerated() {
