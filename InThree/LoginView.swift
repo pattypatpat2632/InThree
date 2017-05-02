@@ -87,6 +87,7 @@ class LoginView: UIView, BlipBloopView {
         passwordField.layer.cornerRadius = 5
         passwordField.layer.borderWidth = 2
         passwordField.layer.borderColor = colorScheme.model.highlightColor.cgColor
+        passwordField.isSecureTextEntry = true
         
         loginButton.setTitle("Login", for: .normal)
         loginButton.setTitleColor(colorScheme.model.foregroundColor, for: .normal)

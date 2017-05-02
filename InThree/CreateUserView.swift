@@ -105,12 +105,14 @@ class CreateUserView: UIView, BlipBloopView {
         passwordField.layer.cornerRadius = 5
         passwordField.layer.borderWidth = 2
         passwordField.layer.borderColor = colorScheme.model.highlightColor.cgColor
+        passwordField.isSecureTextEntry = true
         
         confirmField.placeholder = "Confirm Password"
         confirmField.backgroundColor = colorScheme.model.backgroundColor
         confirmField.layer.cornerRadius = 5
         confirmField.layer.borderWidth = 2
         confirmField.layer.borderColor = colorScheme.model.highlightColor.cgColor
+        confirmField.isSecureTextEntry = true
         
         submitButton.setTitle("Submit", for: .normal)
         submitButton.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
