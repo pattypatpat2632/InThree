@@ -43,6 +43,7 @@
 		EC7FEDF01EAE65D500E50A62 /* NoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */; };
 		EC9559761EA59EFB008FA5FA /* SequencerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9559751EA59EFB008FA5FA /* SequencerView.swift */; };
 		ECA6D4A51EB7C6B1008A027B /* MultipeerTestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA6D4A41EB7C6B1008A027B /* MultipeerTestManager.swift */; };
+		ECA6D4A71EB914AB008A027B /* ScoreIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA6D4A61EB914AB008A027B /* ScoreIndex.swift */; };
 		ECAE16EE1EA6FCD10013696C /* KeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECAE16ED1EA6FCD10013696C /* KeyboardView.xib */; };
 		ECAE16F01EA6FD210013696C /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAE16EF1EA6FD210013696C /* KeyboardView.swift */; };
 		ECB181661EB2424E0025F017 /* MultipeerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB181651EB2424E0025F017 /* MultipeerManager.swift */; };
@@ -121,6 +122,7 @@
 		EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteButton.swift; sourceTree = "<group>"; };
 		EC9559751EA59EFB008FA5FA /* SequencerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerView.swift; sourceTree = "<group>"; };
 		ECA6D4A41EB7C6B1008A027B /* MultipeerTestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerTestManager.swift; sourceTree = "<group>"; };
+		ECA6D4A61EB914AB008A027B /* ScoreIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreIndex.swift; sourceTree = "<group>"; };
 		ECAE16ED1EA6FCD10013696C /* KeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeyboardView.xib; sourceTree = "<group>"; };
 		ECAE16EF1EA6FD210013696C /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		ECB181651EB2424E0025F017 /* MultipeerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerManager.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 				EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */,
 				EC5B3FA21EB0E25000410BD2 /* BlipUser.swift */,
 				EC7C14671EB780FF009FACDA /* SequencerMode.swift */,
+				ECA6D4A61EB914AB008A027B /* ScoreIndex.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				EC5B3FAF1EB0EEB100410BD2 /* LoginNavC.swift in Sources */,
 				EC5B3FBC1EB10A9000410BD2 /* BlipBloopView.swift in Sources */,
 				EC05C7671EA463A20031864A /* Note.swift in Sources */,
+				ECA6D4A71EB914AB008A027B /* ScoreIndex.swift in Sources */,
 				EC5B3FB11EB0EF9500410BD2 /* LoginView.swift in Sources */,
 				EC5B3FA71EB0E81100410BD2 /* AppController.swift in Sources */,
 				EC4BD2171EA2D2CB0076B4D0 /* UIColorExtenstion.swift in Sources */,

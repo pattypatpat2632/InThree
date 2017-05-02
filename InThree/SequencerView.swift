@@ -19,6 +19,7 @@ class SequencerView: UIView, BlipBloopView {
     
     var delegate: SequencerViewDelegate?
 
+    var allViews = [UIView]()
     var allBeatViews = [BeatView]()
 
     
@@ -85,6 +86,7 @@ class SequencerView: UIView, BlipBloopView {
         circleOfFifthsView.heightAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         circleOfFifthsView.isHidden = true
         
+        allViews = [beat1View, beat2View, beat3View, beat4View, backButton]
         allBeatViews = [beat1View, beat2View, beat3View, beat4View]
     }
     

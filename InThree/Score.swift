@@ -30,6 +30,13 @@ extension Score {
             self.beats.append(newBeat)
         }
     }
+    
+    init(rhythm: Rhythm) {
+        self.add(beat: Beat(rhythm: rhythm))
+        self.add(beat: Beat(rhythm: rhythm))
+        self.add(beat: Beat(rhythm: rhythm))
+        self.add(beat: Beat(rhythm: rhythm))
+    }
 }
 
 extension Score {

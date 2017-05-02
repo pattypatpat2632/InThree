@@ -16,7 +16,7 @@ class SequencerVC: UIViewController {
     
     var sequencerEngine = SequencerEngine()
     var sequencerView = SequencerView()
-    var score = Score()
+    var score = Score(rhythm: .four)
     var selectedPeers = [BlipUser]()
     var locationManager: CLLocationManager?
     
@@ -44,59 +44,66 @@ class SequencerVC: UIViewController {
         for (index, beatView) in sequencerView.allBeatViews.enumerated() {
             beatView.delegate = self
             beatView.beatNumber = index
-            score.add(beat: beatView.beat)
+            for padView in beatView.allPads {
+                padView.delegate = self
+            }
         }
         
     }
 }
 
 extension SequencerVC: BeatViewDelegate {
-    func rhythmChange(forBeatView beatView: BeatView) {
-        score.beats[beatView.beatNumber] = beatView.beat
-        sequencerEngine.generateSequence(fromScore: score)
+    
+    func addStep(forBeatNum beatNum: Int, newStepCount steps: Int) {
+        //TODO: add step to score
     }
     
-    func noteChange(padIsOn: Bool, beatNumber: Int, padNumber: Int) {
-        print("PAD ON: \(padIsOn) beatNumber: \(beatNumber) padNumber: \(padNumber)")
+    func removeStep(forBeatNum beatNum: Int, newStepCount: Int) {
+        //TODO: remove step from score
+    }
+}
+
+extension SequencerVC: PadViewDelegate {
+    func padValueChanged(scoreIndex: ScoreIndex, padIsOn: Bool) {
         if padIsOn {
-            getNote(beatNumber: beatNumber, padNumber: padNumber)
+            displayNoteView(scoreIndex: scoreIndex)
         } else {
-            score.beats[beatNumber].notes[padNumber].noteOn = false
+            score.beats[scoreIndex.beatIndex].notes[scoreIndex.noteIndex].noteOn = false
             sequencerEngine.generateSequence(fromScore: score)
         }
     }
     
-    func getNote(beatNumber: Int, padNumber: Int) {
-        
+    func displayNoteView(scoreIndex: ScoreIndex) {
+        sequencerView.allViews = sequencerView.allViews.map({ (uiView) -> UIView in
+            uiView.alpha = uiView.alpha/5
+            uiView.isUserInteractionEnabled = false
+            return uiView
+        })
         sequencerView.circleOfFifthsView.isHidden = false
-        for beatView in sequencerView.allBeatViews {
-            beatView.isUserInteractionEnabled = false
-            beatView.alpha = beatView.alpha / 5
-        }
-        
-        for noteButton in sequencerView.circleOfFifthsView.noteButtons {
-            noteButton.beatNumber = beatNumber
-            noteButton.padNumber = padNumber
+        sequencerView.circleOfFifthsView.noteButtons = sequencerView.circleOfFifthsView.noteButtons.map({ (noteButton) -> NoteButton in
             noteButton.delegate = self
-        }
+            noteButton.scoreIndex = scoreIndex
+            return noteButton
+        })
+        
     }
 }
 
 extension SequencerVC: NoteButtonDelegate {
     
-    func respondTo(noteNumber: MIDINoteNumber, atBeatNumber beatNumber: Int?, atPadNumber padNumber: Int?) {
-        guard let beatNumber = beatNumber, let padNumber = padNumber else {return}
-        sequencerView.allBeatViews[beatNumber].beat.notes[padNumber].noteOn = true
-        sequencerView.allBeatViews[beatNumber].beat.notes[padNumber].noteNumber = noteNumber
-        score.beats[beatNumber].notes[padNumber].noteOn = true
-        score.beats[beatNumber].notes[padNumber].noteNumber = noteNumber
+    func respondTo(noteNumber: MIDINoteNumber, scoreIndex: ScoreIndex) {
+        score.beats[scoreIndex.beatIndex].notes[scoreIndex.noteIndex].noteNumber = noteNumber
+        score.beats[scoreIndex.beatIndex].notes[scoreIndex.noteIndex].velocity = 127
+        score.beats[scoreIndex.beatIndex].notes[scoreIndex.noteIndex].noteOn = true
+        
         sequencerEngine.generateSequence(fromScore: score)
         
         sequencerView.circleOfFifthsView.isHidden = true
-        for beatView in sequencerView.allBeatViews {
-            beatView.isUserInteractionEnabled = true
-            beatView.alpha = beatView.alpha * 5
-        }
+        sequencerView.allViews = sequencerView.allViews.map({ (uiView) -> UIView in
+            uiView.alpha = uiView.alpha * 5
+            uiView.isUserInteractionEnabled = true
+            return uiView
+        })
     }
 }
 

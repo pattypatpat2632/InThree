@@ -11,11 +11,11 @@ import AudioKit
 
 class BeatView: UIView, BlipBloopView {
     
+    let pad0 = PadView()
     let pad1 = PadView()
     let pad2 = PadView()
     let pad3 = PadView()
     let pad4 = PadView()
-    let pad5 = PadView()
     var allPads = [PadView]()
     let stackView = UIStackView()
     let sliderView = UIView()
@@ -26,7 +26,11 @@ class BeatView: UIView, BlipBloopView {
     var displayedViewCount: Int = 4
     
     
-    var beatNumber: Int = 0
+    var beatNumber: Int = 0 {
+        didSet {
+            numberPads()
+        }
+    }
     
     // MARK: Init
     required init?(coder aDecoder: NSCoder) {
@@ -42,13 +46,7 @@ class BeatView: UIView, BlipBloopView {
     func commonInit() {
         
         self.backgroundColor = colorScheme.model.baseColor
-        allPads = [pad1, pad2, pad3, pad4, pad5]
-        
-        for (index, pad) in allPads.enumerated() {
-            pad.padNumber = index
-            pad.delegate = self
-        }
-        
+        allPads = [pad0, pad1, pad2, pad3, pad4]
         
         self.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -59,12 +57,11 @@ class BeatView: UIView, BlipBloopView {
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.distribution = .fillEqually
-        stackView.addArrangedSubview(pad1)
-        stackView.addArrangedSubview(pad2)
-        stackView.addArrangedSubview(pad3)
-        stackView.addArrangedSubview(pad4)
-        stackView.addArrangedSubview(pad5)
-        pad5.isHidden = true
+        for (index, padView) in allPads.enumerated() {
+            stackView.addArrangedSubview(padView)
+            padView.padIndex = ScoreIndex(beatIndex: self.beatNumber, noteIndex: index)
+        }
+        pad4.isHidden = true
         
         self.addSubview(sliderView)
         sliderView.translatesAutoresizingMaskIntoConstraints = false
@@ -87,7 +84,7 @@ class BeatView: UIView, BlipBloopView {
     func addPad() {
         guard displayedViewCount < 5 else {return}
         let pad = stackView.arrangedSubviews[displayedViewCount] as! PadView
-        pad.buttonIsOn = false
+        pad.turnOff()
         UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: [], animations: {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5, animations: {
                 pad.isHidden = false
@@ -95,12 +92,13 @@ class BeatView: UIView, BlipBloopView {
         }, completion: nil)
         
         displayedViewCount += 1
-        reportRhythmChange()
+        delegate?.addStep(forBeatNum: beatNumber, newStepCount: displayedViewCount)
     }
     
     func subtractPad() {
         guard displayedViewCount > 1 else {return}
         let pad = stackView.arrangedSubviews[displayedViewCount - 1] as! PadView
+        pad.turnOff()
         UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: [], animations: {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5, animations: {
                 pad.isHidden = true
@@ -108,36 +106,21 @@ class BeatView: UIView, BlipBloopView {
         }, completion: nil)
         self.allPads[displayedViewCount - 1].turnOff()
         displayedViewCount -= 1
-        reportRhythmChange()
+        delegate?.removeStep(forBeatNum: beatNumber, newStepCount: displayedViewCount)
     }
     
-    func reportRhythmChange() { //TODO: fix bug
-        guard let newRhythm = Rhythm(rawValue: displayedViewCount) else {return}
-        var newBeat = Beat(rhythm: newRhythm)
-        for (index, _) in newBeat.notes.enumerated() {
-            if index <= self.beat.notes.count - 1 {
-                newBeat.notes[index].noteOn = beat.notes[index].noteOn
-                newBeat.notes[index].noteNumber = beat.notes[index].noteNumber
-                newBeat.notes[index].velocity = beat.notes[index].velocity
-            }
+    func numberPads() {
+        for (index, padView) in allPads.enumerated() {
+            padView.padIndex = ScoreIndex(beatIndex: self.beatNumber, noteIndex: index)
         }
-        
-        beat.notes.removeAll()
-        beat = newBeat
-        delegate?.rhythmChange(forBeatView: self)
     }
-    
-}
 
-extension BeatView: PadViewDelegate {
-    func padValueChanged(padNumber: Int, padIsOn: Bool) {
-        delegate?.noteChange(padIsOn: padIsOn, beatNumber: self.beatNumber, padNumber: padNumber)
-    }
+    
 }
 
 // MARK: Delegate protocol
 protocol BeatViewDelegate {
-    func rhythmChange(forBeatView beatView: BeatView)
-    func noteChange(padIsOn: Bool, beatNumber: Int, padNumber: Int)
+    func addStep(forBeatNum beatNum: Int, newStepCount steps: Int)
+    func removeStep(forBeatNum beatNum: Int, newStepCount: Int)
 }
 
