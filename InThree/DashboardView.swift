@@ -100,19 +100,23 @@ class DashboardView: UIView, BlipBloopView {
     }
     
     func partyModeButtonPressed() {
+        self.indicateSelected(view: partyModeButton)
         delegate?.goToPartyMode()
         //TODO: add some cool animation for button being pressed
     }
     
     func soloModeButtonPressed() {
+        self.indicateSelected(view: soloModeButton)
         delegate?.goToSoloMode()
     }
     
     func neighborhoodModeButtonPressed() {
+        self.indicateSelected(view: neighborhoodModeButton)
         delegate?.goToNeighborhoodMode()
     }
     
     func logoutButtonPressed() {
+        self.indicateSelected(view: logoutButton)
         delegate?.logout()
     }
 }

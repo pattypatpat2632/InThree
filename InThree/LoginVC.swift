@@ -30,6 +30,7 @@ class LoginVC: UIViewController {
     }
     
     func createUserTapped() {
+        loginView.indicateSelected(view: loginView.createUserButton)
         let createUserVC = CreateUserVC()
         self.navigationController?.pushViewController(createUserVC, animated: true)
     }
@@ -42,6 +43,7 @@ class LoginVC: UIViewController {
             loginView.indicateRequired(fieldView: loginView.passwordField)
             return
         } else {
+            loginView.indicateSelected(view: loginView.loginButton)
             guard let email = loginView.emailField.text, let password = loginView.passwordField.text else {return} //TODO: handle this better
             FirebaseManager.sharedInstance.loginUser(fromEmail: email, password: password, completion: { (firResponse) in
                 switch firResponse {

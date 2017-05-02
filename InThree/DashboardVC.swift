@@ -56,22 +56,5 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
         }
         
     }
-    
-    func disableNeighborhoodMode() {
-        self.dashboardView.neighborhoodModeButton.alpha = 0.5
-        self.dashboardView.neighborhoodModeButton.isUserInteractionEnabled = false
-        
-        let disabledLabel = UILabel()
-        
-        self.dashboardView.addSubview(disabledLabel)
-        disabledLabel.translatesAutoresizingMaskIntoConstraints = false
-        disabledLabel.topAnchor.constraint(equalTo: dashboardView.neighborhoodModeButton.bottomAnchor, constant: 10).isActive = true
-        disabledLabel.centerXAnchor.constraint(equalTo: dashboardView.centerXAnchor).isActive = true
-        disabledLabel.heightAnchor.constraint(equalTo: dashboardView.heightAnchor, multiplier: 0.05).isActive = true
-        disabledLabel.widthAnchor.constraint(equalTo: dashboardView.widthAnchor).isActive = true
-        disabledLabel.textAlignment = .center
-        disabledLabel.text = "City Mode Coming Soon"
-        disabledLabel.textColor = UIColor.red
-    }
 
 }
