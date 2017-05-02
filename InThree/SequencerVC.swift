@@ -151,10 +151,11 @@ extension SequencerVC: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         sequencerEngine.mode = .neighborhood(region.identifier)
+        grabLocalSequence()
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        grabLocalSequence()
+        //TODO: stop local sequence
     }
     
 }

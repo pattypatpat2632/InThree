@@ -20,7 +20,7 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
                 self.view = self.dashboardView
                 self.dashboardView.delegate = self
                 
-                self.disableNeighborhoodMode()
+               // self.disableNeighborhoodMode()
             } else {
                 NotificationCenter.default.post(name: .closeDashboardVC, object: nil)
             }
@@ -40,7 +40,7 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
     
     func goToNeighborhoodMode() {
         let sequencerVC = SequencerVC()
-        sequencerVC.sequencerEngine.mode = .neighborhood
+        sequencerVC.sequencerEngine.mode = .neighborhood("No Neighborhood")
         self.navigationController?.pushViewController(sequencerVC, animated: true)//TODO: update if I decide to put a view in between dashboard and neighborhood sequencer
     }
     
