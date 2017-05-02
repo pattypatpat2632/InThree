@@ -16,7 +16,9 @@ final class FirebaseManager {
     
     let dataRef = FIRDatabase.database().reference()
     let userRef = FIRDatabase.database().reference().child("users")
+    let locationRef = FIRDatabase.database().reference().child("locations")
     var allBlipUsers = [BlipUser]()
+    var allLocationScores = [Score]()
     var currentBlipUser: BlipUser? = nil
     
     private init() {}
@@ -98,4 +100,30 @@ extension FirebaseManager {
             completion()
         })
     }
+}
+
+//MARK: City mode functions
+extension FirebaseManager {
+    
+    func send(score: Score, toUUID uuid: String) {
+        guard let uid = FIRAuth.auth()?.currentUser?.uid else {return}
+        locationRef.child(uuid).child(uid).updateChildValues(score.asDictionary())
+    }
+    
+    func observeAllLocations() {
+        self.allLocationScores.removeAll()
+        locationRef.observe(.value, with: { (snapshot) in
+            let allLocations = snapshot.value as? [String: Any] ?? [:]
+            for location in allLocations {
+                let allUsersInLocation = location.value as? [String: Any] ?? [:]
+                for user in allUsersInLocation {
+                    let scoreDict = user.value as? [String: Any] ?? [:]
+                    if let newScore = Score(dictionary: scoreDict) {
+                        self.allLocationScores.append(newScore)
+                    }
+                }
+            }
+        })
+    }
+    
 }

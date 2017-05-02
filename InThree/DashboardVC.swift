@@ -19,6 +19,8 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
             if userExists {
                 self.view = self.dashboardView
                 self.dashboardView.delegate = self
+                
+                self.disableNeighborhoodMode()
             } else {
                 NotificationCenter.default.post(name: .closeDashboardVC, object: nil)
             }
@@ -40,6 +42,23 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
         let sequencerVC = SequencerVC()
         sequencerVC.sequencerEngine.mode = .neighborhood
         self.navigationController?.pushViewController(sequencerVC, animated: true)//TODO: update if I decide to put a view in between dashboard and neighborhood sequencer
+    }
+    
+    func disableNeighborhoodMode() {
+        self.dashboardView.neighborhoodModeButton.alpha = 0.5
+        self.dashboardView.neighborhoodModeButton.isUserInteractionEnabled = false
+        
+        let disabledLabel = UILabel()
+        
+        self.dashboardView.addSubview(disabledLabel)
+        disabledLabel.translatesAutoresizingMaskIntoConstraints = false
+        disabledLabel.topAnchor.constraint(equalTo: dashboardView.neighborhoodModeButton.bottomAnchor, constant: 10).isActive = true
+        disabledLabel.centerXAnchor.constraint(equalTo: dashboardView.centerXAnchor).isActive = true
+        disabledLabel.heightAnchor.constraint(equalTo: dashboardView.heightAnchor, multiplier: 0.05).isActive = true
+        disabledLabel.widthAnchor.constraint(equalTo: dashboardView.widthAnchor).isActive = true
+        disabledLabel.textAlignment = .center
+        disabledLabel.text = "City Mode Coming Soon"
+        disabledLabel.textColor = UIColor.red
     }
 
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import AudioKit
+import CoreLocation
 
 
 class SequencerVC: UIViewController {
@@ -17,6 +18,7 @@ class SequencerVC: UIViewController {
     var sequencerView = SequencerView()
     var score = Score()
     var selectedPeers = [BlipUser]()
+    var locationManager: CLLocationManager?
     
     
     override func viewDidLoad() {
@@ -31,6 +33,9 @@ class SequencerVC: UIViewController {
             MultipeerManager.sharedInstance.delegate = self
         } else if sequencerEngine.mode == .neighborhood {
             //TODO: set self as the neighbordhood mode delegate
+            locationManager = CLLocationManager()
+            locationManager?.delegate = self
+            locationManager?.requestWhenInUseAuthorization()
         }
         
         for (index, beatView) in sequencerView.allBeatViews.enumerated() {
@@ -116,6 +121,69 @@ extension SequencerVC: SequencerViewDelegate {
     func returnToDashboard() {
         sequencerEngine.stopAll() //TODO: add audio fadeout
         navigationController?.popViewController(animated: true)
+        
+    }
+}
+
+//MARK: Core location delegate 
+extension SequencerVC: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
+                if CLLocationManager.isRangingAvailable() {
+                    startScanning()
+                }
+            }
+        } else {
+            returnToDashboard()
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+        if beacons.count > 0 {
+            let beacon = beacons[0]
+            update(distance: beacon.proximity)
+        } else {
+            update(distance: .unknown)
+        }
+    }
+    
+    func startScanning() {
+        if let flatironUUID = UUID(uuidString: "7F7EC632-CB39-47C9-A02C-CDD2452792A6") {
+            let beaconRegion = CLBeaconRegion(proximityUUID: flatironUUID, identifier: "Flatiron Beacon")
+            
+            locationManager?.startMonitoring(for: beaconRegion)
+            locationManager?.startRangingBeacons(in: beaconRegion)
+        }
+    }
+    
+    func update(distance: CLProximity) {
+        UIView.animate(withDuration: 0.8) { [unowned self] in
+            switch distance {
+            case .unknown:
+                print("unknown")
+            case .far:
+                self.grabLocalSequence()
+                print("far")
+            case .near:
+                self.grabLocalSequence()
+                print("near")
+            case .immediate:
+                self.grabLocalSequence()
+                print("immediate")
+            }
+        }
+    }
+    
+}
+//MARK: Location based sequencer
+extension SequencerVC {
+    func grabLocalSequence() {
+        let scoredIndex = UInt32(FirebaseManager.sharedInstance.allLocationScores.count - 1)
+        let randNum = Int(arc4random_uniform(scoredIndex))
+        let randomScore = FirebaseManager.sharedInstance.allLocationScores[randNum]
+        sequencerEngine.generateSequence(fromScore: randomScore, forUserNumber: 1)
         
     }
 }

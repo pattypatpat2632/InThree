@@ -73,7 +73,7 @@ struct SequencerEngine {
             MultipeerManager.sharedInstance.send(score: score)
             print("SCORE SEND******************")
         } else if mode == .neighborhood {
-            //TODO: send score to neighborhood
+            FirebaseManager.sharedInstance.send(score: score, toUUID: "7F7EC632-CB39-47C9-A02C-CDD2452792A6")
         }
     }
     

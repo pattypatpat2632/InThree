@@ -73,7 +73,7 @@ class DashboardView: UIView, BlipBloopView {
         soloModeButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
         soloModeButton.addTarget(self, action: #selector(soloModeButtonPressed), for: .touchUpInside)
         
-        neighborhoodModeButton.setTitle("'hood Mode", for: .normal)
+        neighborhoodModeButton.setTitle("City Mode", for: .normal)
         neighborhoodModeButton.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
         neighborhoodModeButton.backgroundColor = colorScheme.model.baseColor
         neighborhoodModeButton.layer.cornerRadius = 5
