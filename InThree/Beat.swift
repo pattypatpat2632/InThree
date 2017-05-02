@@ -28,7 +28,7 @@ extension Beat {
         for i in 1...rhythm.rawValue {
             let position = AKDuration(beats: Double(i - 1) / rhythm.rawValue)
             let duration = AKDuration(beats: 1.0/rhythm.rawValue * 0.9)
-            let note = Note(noteOn: false, noteNumber: 60, velocity: 127, duration: duration, position: position)
+            let note = Note(noteOn: false, noteNumber: 0, velocity: 127, duration: duration, position: position)
             self.notes.append(note)
         }
     }
@@ -45,7 +45,14 @@ extension Beat {
         guard let beatNumber = dictionary["beatNumber"] as? Double else { return nil }
         self.beatNumber = AKDuration(beats: beatNumber)
     }
+}
+
+extension Beat {
     
+    mutating func add(note: Note, forNewRhythm rhythm: Rhythm) {
+        //continue tomorrow
+    }
+
     func asDictionary() -> [String: Any] {
         var notesDict = [[String: Any]]()
         for note in notes {
@@ -67,3 +74,5 @@ extension Beat {
         return Beat(rhythm: rhythm, notes: notes, beatNumber: AKDuration(beats: position))
     }
 }
+
+
