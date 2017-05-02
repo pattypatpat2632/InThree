@@ -37,13 +37,13 @@ extension BlipBloopView where Self: UIView {
     }
     
     func indicateSelected(view: UIView) {
-        UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: .calculationModeLinear, animations: {
+        UIView.animateKeyframes(withDuration: 0.2, delay: 0, options: .calculationModeLinear, animations: {
             let holdColor = view.backgroundColor
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25, animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.1, animations: {
                 view.backgroundColor = self.colorScheme.model.highlightColor
                 view.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
             })
-            UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25, animations: {
+            UIView.addKeyframe(withRelativeStartTime: 0.1, relativeDuration: 0.1, animations: {
                 view.backgroundColor = holdColor
                 view.transform = CGAffineTransform(scaleX: 1, y: 1)
             })
