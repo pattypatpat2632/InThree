@@ -28,14 +28,15 @@ class SequencerVC: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         
         sequencerEngine.setUpSequencer()
-        
-        if sequencerEngine.mode == .party {
+        switch sequencerEngine.mode {
+        case .party:
             MultipeerManager.sharedInstance.delegate = self
-        } else if sequencerEngine.mode == .neighborhood {
-            //TODO: set self as the neighbordhood mode delegate
+        case .neighborhood( _):
             locationManager = CLLocationManager()
             locationManager?.delegate = self
             locationManager?.requestWhenInUseAuthorization()
+        case .solo:
+            print("sequencer entering solo mode")
         }
         
         for (index, beatView) in sequencerView.allBeatViews.enumerated() {
@@ -64,7 +65,7 @@ extension SequencerVC: BeatViewDelegate {
     }
     
     func getNote(beatNumber: Int, padNumber: Int) {
-
+        
         sequencerView.circleOfFifthsView.isHidden = false
         for beatView in sequencerView.allBeatViews {
             beatView.isUserInteractionEnabled = false
@@ -125,55 +126,35 @@ extension SequencerVC: SequencerViewDelegate {
     }
 }
 
-//MARK: Core location delegate 
+//MARK: Core location delegate
 extension SequencerVC: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
-            if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
-                if CLLocationManager.isRangingAvailable() {
-                    startScanning()
-                }
-            }
-        } else {
+            setLocationData()
+        } else if status == .denied {
             returnToDashboard()
         }
     }
     
-    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
-        if beacons.count > 0 {
-            let beacon = beacons[0]
-            update(distance: beacon.proximity)
-        } else {
-            update(distance: .unknown)
-        }
-    }
-    
-    func startScanning() {
-        if let flatironUUID = UUID(uuidString: "7F7EC632-CB39-47C9-A02C-CDD2452792A6") {
-            let beaconRegion = CLBeaconRegion(proximityUUID: flatironUUID, identifier: "Flatiron Beacon")
+    func setLocationData() {
+        if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+            let title = "Flatiron"
+            let coordinate = CLLocationCoordinate2DMake(40.705253, -74.014070)
+            let regionRadius = 300.0
+            let clCoordinate = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            let region = CLCircularRegion(center: clCoordinate, radius: regionRadius, identifier: title)
+            locationManager?.startMonitoring(for: region)
             
-            locationManager?.startMonitoring(for: beaconRegion)
-            locationManager?.startRangingBeacons(in: beaconRegion)
         }
     }
     
-    func update(distance: CLProximity) {
-        UIView.animate(withDuration: 0.8) { [unowned self] in
-            switch distance {
-            case .unknown:
-                print("unknown")
-            case .far:
-                self.grabLocalSequence()
-                print("far")
-            case .near:
-                self.grabLocalSequence()
-                print("near")
-            case .immediate:
-                self.grabLocalSequence()
-                print("immediate")
-            }
-        }
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        sequencerEngine.mode = .neighborhood(region.identifier)
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        grabLocalSequence()
     }
     
 }
