@@ -77,8 +77,8 @@ extension Score {
         beats[beatNum].add(note: note, forNewRhythm: newRhythm)
     }
     
-    func removeStep(toBeatNum beatNum: Int, newRhythm: Rhythm) {
-        
+    mutating func removeStep(fromBeatNum beatNum: Int, newRhythm: Rhythm) {
+        beats[beatNum].removeLastNote(forNewRhythm: newRhythm)
     }
     
 }

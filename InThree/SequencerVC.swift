@@ -55,11 +55,15 @@ class SequencerVC: UIViewController {
 extension SequencerVC: BeatViewDelegate {
     
     func addStep(forBeatNum beatNum: Int, newStepCount steps: Int) {
-        //TODO: add step to score
+        guard let newRhythm = Rhythm(rawValue: steps) else {return}
+        score.addStep(toBeatNum: beatNum, newRhythm: newRhythm)
+        sequencerEngine.generateSequence(fromScore: score)
     }
     
     func removeStep(forBeatNum beatNum: Int, newStepCount: Int) {
-        //TODO: remove step from score
+        guard let newRhythm = Rhythm(rawValue: newStepCount) else {return}
+        score.addStep(toBeatNum: beatNum, newRhythm: newRhythm)
+        sequencerEngine.generateSequence(fromScore: score)
     }
 }
 

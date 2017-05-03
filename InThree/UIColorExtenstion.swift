@@ -81,6 +81,25 @@ extension UIColor {
         return UIColor(displayP3Red: 155/255, green: 188/255, blue: 15/255, alpha: 1)
     }
     
+    //Scheme 5 - Vibrant
+    
+    open class var sky: UIColor {
+        return UIColor(displayP3Red: 55/255, green: 94/255, blue: 151/255, alpha: 1)
+    }
+    
+    open class var sunset: UIColor {
+        return UIColor(displayP3Red: 251/255, green: 101/255, blue: 66/255, alpha: 1)
+    }
+    
+    open class var sunflower: UIColor {
+        return UIColor(displayP3Red: 1, green: 187/255, blue: 0, alpha: 1)
+    }
+    
+    open class var grass: UIColor {
+        return UIColor(displayP3Red: 63/255, green: 104/255, blue: 28/255, alpha: 1)
+    }
+    
+    
     
     //MARK: Random color generator
     open class var randomColor: UIColor {

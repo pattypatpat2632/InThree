@@ -54,8 +54,9 @@ extension Beat {
         self.rhythm = rhythm
     }
     
-    mutating func removeNote(forNewRhythm rhythm: Rhythm) {
-        //finish with this shit!!!!!
+    mutating func removeLastNote(forNewRhythm rhythm: Rhythm) {
+        self.notes.removeLast()
+        self.rhythm = rhythm
     }
 
     func asDictionary() -> [String: Any] {

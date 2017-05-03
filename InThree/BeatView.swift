@@ -84,7 +84,6 @@ class BeatView: UIView, BlipBloopView {
     func addPad() {
         guard displayedViewCount < 5 else {return}
         let pad = stackView.arrangedSubviews[displayedViewCount] as! PadView
-        pad.turnOff()
         UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: [], animations: {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5, animations: {
                 pad.isHidden = false
