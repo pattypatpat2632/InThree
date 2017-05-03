@@ -35,7 +35,7 @@ class SequencerVC: UIViewController {
             FirebaseManager.sharedInstance.delegate = self
             locationManager = CLLocationManager()
             locationManager?.delegate = self
-            locationManager?.requestWhenInUseAuthorization()
+            locationManager?.requestAlwaysAuthorization()
             FirebaseManager.sharedInstance.observeAllScoresIn(locationID: "No Neighborhood")
         case .solo:
             print("sequencer entering solo mode")
@@ -143,7 +143,7 @@ extension SequencerVC: SequencerViewDelegate {
 extension SequencerVC: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse {
+        if status == .authorizedWhenInUse || status == .authorizedAlways {
             setLocationData()
         } else if status == .denied {
             returnToDashboard()
@@ -155,7 +155,7 @@ extension SequencerVC: CLLocationManagerDelegate {
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             let title = "Flatiron"
             let coordinate = CLLocationCoordinate2DMake(40.705253, -74.014070)
-            let regionRadius = 300.0
+            let regionRadius = 160934.0
             let clCoordinate = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
             let region = CLCircularRegion(center: clCoordinate, radius: regionRadius, identifier: title)
             print("LOCATION MANAGER START MONITORING**************")
@@ -167,6 +167,15 @@ extension SequencerVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
         print("LOCATION MANAGER DID START MONITORING FOR REGION: \(region.identifier)")
         
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("Location updated")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
+        print(state)
+        print("region :\(region.identifier)")
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
