@@ -123,6 +123,7 @@
 		EC9559751EA59EFB008FA5FA /* SequencerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerView.swift; sourceTree = "<group>"; };
 		ECA6D4A41EB7C6B1008A027B /* MultipeerTestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerTestManager.swift; sourceTree = "<group>"; };
 		ECA6D4A61EB914AB008A027B /* ScoreIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreIndex.swift; sourceTree = "<group>"; };
+		ECA6D4A91EBA31A3008A027B /* FlatironLocation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FlatironLocation.gpx; sourceTree = "<group>"; };
 		ECAE16ED1EA6FCD10013696C /* KeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeyboardView.xib; sourceTree = "<group>"; };
 		ECAE16EF1EA6FD210013696C /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		ECB181651EB2424E0025F017 /* MultipeerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerManager.swift; sourceTree = "<group>"; };
@@ -296,6 +297,7 @@
 				EC5B3FA41EB0E31100410BD2 /* FirebaseManager.swift */,
 				ECB181651EB2424E0025F017 /* MultipeerManager.swift */,
 				ECA6D4A41EB7C6B1008A027B /* MultipeerTestManager.swift */,
+				ECA6D4A91EBA31A3008A027B /* FlatironLocation.gpx */,
 			);
 			name = Utility;
 			sourceTree = "<group>";

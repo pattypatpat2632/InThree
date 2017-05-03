@@ -129,9 +129,11 @@ extension FirebaseManager {
                 if location.key == lid {
                     let allUsersInLocation = location.value as? [String: Any] ?? [:]
                     for user in allUsersInLocation {
-                        let scoreDict = user.value as? [String: Any] ?? [:]
-                        if let newScore = Score(dictionary: scoreDict) {
-                            self.allLocationScores.append(newScore)
+                        if user.key != self.currentBlipUser?.uid {
+                            let scoreDict = user.value as? [String: Any] ?? [:]
+                            if let newScore = Score(dictionary: scoreDict) {
+                                self.allLocationScores.append(newScore)
+                            }
                         }
                     }
                 }

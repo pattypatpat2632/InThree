@@ -151,15 +151,22 @@ extension SequencerVC: CLLocationManagerDelegate {
     }
     
     func setLocationData() {
+        print("LOCATION DATA BEING SET**************")
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
             let title = "Flatiron"
             let coordinate = CLLocationCoordinate2DMake(40.705253, -74.014070)
             let regionRadius = 300.0
             let clCoordinate = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
             let region = CLCircularRegion(center: clCoordinate, radius: regionRadius, identifier: title)
+            print("LOCATION MANAGER START MONITORING**************")
             locationManager?.startMonitoring(for: region)
             
         }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
+        print("LOCATION MANAGER DID START MONITORING FOR REGION: \(region.identifier)")
+        
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
@@ -170,6 +177,7 @@ extension SequencerVC: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         //TODO: stop local sequence
+        print("DID EXIT REGION*****************")
     }
     
 }
