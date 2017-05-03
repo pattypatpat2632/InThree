@@ -18,7 +18,6 @@ class BeatView: UIView, BlipBloopView {
     let pad4 = PadView()
     var allPads = [PadView]()
     let stackView = UIStackView()
-    let sliderView = UIView()
     
     var delegate: BeatViewDelegate?
     
@@ -45,7 +44,7 @@ class BeatView: UIView, BlipBloopView {
     
     func commonInit() {
         
-        self.backgroundColor = colorScheme.model.baseColor
+        self.backgroundColor = colorScheme.model.backgroundColor
         allPads = [pad0, pad1, pad2, pad3, pad4]
         
         self.addSubview(stackView)
@@ -53,7 +52,7 @@ class BeatView: UIView, BlipBloopView {
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         stackView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         stackView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        stackView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6666).isActive = true
+        stackView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         stackView.axis = .horizontal
         stackView.alignment = .center
         stackView.distribution = .fillEqually
@@ -62,22 +61,15 @@ class BeatView: UIView, BlipBloopView {
             padView.padIndex = ScoreIndex(beatIndex: self.beatNumber, noteIndex: index)
         }
         pad4.isHidden = true
-        
-        self.addSubview(sliderView)
-        sliderView.translatesAutoresizingMaskIntoConstraints = false
-        sliderView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        sliderView.topAnchor.constraint(equalTo: stackView.bottomAnchor).isActive = true
-        sliderView.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
-        sliderView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        sliderView.backgroundColor = colorScheme.model.backgroundColor
+        stackView.backgroundColor = colorScheme.model.backgroundColor
         
         let addPadGesture = UISwipeGestureRecognizer(target: self, action: #selector(addPad))
         addPadGesture.direction = .left
-        sliderView.addGestureRecognizer(addPadGesture)
+        self.addGestureRecognizer(addPadGesture)
         
         let subtractPadGesture = UISwipeGestureRecognizer(target: self, action: #selector(subtractPad))
         subtractPadGesture.direction = .right
-        sliderView.addGestureRecognizer(subtractPadGesture)
+        self.addGestureRecognizer(subtractPadGesture)
     }
     
     //MARK: Methods

@@ -45,7 +45,7 @@ class SequencerView: UIView, BlipBloopView {
         beat1View.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
         beat1View.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         beat1View.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/5).isActive = true
-        beat1View.backgroundColor = colorScheme.model.baseColor
+       
         
         self.addSubview(beat2View)
         beat2View.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +53,7 @@ class SequencerView: UIView, BlipBloopView {
         beat2View.topAnchor.constraint(equalTo: beat1View.bottomAnchor).isActive = true
         beat2View.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         beat2View.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/5).isActive = true
-        beat2View.backgroundColor = colorScheme.model.baseColor
+    
         
         self.addSubview(beat3View)
         beat3View.translatesAutoresizingMaskIntoConstraints = false
@@ -61,7 +61,7 @@ class SequencerView: UIView, BlipBloopView {
         beat3View.topAnchor.constraint(equalTo: beat2View.bottomAnchor).isActive = true
         beat3View.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         beat3View.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/5).isActive = true
-        beat3View.backgroundColor = colorScheme.model.baseColor
+        
         
         self.addSubview(beat4View)
         beat4View.translatesAutoresizingMaskIntoConstraints = false
@@ -69,7 +69,7 @@ class SequencerView: UIView, BlipBloopView {
         beat4View.topAnchor.constraint(equalTo: beat3View.bottomAnchor).isActive = true
         beat4View.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         beat4View.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/5).isActive = true
-        beat4View.backgroundColor = colorScheme.model.baseColor
+        
         
         self.addSubview(backButton)
         backButton.translatesAutoresizingMaskIntoConstraints = false
