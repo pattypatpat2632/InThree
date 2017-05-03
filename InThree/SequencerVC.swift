@@ -181,23 +181,26 @@ extension SequencerVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         print("DID ENTER REGION*****************")
         sequencerEngine.mode = .neighborhood(region.identifier)
-        grabLocalSequence()
+        FirebaseManager.sharedInstance.observeAllScoresIn(locationID: region.identifier)
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         //TODO: stop local sequence
         print("DID EXIT REGION*****************")
+        sequencerEngine.mode = .neighborhood("No Neighborhood")
+        sequencerEngine.sequencer.tracks[1].clear()
+        FirebaseManager.sharedInstance.observeAllScoresIn(locationID: "No Neighborhood")
     }
     
 }
 //MARK: Location based sequencer
 extension SequencerVC {
     func grabLocalSequence() {
+        guard FirebaseManager.sharedInstance.allLocationScores.count > 0 else {return}
         let scoredIndex = UInt32(FirebaseManager.sharedInstance.allLocationScores.count - 1)
         let randNum = Int(arc4random_uniform(scoredIndex))
         let randomScore = FirebaseManager.sharedInstance.allLocationScores[randNum]
         sequencerEngine.generateSequence(fromScore: randomScore, forUserNumber: 1)
-        
     }
 }
 
