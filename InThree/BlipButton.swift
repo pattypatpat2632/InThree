@@ -8,14 +8,25 @@
 
 import UIKit
 
-class BlipButton: UIButton {
+class BlipButton: UIButton, BlipBloopView {
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
     }
-    */
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    func commonInit() {
+        self.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
+        self.titleLabel?.font = UIFont(name: "Comicate", size: 28)
+        self.backgroundColor = colorScheme.model.baseColor
+        self.layer.cornerRadius = 5
+        self.layer.borderWidth = 2
+        self.layer.borderColor = colorScheme.model.foregroundColor.cgColor
+    }
 
 }

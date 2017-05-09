@@ -17,7 +17,7 @@ class BlipUserCell: UITableViewCell, BlipBloopView {
         }
     }
     
-    let nameLabel = UILabel()
+    let nameLabel = BlipLabel()
     var chosen: Bool = false {
         willSet {
             if newValue == true {
@@ -40,6 +40,7 @@ class BlipUserCell: UITableViewCell, BlipBloopView {
     }
     
     func commonInit() {
+        nameLabel.changeFontSize(to: 16)
         self.selectionStyle = .none
         self.backgroundColor = colorScheme.model.baseColor
         

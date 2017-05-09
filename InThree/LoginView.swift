@@ -10,11 +10,11 @@ import UIKit
 
 class LoginView: UIView, BlipBloopView {
     
-    let titleLabel = UILabel()
+    let titleLabel = BlipLabel()
     let emailField = UITextField()
     let passwordField = UITextField()
-    let loginButton = UIButton()
-    let createUserButton = UIButton()
+    let loginButton = BlipButton()
+    let createUserButton = BlipButton()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -34,9 +34,9 @@ class LoginView: UIView, BlipBloopView {
     func setConstraints() {
         addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 100).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        titleLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
+        titleLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
         titleLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
         
         addSubview(emailField)
@@ -57,24 +57,21 @@ class LoginView: UIView, BlipBloopView {
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 5).isActive = true
         loginButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        loginButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
-        loginButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
+        loginButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
+        loginButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.15).isActive = true
         
         addSubview(createUserButton)
         createUserButton.translatesAutoresizingMaskIntoConstraints = false
         createUserButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 10).isActive = true
         createUserButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        createUserButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
-        createUserButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
+        createUserButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
+        createUserButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.15).isActive = true
     }
     
     func setSubviewProperties() {
         self.backgroundColor = colorScheme.model.baseColor
         
         titleLabel.text = "BlipBloop"
-        titleLabel.textAlignment = .center
-        titleLabel.backgroundColor = UIColor.clear
-        titleLabel.textColor = colorScheme.model.foregroundColor
         
         emailField.placeholder = "Email"
         emailField.backgroundColor = colorScheme.model.backgroundColor
@@ -89,20 +86,8 @@ class LoginView: UIView, BlipBloopView {
         passwordField.layer.borderColor = colorScheme.model.highlightColor.cgColor
         passwordField.isSecureTextEntry = true
         
-        loginButton.setTitle("Login", for: .normal)
-        loginButton.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
-        loginButton.backgroundColor = colorScheme.model.baseColor
-        loginButton.layer.cornerRadius = 5
-        loginButton.layer.borderWidth = 2
-        loginButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
-        
-        createUserButton.setTitle("Create User", for: .normal)
-        createUserButton.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
-        createUserButton.backgroundColor = colorScheme.model.baseColor
-        createUserButton.layer.cornerRadius = 5
-        createUserButton.layer.borderWidth = 2
-        createUserButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
-        
+        loginButton.setTitle("LOGIN", for: .normal)
+        createUserButton.setTitle("CREATE USER", for: .normal)
     }
 
 }

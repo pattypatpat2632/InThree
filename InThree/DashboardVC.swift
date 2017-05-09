@@ -7,6 +7,7 @@
 
 
 import UIKit
+import Foundation
 
 
 class DashboardVC: UIViewController, DashboardViewDelegate {
@@ -20,7 +21,7 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
                 self.view = self.dashboardView
                 self.dashboardView.delegate = self
                 
-               // self.disableNeighborhoodMode()
+                // self.disableNeighborhoodMode()
             } else {
                 NotificationCenter.default.post(name: .closeDashboardVC, object: nil)
             }
@@ -56,5 +57,5 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
         }
         
     }
-
+    
 }

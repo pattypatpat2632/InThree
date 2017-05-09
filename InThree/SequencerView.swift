@@ -15,13 +15,13 @@ class SequencerView: UIView, BlipBloopView {
     let beat3View = BeatView()
     let beat4View = BeatView()
     let circleOfFifthsView = CircleOfFifthsView()
-    let backButton = UIButton()
+    let backButton = BlipButton()
     
     var delegate: SequencerViewDelegate?
-
+    
     var allViews = [UIView]()
     var allBeatViews = [BeatView]()
-
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -45,7 +45,7 @@ class SequencerView: UIView, BlipBloopView {
         beat1View.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
         beat1View.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         beat1View.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/5).isActive = true
-       
+        
         
         self.addSubview(beat2View)
         beat2View.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +53,7 @@ class SequencerView: UIView, BlipBloopView {
         beat2View.topAnchor.constraint(equalTo: beat1View.bottomAnchor).isActive = true
         beat2View.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         beat2View.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/5).isActive = true
-    
+        
         
         self.addSubview(beat3View)
         beat3View.translatesAutoresizingMaskIntoConstraints = false
@@ -92,20 +92,15 @@ class SequencerView: UIView, BlipBloopView {
     
     func setSubviewProperties() {
         backButton.setTitle("Back", for: .normal)
-        backButton.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
-        backButton.backgroundColor = colorScheme.model.baseColor
-        backButton.layer.cornerRadius = 5
-        backButton.layer.borderWidth = 2
-        backButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
     
     func backButtonTapped() {
-        self.indicateSelected(view: backButton) { 
+        self.indicateSelected(view: backButton) {
             self.delegate?.returnToDashboard()
         }
     }
-
+    
 }
 
 protocol SequencerViewDelegate {

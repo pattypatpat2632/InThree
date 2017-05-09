@@ -16,7 +16,7 @@ class CreateUserView: UIView, BlipBloopView {
     let emailField = UITextField()
     let passwordField = UITextField()
     let confirmField = UITextField()
-    let submitButton = UIButton()
+    let submitButton = BlipButton()
     var allFields = [UITextField]()
     
 
@@ -115,11 +115,6 @@ class CreateUserView: UIView, BlipBloopView {
         confirmField.isSecureTextEntry = true
         
         submitButton.setTitle("Submit", for: .normal)
-        submitButton.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
-        submitButton.backgroundColor = colorScheme.model.baseColor
-        submitButton.layer.cornerRadius = 5
-        submitButton.layer.borderWidth = 2
-        submitButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
     }
     
 }

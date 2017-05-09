@@ -14,6 +14,9 @@
 		EC05C7651EA460400031864A /* Beat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC05C7641EA460400031864A /* Beat.swift */; };
 		EC05C7671EA463A20031864A /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC05C7661EA463A20031864A /* Note.swift */; };
 		EC44720D1EC2732D009EB271 /* COMICATE.TTF in Resources */ = {isa = PBXBuildFile; fileRef = EC44720C1EC2732D009EB271 /* COMICATE.TTF */; };
+		EC44720F1EC27673009EB271 /* BlipLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC44720E1EC27673009EB271 /* BlipLabel.swift */; };
+		EC4472111EC27757009EB271 /* BlipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4472101EC27757009EB271 /* BlipButton.swift */; };
+		EC4472131EC2799E009EB271 /* molten.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4472121EC27954009EB271 /* molten.ttf */; };
 		EC4BD1DD1EA29ECC0076B4D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4BD1DC1EA29ECC0076B4D0 /* AppDelegate.swift */; };
 		EC4BD1E41EA29ECC0076B4D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4BD1E31EA29ECC0076B4D0 /* Assets.xcassets */; };
 		EC4BD1E71EA29ECC0076B4D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC4BD1E51EA29ECC0076B4D0 /* LaunchScreen.storyboard */; };
@@ -91,6 +94,9 @@
 		EC05C7641EA460400031864A /* Beat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beat.swift; sourceTree = "<group>"; };
 		EC05C7661EA463A20031864A /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		EC44720C1EC2732D009EB271 /* COMICATE.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = COMICATE.TTF; sourceTree = "<group>"; };
+		EC44720E1EC27673009EB271 /* BlipLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlipLabel.swift; sourceTree = "<group>"; };
+		EC4472101EC27757009EB271 /* BlipButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlipButton.swift; sourceTree = "<group>"; };
+		EC4472121EC27954009EB271 /* molten.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = molten.ttf; sourceTree = "<group>"; };
 		EC4BD1D91EA29ECC0076B4D0 /* InThree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InThree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4BD1DC1EA29ECC0076B4D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC4BD1E31EA29ECC0076B4D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -183,6 +189,7 @@
 		EC44720B1EC272E5009EB271 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EC4472121EC27954009EB271 /* molten.ttf */,
 				EC44720C1EC2732D009EB271 /* COMICATE.TTF */,
 			);
 			name = Resources;
@@ -280,6 +287,8 @@
 				EC5B3FBF1EB13EE800410BD2 /* DashboardView.swift */,
 				ECB181671EB245BD0025F017 /* LocalPeerView.swift */,
 				EC7C14651EB67D51009FACDA /* BlipUserCell.swift */,
+				EC44720E1EC27673009EB271 /* BlipLabel.swift */,
+				EC4472101EC27757009EB271 /* BlipButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -467,6 +476,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC4472131EC2799E009EB271 /* molten.ttf in Resources */,
 				EC5B3F9D1EB0DB0000410BD2 /* GoogleService-Info.plist in Resources */,
 				EC44720D1EC2732D009EB271 /* COMICATE.TTF in Resources */,
 				EC4BD1E71EA29ECC0076B4D0 /* LaunchScreen.storyboard in Resources */,
@@ -651,6 +661,7 @@
 				EC5B3FAF1EB0EEB100410BD2 /* LoginNavC.swift in Sources */,
 				EC5B3FBC1EB10A9000410BD2 /* BlipBloopView.swift in Sources */,
 				EC05C7671EA463A20031864A /* Note.swift in Sources */,
+				EC4472111EC27757009EB271 /* BlipButton.swift in Sources */,
 				ECA6D4A71EB914AB008A027B /* ScoreIndex.swift in Sources */,
 				EC5B3FB11EB0EF9500410BD2 /* LoginView.swift in Sources */,
 				EC5B3FA71EB0E81100410BD2 /* AppController.swift in Sources */,
@@ -660,6 +671,7 @@
 				EC5B3FA11EB0E04E00410BD2 /* FirebaseResponse.swift in Sources */,
 				EC5B3FAB1EB0E9E000410BD2 /* DashboardVC.swift in Sources */,
 				EC4BD1DD1EA29ECC0076B4D0 /* AppDelegate.swift in Sources */,
+				EC44720F1EC27673009EB271 /* BlipLabel.swift in Sources */,
 				EC5B3FAD1EB0EDFE00410BD2 /* DashboardNavC.swift in Sources */,
 				EC5B3FA31EB0E25000410BD2 /* BlipUser.swift in Sources */,
 				ECAE16F01EA6FD210013696C /* KeyboardView.swift in Sources */,

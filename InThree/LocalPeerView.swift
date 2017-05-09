@@ -10,10 +10,10 @@ import UIKit
 
 class LocalPeerView: UIView, BlipBloopView {
     
-    let titleLabel = UILabel()
+    let titleLabel = BlipLabel()
     let peerTable = UITableView()
-    let continueButton = UIButton()
-    var backButton = UIButton()
+    let continueButton = BlipButton()
+    var backButton = BlipButton()
     var delegate: LocalPeerViewDelegate?
     
     
@@ -37,7 +37,7 @@ class LocalPeerView: UIView, BlipBloopView {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        titleLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
+        titleLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 1).isActive = true
         titleLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
         
         addSubview(peerTable)
@@ -67,26 +67,17 @@ class LocalPeerView: UIView, BlipBloopView {
         self.backgroundColor = colorScheme.model.baseColor
         
         titleLabel.text = "Select users to play music with:"
+        titleLabel.changeFontSize(to: 18)
         titleLabel.textAlignment = .center
         titleLabel.backgroundColor = UIColor.clear
         titleLabel.textColor = colorScheme.model.foregroundColor
         
         peerTable.backgroundColor  = UIColor.clear
         
-        continueButton.setTitle("Continue", for: .normal)
-        continueButton.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
-        continueButton.backgroundColor = colorScheme.model.baseColor
-        continueButton.layer.cornerRadius = 5
-        continueButton.layer.borderWidth = 2
-        continueButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
+        continueButton.setTitle("Party", for: .normal)
         continueButton.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
         
         backButton.setTitle("Back", for: .normal)
-        backButton.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
-        backButton.backgroundColor = colorScheme.model.baseColor
-        backButton.layer.cornerRadius = 5
-        backButton.layer.borderWidth = 2
-        backButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
     

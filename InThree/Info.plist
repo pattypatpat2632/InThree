@@ -5,6 +5,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>COMICATE.TTF</string>
+		<string>molten.ttf</string>
 	</array>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Allow BlipBloop to continually access your location?</string>
