@@ -99,6 +99,24 @@ extension UIColor {
         return UIColor(displayP3Red: 63/255, green: 104/255, blue: 28/255, alpha: 1)
     }
     
+    //Scheme 6 - Timeless
+    
+    open class var ivory: UIColor {
+        return UIColor(displayP3Red: 241/255, green: 243/255, blue: 206/255, alpha: 1)
+    }
+    
+    open class var peacockBlue: UIColor {
+        return UIColor(displayP3Red: 30/255, green: 101/255, blue: 109/255, alpha: 1)
+    }
+    
+    open class var navy: UIColor {
+        return UIColor(displayP3Red: 0, green: 41/255, blue: 60/255, alpha: 1)
+    }
+    
+    open class var candyApple: UIColor {
+        return UIColor(displayP3Red: 246/255, green: 42/255, blue: 0/255, alpha: 1)
+    }
+    
     
     
     //MARK: Random color generator

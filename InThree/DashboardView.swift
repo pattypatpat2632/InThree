@@ -19,7 +19,6 @@ class DashboardView: UIView, BlipBloopView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
-        
     }
     
     override init(frame: CGRect) {
@@ -37,7 +36,7 @@ class DashboardView: UIView, BlipBloopView {
         addSubview(soloModeButton)
         soloModeButton.translatesAutoresizingMaskIntoConstraints = false
         soloModeButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        soloModeButton.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
+        soloModeButton.topAnchor.constraint(equalTo: topAnchor, constant: 100).isActive = true
         soloModeButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
         soloModeButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
         
@@ -100,24 +99,28 @@ class DashboardView: UIView, BlipBloopView {
     }
     
     func partyModeButtonPressed() {
-        self.indicateSelected(view: partyModeButton)
-        delegate?.goToPartyMode()
+        self.indicateSelected(view: partyModeButton) {
+            self.delegate?.goToPartyMode()
+        }
         //TODO: add some cool animation for button being pressed
     }
     
     func soloModeButtonPressed() {
-        self.indicateSelected(view: soloModeButton)
-        delegate?.goToSoloMode()
+        self.indicateSelected(view: soloModeButton) {
+            self.delegate?.goToSoloMode()
+        }
     }
     
     func neighborhoodModeButtonPressed() {
-        self.indicateSelected(view: neighborhoodModeButton)
-        delegate?.goToNeighborhoodMode()
+        self.indicateSelected(view: neighborhoodModeButton) {
+            self.delegate?.goToNeighborhoodMode()
+        }
     }
     
     func logoutButtonPressed() {
-        self.indicateSelected(view: logoutButton)
-        delegate?.logout()
+        self.indicateSelected(view: logoutButton) {
+            self.delegate?.logout()
+        }
     }
 }
 

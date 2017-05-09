@@ -91,11 +91,16 @@ class LocalPeerView: UIView, BlipBloopView {
     }
     
     func continueButtonTapped() {
-        delegate?.goToPartySquencer()
+        self.indicateSelected(view: continueButton) {
+            self.delegate?.goToPartySquencer()
+        }
     }
     
     func backButtonTapped() {
-        delegate?.returnToDashboard()
+        self.indicateSelected(view: backButton) {
+            self.delegate?.returnToDashboard()
+        }
+        
     }
     
 }

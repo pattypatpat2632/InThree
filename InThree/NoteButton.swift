@@ -9,7 +9,7 @@
 import UIKit
 import AudioKit
 
-class NoteButton: UIButton {
+class NoteButton: UIButton, BlipBloopView {
     
     var noteValue: MIDINoteNumber = 60
     var scoreIndex: ScoreIndex?
@@ -25,17 +25,24 @@ class NoteButton: UIButton {
         commonInit()
     }
     
+    override func draw(_ rect: CGRect) {
+        let path = UIBezierPath(ovalIn: rect)
+        colorScheme.model.foregroundColor.setFill()
+        path.fill()
+    }
+    
     func commonInit() {
         self.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        self.layer.cornerRadius = self.bounds.width/5
-        self.backgroundColor = UIColor.flash
+        self.setTitleColor(colorScheme.model.backgroundColor, for: .normal)
+        self.backgroundColor = UIColor.clear
     }
     
     func buttonTapped() {
         print("NOTE BUTTON TAPPED WITH NOTE VALUE : \(self.noteValue)")
         guard let scoreIndex = scoreIndex else {return}
-        delegate?.respondTo(noteNumber: self.noteValue, scoreIndex: scoreIndex)
-        
+        self.indicatePushed(view: self) {
+            self.delegate?.respondTo(noteNumber: self.noteValue, scoreIndex: scoreIndex)
+        }
     }
     
 }

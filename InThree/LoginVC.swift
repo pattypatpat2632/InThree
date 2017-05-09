@@ -30,9 +30,10 @@ class LoginVC: UIViewController {
     }
     
     func createUserTapped() {
-        loginView.indicateSelected(view: loginView.createUserButton)
-        let createUserVC = CreateUserVC()
-        self.navigationController?.pushViewController(createUserVC, animated: true)
+        loginView.indicateSelected(view: loginView.createUserButton) {
+            let createUserVC = CreateUserVC()
+            self.navigationController?.pushViewController(createUserVC, animated: true)
+        }
     }
     
     func loginTapped() {
@@ -43,19 +44,20 @@ class LoginVC: UIViewController {
             loginView.indicateRequired(fieldView: loginView.passwordField)
             return
         } else {
-            loginView.indicateSelected(view: loginView.loginButton)
-            guard let email = loginView.emailField.text, let password = loginView.passwordField.text else {return} //TODO: handle this better
-            FirebaseManager.sharedInstance.loginUser(fromEmail: email, password: password, completion: { (firResponse) in
-                switch firResponse {
-                case .success(let successString):
-                    print(successString)
-                    DispatchQueue.main.async {
-                        NotificationCenter.default.post(name: .closeLoginVC, object: nil)
+            loginView.indicateSelected(view: loginView.loginButton) {
+                guard let email = self.loginView.emailField.text, let password = self.loginView.passwordField.text else {return} //TODO: handle this better
+                FirebaseManager.sharedInstance.loginUser(fromEmail: email, password: password, completion: { (firResponse) in
+                    switch firResponse {
+                    case .success(let successString):
+                        print(successString)
+                        DispatchQueue.main.async {
+                            NotificationCenter.default.post(name: .closeLoginVC, object: nil)
+                        }
+                    case .failure(let failString):
+                        print(failString)
                     }
-                case .failure(let failString):
-                    print(failString)
-                }
-            })
+                })
+            }
         }
         
         

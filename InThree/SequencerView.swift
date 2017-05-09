@@ -101,7 +101,9 @@ class SequencerView: UIView, BlipBloopView {
     }
     
     func backButtonTapped() {
-        delegate?.returnToDashboard()
+        self.indicateSelected(view: backButton) { 
+            self.delegate?.returnToDashboard()
+        }
     }
 
 }

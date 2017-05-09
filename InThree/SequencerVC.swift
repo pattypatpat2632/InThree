@@ -11,6 +11,7 @@ import AudioKit
 import CoreLocation
 
 
+
 class SequencerVC: UIViewController {
     
     
@@ -19,6 +20,8 @@ class SequencerVC: UIViewController {
     var score = Score(rhythm: .four)
     var selectedPeers = [BlipUser]()
     var locationManager: CLLocationManager?
+    var lightTrigger = LightTrigger()
+    var beatToLight: Int = 0
     
     
     override func viewDidLoad() {
@@ -27,16 +30,17 @@ class SequencerVC: UIViewController {
         self.sequencerView.delegate = self
         self.navigationController?.navigationBar.isHidden = true
         
+        lightTrigger.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(startLightTrigger), name: .playbackStarted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(stopLightTrigger), name: .playbackStopped, object: nil)
+        
+        
         sequencerEngine.setUpSequencer()
         switch sequencerEngine.mode {
         case .party:
-            MultipeerManager.sharedInstance.delegate = self
+            print("party")
         case .neighborhood( _):
-            FirebaseManager.sharedInstance.delegate = self
-            locationManager = CLLocationManager()
-            locationManager?.delegate = self
-            locationManager?.requestAlwaysAuthorization()
-            FirebaseManager.sharedInstance.observeAllScoresIn(locationID: "No Neighborhood")
+            print("City")
         case .solo:
             print("sequencer entering solo mode")
         }
@@ -111,25 +115,7 @@ extension SequencerVC: NoteButtonDelegate {
     }
 }
 
-extension SequencerVC: MultipeerManagerDelegate {
-    
-    func musicChanged(forUID uid: String, score: Score, manager: MultipeerManager) {
-        for (index, blipUser) in selectedPeers.enumerated() {
-            if blipUser.uid == uid {
-                sequencerEngine.generateSequence(fromScore: score, forUserNumber: index + 1)
-            }
-        }
-    }
-    
-    func connectionLost(forUID uid: String, manager: MultipeerManager) {
-        for (index, blipUser) in self.selectedPeers.enumerated() {
-            if blipUser.uid == uid {
-                self.selectedPeers.remove(at: index)
-            }
-            //TODO: remove peer that has disconnected, and fade out their score
-        }
-    }
-}
+
 
 extension SequencerVC: SequencerViewDelegate {
     func returnToDashboard() {
@@ -139,74 +125,45 @@ extension SequencerVC: SequencerViewDelegate {
     }
 }
 
-//MARK: Core location delegate
-extension SequencerVC: CLLocationManagerDelegate {
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse || status == .authorizedAlways {
-            setLocationData()
-        } else if status == .denied {
-            returnToDashboard()
-        }
-    }
-    
-    func setLocationData() {
-        print("LOCATION DATA BEING SET**************")
-        if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
-            let title = "Flatiron"
-            let coordinate = CLLocationCoordinate2DMake(40.705253, -74.014070)
-            let regionRadius = 160934.0
-            let clCoordinate = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
-            let region = CLCircularRegion(center: clCoordinate, radius: regionRadius, identifier: title)
-            print("LOCATION MANAGER START MONITORING**************")
-            locationManager?.startMonitoring(for: region)
-            
-        }
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
-        print("LOCATION MANAGER DID START MONITORING FOR REGION: \(region.identifier)")
-        
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("Location updated")
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
-        print(state)
-        print("region :\(region.identifier)")
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        print("DID ENTER REGION*****************")
-        sequencerEngine.mode = .neighborhood(region.identifier)
-        FirebaseManager.sharedInstance.observeAllScoresIn(locationID: region.identifier)
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        //TODO: stop local sequence
-        print("DID EXIT REGION*****************")
-        sequencerEngine.mode = .neighborhood("No Neighborhood")
-        sequencerEngine.sequencer.tracks[1].clear()
-        FirebaseManager.sharedInstance.observeAllScoresIn(locationID: "No Neighborhood")
-    }
-    
-}
-//MARK: Location based sequencer
-extension SequencerVC {
-    func grabLocalSequence() {
-        guard FirebaseManager.sharedInstance.allLocationScores.count > 0 else {return}
-        let scoredIndex = UInt32(FirebaseManager.sharedInstance.allLocationScores.count - 1)
-        let randNum = Int(arc4random_uniform(scoredIndex))
-        let randomScore = FirebaseManager.sharedInstance.allLocationScores[randNum]
-        sequencerEngine.generateSequence(fromScore: randomScore, forUserNumber: 1)
-    }
-}
-
 extension SequencerVC: FirebaseManagerDelegate {
     func updateLocationScores() {
         grabLocalSequence()
+    }
+}
+
+extension SequencerVC: LightTriggerDelegate {
+    
+    func startLightTrigger() {
+        lightTrigger.start()
+    }
+    
+    func stopLightTrigger() {
+        lightTrigger.stop()
+    }
+    
+    func fired() {
+        print("FIRED LIGHT TRIGGER")
+        if beatToLight < 3 {
+            self.sequencerView.allBeatViews[beatToLight].allPads = self.sequencerView.allBeatViews[beatToLight].allPads.map({ (padView) -> PadView in
+                padView.backgroundColor = self.sequencerView.colorScheme.model.backgroundColor
+                return padView
+            })
+            beatToLight += 1
+            self.sequencerView.allBeatViews[beatToLight].allPads = self.sequencerView.allBeatViews[beatToLight].allPads.map({ (padView) -> PadView in
+                padView.backgroundColor = self.sequencerView.colorScheme.model.highlightColor
+                return padView
+            })
+        } else {
+            self.sequencerView.allBeatViews[beatToLight].allPads = self.sequencerView.allBeatViews[beatToLight].allPads.map({ (padView) -> PadView in
+                padView.backgroundColor = self.sequencerView.colorScheme.model.backgroundColor
+                return padView
+            })
+            beatToLight = 0
+            self.sequencerView.allBeatViews[beatToLight].allPads = self.sequencerView.allBeatViews[beatToLight].allPads.map({ (padView) -> PadView in
+                padView.backgroundColor = self.sequencerView.colorScheme.model.highlightColor
+                return padView
+            })
+        }
     }
 }
 

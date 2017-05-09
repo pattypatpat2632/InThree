@@ -45,6 +45,8 @@ class BeatView: UIView, BlipBloopView {
     func commonInit() {
         
         self.backgroundColor = colorScheme.model.backgroundColor
+        self.layer.cornerRadius = 5
+        
         allPads = [pad0, pad1, pad2, pad3, pad4]
         
         self.addSubview(stackView)

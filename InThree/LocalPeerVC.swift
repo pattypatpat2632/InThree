@@ -94,10 +94,10 @@ extension LocalPeerVC: UITableViewDelegate, UITableViewDataSource {
 extension LocalPeerVC: LocalPeerViewDelegate {
     
     func goToPartySquencer() {
-        let sequenerVC = SequencerVC()
-        sequenerVC.selectedPeers = self.selectedPeers
-        sequenerVC.sequencerEngine.mode = .party
-        navigationController?.pushViewController(sequenerVC, animated: true)
+        let partySequencerVC = PartySequencerVC()
+        partySequencerVC.selectedPeers = self.selectedPeers
+        partySequencerVC.sequencerEngine.mode = .party
+        navigationController?.pushViewController(partySequencerVC, animated: true)
     }
     
     func returnToDashboard() {

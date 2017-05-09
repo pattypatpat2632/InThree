@@ -23,11 +23,9 @@ struct Beat {
 
 extension Beat {
     
-    init(rhythm: Rhythm) {
+    init(rhythm: Rhythm) { //Initialize a new beat, with blank notes
         self.rhythm = rhythm
-        for i in 1...rhythm.rawValue {
-//            let position = AKDuration(beats: Double(i - 1) / rhythm.rawValue)
-//            let duration = AKDuration(beats: 1.0/rhythm.rawValue * 0.9)
+        for _ in 1...rhythm.rawValue {
             let note = Note(noteOn: false, noteNumber: 0, velocity: 127)//, duration: duration, position: position)
             self.notes.append(note)
         }
@@ -58,7 +56,7 @@ extension Beat {
         self.notes.removeLast()
         self.rhythm = rhythm
     }
-
+    
     func asDictionary() -> [String: Any] {
         var notesDict = [[String: Any]]()
         for note in notes {

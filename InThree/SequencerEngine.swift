@@ -18,6 +18,7 @@ struct SequencerEngine {
     var verb: AKReverb?
     var mode: SequencerMode = .solo
     
+    
     init() {}
     
     mutating func setUpSequencer() {
@@ -43,6 +44,7 @@ struct SequencerEngine {
         sequencer.setLength(AKDuration(beats: 4.0))
         sequencer.enableLooping()
         sequencer.play()
+        NotificationCenter.default.post(name: .playbackStarted, object: nil)
         
     }
     
@@ -88,7 +90,9 @@ struct SequencerEngine {
         }
         self.sequencer.stop()
         AudioKit.output = nil
+        sequencer.stop()
         AudioKit.stop()
+        NotificationCenter.default.post(name: .playbackStopped, object: nil)
     }
 }
 
