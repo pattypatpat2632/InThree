@@ -4,10 +4,12 @@
 //
 //  Created by Patrick O'Leary on 4/15/17.
 //  Copyright © 2017 Patrick O'Leary. All rights reserved.
-//
+
 
 import UIKit
 import AudioKit
+import CoreLocation
+
 
 
 class SequencerVC: UIViewController {
@@ -15,75 +17,155 @@ class SequencerVC: UIViewController {
     
     var sequencerEngine = SequencerEngine()
     var sequencerView = SequencerView()
-    var score = Score()
+    var score = Score(rhythm: .four)
+    var selectedPeers = [BlipUser]()
+    var locationManager: CLLocationManager?
+    var lightTrigger = LightTrigger()
+    var beatToLight: Int = 0
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = sequencerView
+        self.sequencerView.delegate = self
         self.navigationController?.navigationBar.isHidden = true
         
+        lightTrigger.delegate = self
+        NotificationCenter.default.addObserver(self, selector: #selector(startLightTrigger), name: .playbackStarted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(stopLightTrigger), name: .playbackStopped, object: nil)
+        
+        
         sequencerEngine.setUpSequencer()
+        switch sequencerEngine.mode {
+        case .party:
+            print("party")
+        case .neighborhood( _):
+            print("City")
+        case .solo:
+            print("sequencer entering solo mode")
+        }
         
         for (index, beatView) in sequencerView.allBeatViews.enumerated() {
             beatView.delegate = self
             beatView.beatNumber = index
-            score.add(beat: beatView.beat)
+            for padView in beatView.allPads {
+                padView.delegate = self
+            }
         }
         
     }
 }
 
 extension SequencerVC: BeatViewDelegate {
-    func rhythmChange(forBeatView beatView: BeatView) {
-        score.beats[beatView.beatNumber] = beatView.beat
+    
+    func addStep(forBeatNum beatNum: Int, newStepCount steps: Int) {
+        guard let newRhythm = Rhythm(rawValue: steps) else {return}
+        score.addStep(toBeatNum: beatNum, newRhythm: newRhythm)
         sequencerEngine.generateSequence(fromScore: score)
     }
     
-    func noteChange(padIsOn: Bool, beatNumber: Int, padNumber: Int) {
-        print("PAD ON: \(padIsOn) beatNumber: \(beatNumber) padNumber: \(padNumber)")
+    func removeStep(forBeatNum beatNum: Int, newStepCount: Int) {
+        guard let newRhythm = Rhythm(rawValue: newStepCount) else {return}
+        score.addStep(toBeatNum: beatNum, newRhythm: newRhythm)
+        sequencerEngine.generateSequence(fromScore: score)
+    }
+}
+
+extension SequencerVC: PadViewDelegate {
+    func padValueChanged(scoreIndex: ScoreIndex, padIsOn: Bool) {
         if padIsOn {
-            getNote(beatNumber: beatNumber, padNumber: padNumber)
+            displayNoteView(scoreIndex: scoreIndex)
         } else {
-            score.beats[beatNumber].notes[padNumber].noteOn = false
+            score.beats[scoreIndex.beatIndex].notes[scoreIndex.noteIndex].noteOn = false
             sequencerEngine.generateSequence(fromScore: score)
         }
     }
     
-    func getNote(beatNumber: Int, padNumber: Int) {
-
+    func displayNoteView(scoreIndex: ScoreIndex) {
+        sequencerView.allViews = sequencerView.allViews.map({ (uiView) -> UIView in
+            uiView.alpha = uiView.alpha/5
+            uiView.isUserInteractionEnabled = false
+            return uiView
+        })
         sequencerView.circleOfFifthsView.isHidden = false
-        for beatView in sequencerView.allBeatViews {
-            beatView.isUserInteractionEnabled = false
-            beatView.alpha = beatView.alpha / 5
-        }
-        
-        for noteButton in sequencerView.circleOfFifthsView.noteButtons {
-            noteButton.beatNumber = beatNumber
-            noteButton.padNumber = padNumber
+        sequencerView.circleOfFifthsView.noteButtons = sequencerView.circleOfFifthsView.noteButtons.map({ (noteButton) -> NoteButton in
             noteButton.delegate = self
-        }
+            noteButton.scoreIndex = scoreIndex
+            return noteButton
+        })
+        
     }
 }
 
 extension SequencerVC: NoteButtonDelegate {
     
-    func respondTo(noteNumber: MIDINoteNumber, atBeatNumber beatNumber: Int?, atPadNumber padNumber: Int?) {
-        guard let beatNumber = beatNumber, let padNumber = padNumber else {return}
-        sequencerView.allBeatViews[beatNumber].beat.notes[padNumber].noteOn = true
-        sequencerView.allBeatViews[beatNumber].beat.notes[padNumber].noteNumber = noteNumber
-        score.beats[beatNumber].notes[padNumber].noteOn = true
-        score.beats[beatNumber].notes[padNumber].noteNumber = noteNumber
+    func respondTo(noteNumber: MIDINoteNumber, scoreIndex: ScoreIndex) {
+        score.beats[scoreIndex.beatIndex].notes[scoreIndex.noteIndex].noteNumber = noteNumber
+        score.beats[scoreIndex.beatIndex].notes[scoreIndex.noteIndex].velocity = 127
+        score.beats[scoreIndex.beatIndex].notes[scoreIndex.noteIndex].noteOn = true
+        
         sequencerEngine.generateSequence(fromScore: score)
         
         sequencerView.circleOfFifthsView.isHidden = true
-        for beatView in sequencerView.allBeatViews {
-            beatView.isUserInteractionEnabled = true
-            beatView.alpha = beatView.alpha * 5
-        }
+        sequencerView.allViews = sequencerView.allViews.map({ (uiView) -> UIView in
+            uiView.alpha = uiView.alpha * 5
+            uiView.isUserInteractionEnabled = true
+            return uiView
+        })
     }
 }
 
+
+
+extension SequencerVC: SequencerViewDelegate {
+    func returnToDashboard() {
+        sequencerEngine.stopAll() //TODO: add audio fadeout
+        navigationController?.popViewController(animated: true)
+        
+    }
+}
+
+extension SequencerVC: FirebaseManagerDelegate {
+    func updateLocationScores() {
+        grabLocalSequence()
+    }
+}
+
+extension SequencerVC: LightTriggerDelegate {
+    
+    func startLightTrigger() {
+        lightTrigger.start()
+    }
+    
+    func stopLightTrigger() {
+        lightTrigger.stop()
+    }
+    
+    func fired() {
+        print("FIRED LIGHT TRIGGER")
+        if beatToLight < 3 {
+            self.sequencerView.allBeatViews[beatToLight].allPads = self.sequencerView.allBeatViews[beatToLight].allPads.map({ (padView) -> PadView in
+                padView.backgroundColor = self.sequencerView.colorScheme.model.backgroundColor
+                return padView
+            })
+            beatToLight += 1
+            self.sequencerView.allBeatViews[beatToLight].allPads = self.sequencerView.allBeatViews[beatToLight].allPads.map({ (padView) -> PadView in
+                padView.backgroundColor = self.sequencerView.colorScheme.model.highlightColor
+                return padView
+            })
+        } else {
+            self.sequencerView.allBeatViews[beatToLight].allPads = self.sequencerView.allBeatViews[beatToLight].allPads.map({ (padView) -> PadView in
+                padView.backgroundColor = self.sequencerView.colorScheme.model.backgroundColor
+                return padView
+            })
+            beatToLight = 0
+            self.sequencerView.allBeatViews[beatToLight].allPads = self.sequencerView.allBeatViews[beatToLight].allPads.map({ (padView) -> PadView in
+                padView.backgroundColor = self.sequencerView.colorScheme.model.highlightColor
+                return padView
+            })
+        }
+    }
+}
 
 
 

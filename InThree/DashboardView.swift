@@ -10,13 +10,15 @@ import UIKit
 
 class DashboardView: UIView, BlipBloopView {
     
-    let partyModeButton = UIButton()
+    let soloModeButton = BlipButton()
+    let partyModeButton = BlipButton()
+    let neighborhoodModeButton = BlipButton()
     var delegate: DashboardViewDelegate? = nil
+    let logoutButton = BlipButton()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
-        
     }
     
     override init(frame: CGRect) {
@@ -31,30 +33,79 @@ class DashboardView: UIView, BlipBloopView {
     }
     
     private func setConstraints() {
+        addSubview(soloModeButton)
+        soloModeButton.translatesAutoresizingMaskIntoConstraints = false
+        soloModeButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        soloModeButton.topAnchor.constraint(equalTo: topAnchor, constant: 50).isActive = true
+        soloModeButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
+        soloModeButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.15).isActive = true
+        
         addSubview(partyModeButton)
         partyModeButton.translatesAutoresizingMaskIntoConstraints = false
         partyModeButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        partyModeButton.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        partyModeButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.25).isActive = true
-        partyModeButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
+        partyModeButton.topAnchor.constraint(equalTo: soloModeButton.bottomAnchor, constant: 10).isActive = true
+        partyModeButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
+        partyModeButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.15).isActive = true
+        
+        addSubview(neighborhoodModeButton)
+        neighborhoodModeButton.translatesAutoresizingMaskIntoConstraints = false
+        neighborhoodModeButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        neighborhoodModeButton.topAnchor.constraint(equalTo: partyModeButton.bottomAnchor, constant: 10).isActive = true
+        neighborhoodModeButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
+        neighborhoodModeButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.15).isActive = true
+        
+        addSubview(logoutButton)
+        logoutButton.translatesAutoresizingMaskIntoConstraints = false
+        logoutButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        logoutButton.topAnchor.constraint(equalTo: neighborhoodModeButton.bottomAnchor, constant: 10).isActive = true
+        logoutButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
+        logoutButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.15).isActive = true
+        
     }
     
     private func setSubviewProperties() {
         partyModeButton.setTitle("Party Mode", for: .normal)
-        partyModeButton.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
-        partyModeButton.backgroundColor = colorScheme.model.baseColor
-        partyModeButton.layer.cornerRadius = 5
-        partyModeButton.layer.borderWidth = 2
-        partyModeButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
         partyModeButton.addTarget(self, action: #selector(partyModeButtonPressed), for: .touchUpInside)
+        
+        soloModeButton.setTitle("Solo Mode", for: .normal)
+        soloModeButton.addTarget(self, action: #selector(soloModeButtonPressed), for: .touchUpInside)
+        
+        neighborhoodModeButton.setTitle("City Mode", for: .normal)
+        neighborhoodModeButton.addTarget(self, action: #selector(neighborhoodModeButtonPressed), for: .touchUpInside)
+        
+        logoutButton.setTitle("Logout", for: .normal)
+        logoutButton.addTarget(self, action: #selector(logoutButtonPressed), for: .touchUpInside)
+        
     }
     
     func partyModeButtonPressed() {
-        delegate?.goToPartyMode()
-        //TODO: add some cool animation for button being pressed
+        self.indicateSelected(view: partyModeButton) {
+            self.delegate?.goToPartyMode()
+        }
+    }
+    
+    func soloModeButtonPressed() {
+        self.indicateSelected(view: soloModeButton) {
+            self.delegate?.goToSoloMode()
+        }
+    }
+    
+    func neighborhoodModeButtonPressed() {
+        self.indicateSelected(view: neighborhoodModeButton) {
+            self.delegate?.goToNeighborhoodMode()
+        }
+    }
+    
+    func logoutButtonPressed() {
+        self.indicateSelected(view: logoutButton) {
+            self.delegate?.logout()
+        }
     }
 }
 
 protocol DashboardViewDelegate {
     func goToPartyMode()
+    func goToSoloMode()
+    func goToNeighborhoodMode()
+    func logout()
 }

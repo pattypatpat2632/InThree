@@ -16,6 +16,8 @@ struct SequencerEngine {
     let sequencer = AKSequencer()
     let midi = AKMIDI()
     var verb: AKReverb?
+    var mode: SequencerMode = .solo
+    
     
     init() {}
     
@@ -31,6 +33,9 @@ struct SequencerEngine {
         verb = AKReverb(midiNode)
         
         _ = sequencer.newTrack()
+        _ = sequencer.newTrack()
+        _ = sequencer.newTrack()
+        _ = sequencer.newTrack()
         
         AudioKit.output = verb
         AudioKit.start()
@@ -39,6 +44,7 @@ struct SequencerEngine {
         sequencer.setLength(AKDuration(beats: 4.0))
         sequencer.enableLooping()
         sequencer.play()
+        NotificationCenter.default.post(name: .playbackStarted, object: nil)
         
     }
     
@@ -46,21 +52,48 @@ struct SequencerEngine {
         sequencer.setTempo(newTempo)
     }
     
-    func generateSequence(fromScore score: Score) {
+    func generateSequence(fromScore score: Score, forUserNumber userNum: Int = 0) {
         print("*****Generate Sequence*****")
-        sequencer.tracks[0].clear()
+        sequencer.tracks[userNum].clear()
         print("sequencer length: \(score.beats.count)")
         var beatPostion = AKDuration(beats: 0)
         for beat in score.beats {
+            var notePosition = AKDuration(beats: 0)
+            let noteDuration = AKDuration(beats: (1/beat.rhythm.rawValue))
             for note in beat.notes{
                 if note.noteOn {
-                    sequencer.tracks[0].add(noteNumber: note.noteNumber, velocity: note.velocity, position: note.position + beatPostion, duration: note.duration)
+                    sequencer.tracks[userNum].add(noteNumber: note.noteNumber, velocity: note.velocity, position: notePosition + beatPostion, duration: noteDuration)
                 }
+                notePosition = notePosition + AKDuration(beats: 1/beat.rhythm.rawValue)
             }
             beatPostion = beatPostion + AKDuration(beats: 1.0)
         }
+        if userNum == 0 {
+            send(score: score)
+        }
     }
     
+    func send(score: Score) {
+        switch mode {
+        case .party:
+            MultipeerManager.sharedInstance.send(score: score)
+        case .neighborhood(let hoodString):
+            FirebaseManager.sharedInstance.send(score: score, toUUID: hoodString)
+        case .solo:
+            print("solo mode, no data sent")
+        }
+    }
+    
+    func stopAll() {
+        for track in sequencer.tracks {
+            track.clear()
+        }
+        self.sequencer.stop()
+        AudioKit.output = nil
+        sequencer.stop()
+        AudioKit.stop()
+        NotificationCenter.default.post(name: .playbackStopped, object: nil)
+    }
 }
 
 

@@ -15,5 +15,4 @@ class LoginNavC: UINavigationController {
         self.navigationBar.isHidden = true
         self.setViewControllers([LoginVC()], animated: false)
     }
-
 }

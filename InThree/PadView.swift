@@ -13,7 +13,7 @@ class PadView: UIView, BlipBloopView {
     
     let button = UIButton()
     var buttonIsOn: Bool = false
-    var padNumber: Int = 0
+    var padIndex = ScoreIndex(beatIndex: 0, noteIndex: 0)
     var delegate: PadViewDelegate?
 
     required init?(coder aDecoder: NSCoder) {
@@ -27,7 +27,7 @@ class PadView: UIView, BlipBloopView {
     }
     
     func commonInit() {
-        self.backgroundColor = colorScheme.model.highlightColor
+        self.backgroundColor = colorScheme.model.backgroundColor
         self.translatesAutoresizingMaskIntoConstraints = false
         self.widthAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         
@@ -49,22 +49,27 @@ class PadView: UIView, BlipBloopView {
         if buttonIsOn {
             buttonIsOn = false
             button.alpha = 0.5
-            delegate?.padValueChanged(padNumber: padNumber, padIsOn: false)
+            delegate?.padValueChanged(scoreIndex: padIndex, padIsOn: false)
         } else {
             buttonIsOn = true
             button.alpha = 1
-            delegate?.padValueChanged(padNumber: padNumber, padIsOn: true)
+            delegate?.padValueChanged(scoreIndex: padIndex, padIsOn: true)
         }
     }
     
     func turnOff() {
         self.buttonIsOn = false
         self.button.alpha = 0.5
+        delegate?.padValueChanged(scoreIndex: padIndex, padIsOn: false)
+    }
+    
+    func setIndex(to scoreIndex: ScoreIndex) {
+        self.padIndex = scoreIndex
     }
 }
 
 protocol PadViewDelegate {
-    func padValueChanged(padNumber: Int, padIsOn: Bool)
+    func padValueChanged(scoreIndex: ScoreIndex, padIsOn: Bool)
 }
 
 

@@ -26,6 +26,8 @@ class CircleOfFifthsView: UIView {
     @IBOutlet weak var aS: NoteButton!
     @IBOutlet weak var f: NoteButton!
     @IBOutlet weak var octaveLabel: UILabel!
+    @IBOutlet weak var octaveUpButton: UIButton!
+    @IBOutlet weak var octaveDownButton: UIButton!
     
     var noteButtons = [NoteButton]()
     var octaveNumber: Int = 4 {
@@ -69,12 +71,21 @@ class CircleOfFifthsView: UIView {
         }
         
         octaveLabel.text = "Octave 4"
-        octaveLabel.backgroundColor = colorScheme.model.highlightColor
+        octaveLabel.backgroundColor = UIColor.clear
+        octaveLabel.font = UIFont(name: "System", size: 36)
+        
         octaveLabel.textColor = colorScheme.model.foregroundColor
         
+        octaveUpButton.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
+        octaveDownButton.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
+        octaveUpButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
+        octaveUpButton.layer.borderWidth = 5
+        octaveDownButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
+        octaveDownButton.layer.borderWidth = 5
     }
     
     @IBAction func octaveUpTapped(_ sender: UIButton) {
+
         guard octaveNumber < 7 else {return}
         noteButtons = noteButtons.map({ (noteButton) -> NoteButton in
             noteButton.noteValue = noteButton.noteValue + 12
