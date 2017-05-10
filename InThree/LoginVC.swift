@@ -63,14 +63,9 @@ class LoginVC: UIViewController {
     }
     
     func forgotPasswordTapped() {
-        print("OOPS FORGOT PASSWORD!")
+        
         self.loginView.indicatePushed(view: loginView.forgotPasswordButton) { 
-            let alertController = UIAlertController(title: "Please check your email", message: "We have sent you your password", preferredStyle: .alert)
-            let okAlert = UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                print("OKAY!!!!!!!************")
-            })
-            alertController.addAction(okAlert)
-            self.present(alertController, animated: true, completion: nil)
+            
         }
     }
     

@@ -48,6 +48,8 @@
 		EC7C14681EB780FF009FACDA /* SequencerMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C14671EB780FF009FACDA /* SequencerMode.swift */; };
 		EC7FEDEE1EAE59CF00E50A62 /* ColorSchemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */; };
 		EC7FEDF01EAE65D500E50A62 /* NoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */; };
+		EC9028B41EC398B100027FCE /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9028B31EC398B100027FCE /* ForgotPasswordView.swift */; };
+		EC9028B61EC398D000027FCE /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9028B51EC398D000027FCE /* ForgotPasswordVC.swift */; };
 		EC9559761EA59EFB008FA5FA /* SequencerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9559751EA59EFB008FA5FA /* SequencerView.swift */; };
 		ECA6D4A51EB7C6B1008A027B /* MultipeerTestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA6D4A41EB7C6B1008A027B /* MultipeerTestManager.swift */; };
 		ECA6D4A71EB914AB008A027B /* ScoreIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA6D4A61EB914AB008A027B /* ScoreIndex.swift */; };
@@ -134,6 +136,8 @@
 		EC7C14671EB780FF009FACDA /* SequencerMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerMode.swift; sourceTree = "<group>"; };
 		EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSchemeModel.swift; sourceTree = "<group>"; };
 		EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteButton.swift; sourceTree = "<group>"; };
+		EC9028B31EC398B100027FCE /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		EC9028B51EC398D000027FCE /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		EC9559751EA59EFB008FA5FA /* SequencerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerView.swift; sourceTree = "<group>"; };
 		ECA6D4A41EB7C6B1008A027B /* MultipeerTestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerTestManager.swift; sourceTree = "<group>"; };
 		ECA6D4A61EB914AB008A027B /* ScoreIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreIndex.swift; sourceTree = "<group>"; };
@@ -267,6 +271,7 @@
 				EC5B3FAE1EB0EEB100410BD2 /* LoginNavC.swift */,
 				EC5B3FB21EB0FF3800410BD2 /* CreateUserVC.swift */,
 				ECB181691EB245DB0025F017 /* LocalPeerVC.swift */,
+				EC9028B51EC398D000027FCE /* ForgotPasswordVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 				EC7C14651EB67D51009FACDA /* BlipUserCell.swift */,
 				EC44720E1EC27673009EB271 /* BlipLabel.swift */,
 				EC4472101EC27757009EB271 /* BlipButton.swift */,
+				EC9028B31EC398B100027FCE /* ForgotPasswordView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -667,6 +673,7 @@
 				EC5B3FA71EB0E81100410BD2 /* AppController.swift in Sources */,
 				EC4BD2171EA2D2CB0076B4D0 /* UIColorExtenstion.swift in Sources */,
 				EC74C8AB1EC1228E00666BDF /* LightTrigger.swift in Sources */,
+				EC9028B41EC398B100027FCE /* ForgotPasswordView.swift in Sources */,
 				EC5B3FB51EB0FF6300410BD2 /* CreateUserView.swift in Sources */,
 				EC5B3FA11EB0E04E00410BD2 /* FirebaseResponse.swift in Sources */,
 				EC5B3FAB1EB0E9E000410BD2 /* DashboardVC.swift in Sources */,
@@ -677,6 +684,7 @@
 				ECAE16F01EA6FD210013696C /* KeyboardView.swift in Sources */,
 				EC5B3FBE1EB13A6700410BD2 /* UIVCExtension.swift in Sources */,
 				ECA6D4A51EB7C6B1008A027B /* MultipeerTestManager.swift in Sources */,
+				EC9028B61EC398D000027FCE /* ForgotPasswordVC.swift in Sources */,
 				EC7C14681EB780FF009FACDA /* SequencerMode.swift in Sources */,
 				EC4BD2101EA2A6B40076B4D0 /* PadView.swift in Sources */,
 				EC5B3FB31EB0FF3800410BD2 /* CreateUserVC.swift in Sources */,
