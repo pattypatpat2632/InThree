@@ -28,5 +28,9 @@ class BlipButton: UIButton, BlipBloopView {
         self.layer.borderWidth = 2
         self.layer.borderColor = colorScheme.model.foregroundColor.cgColor
     }
+    
+    func changeFontSize(to size: CGFloat) {
+        self.titleLabel?.font = UIFont(name: "TimeBurner-Bold", size: size)
+    }
 
 }
