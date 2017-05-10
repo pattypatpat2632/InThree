@@ -22,7 +22,7 @@ class BlipButton: UIButton, BlipBloopView {
     
     func commonInit() {
         self.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
-        self.titleLabel?.font = UIFont(name: "Comicate", size: 28)
+        self.titleLabel?.font = UIFont(name: "TimeBurner-Bold", size: 28)
         self.backgroundColor = colorScheme.model.baseColor
         self.layer.cornerRadius = 5
         self.layer.borderWidth = 2

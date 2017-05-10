@@ -28,7 +28,7 @@ enum ColorScheme {
         case .night:
             return ColorSchemeModel(baseColor: UIColor.nightCyan, backgroundColor: UIColor.nightMagenta, highlightColor: UIColor.nightYellow, foregroundColor: UIColor.nightBlack)
         case .gameboy:
-            return ColorSchemeModel(baseColor: UIColor.lightestGreen, backgroundColor: .lightGreen, highlightColor: .darkestGreen, foregroundColor: .darkGreen)
+            return ColorSchemeModel(baseColor: UIColor.lightestGreen, backgroundColor: .lightGreen, highlightColor: .darkGreen, foregroundColor: .darkGreen)
         case .flower:
             return ColorSchemeModel(baseColor: UIColor.sky, backgroundColor: UIColor.sunset, highlightColor: UIColor.sunflower, foregroundColor: UIColor.grass)
         case .timeless:

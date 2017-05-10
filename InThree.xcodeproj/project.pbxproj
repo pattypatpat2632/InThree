@@ -17,6 +17,8 @@
 		EC44720F1EC27673009EB271 /* BlipLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC44720E1EC27673009EB271 /* BlipLabel.swift */; };
 		EC4472111EC27757009EB271 /* BlipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4472101EC27757009EB271 /* BlipButton.swift */; };
 		EC4472131EC2799E009EB271 /* molten.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4472121EC27954009EB271 /* molten.ttf */; };
+		EC4472171EC2ABE9009EB271 /* timeburnernormal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4472161EC2ABE9009EB271 /* timeburnernormal.ttf */; };
+		EC4472191EC2AD00009EB271 /* timeburnerbold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4472181EC2AD00009EB271 /* timeburnerbold.ttf */; };
 		EC4BD1DD1EA29ECC0076B4D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4BD1DC1EA29ECC0076B4D0 /* AppDelegate.swift */; };
 		EC4BD1E41EA29ECC0076B4D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC4BD1E31EA29ECC0076B4D0 /* Assets.xcassets */; };
 		EC4BD1E71EA29ECC0076B4D0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC4BD1E51EA29ECC0076B4D0 /* LaunchScreen.storyboard */; };
@@ -97,6 +99,8 @@
 		EC44720E1EC27673009EB271 /* BlipLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlipLabel.swift; sourceTree = "<group>"; };
 		EC4472101EC27757009EB271 /* BlipButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlipButton.swift; sourceTree = "<group>"; };
 		EC4472121EC27954009EB271 /* molten.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = molten.ttf; sourceTree = "<group>"; };
+		EC4472161EC2ABE9009EB271 /* timeburnernormal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = timeburnernormal.ttf; sourceTree = "<group>"; };
+		EC4472181EC2AD00009EB271 /* timeburnerbold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = timeburnerbold.ttf; sourceTree = "<group>"; };
 		EC4BD1D91EA29ECC0076B4D0 /* InThree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InThree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC4BD1DC1EA29ECC0076B4D0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC4BD1E31EA29ECC0076B4D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -189,6 +193,8 @@
 		EC44720B1EC272E5009EB271 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EC4472181EC2AD00009EB271 /* timeburnerbold.ttf */,
+				EC4472161EC2ABE9009EB271 /* timeburnernormal.ttf */,
 				EC4472121EC27954009EB271 /* molten.ttf */,
 				EC44720C1EC2732D009EB271 /* COMICATE.TTF */,
 			);
@@ -482,7 +488,9 @@
 				EC4BD1E71EA29ECC0076B4D0 /* LaunchScreen.storyboard in Resources */,
 				ECCE22F41EA84C95006691D8 /* CircleOfFifthsView.xib in Resources */,
 				EC4BD1E41EA29ECC0076B4D0 /* Assets.xcassets in Resources */,
+				EC4472171EC2ABE9009EB271 /* timeburnernormal.ttf in Resources */,
 				ECAE16EE1EA6FCD10013696C /* KeyboardView.xib in Resources */,
+				EC4472191EC2AD00009EB271 /* timeburnerbold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

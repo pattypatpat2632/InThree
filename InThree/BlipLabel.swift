@@ -22,14 +22,23 @@ class BlipLabel: UILabel, BlipBloopView {
     
     func commonInit() {
         
+        for family: String in UIFont.familyNames
+        {
+            print("\(family)")
+            for names: String in UIFont.fontNames(forFamilyName: family)
+            {
+                print("== \(names)")
+            }
+        }
+        
         self.textAlignment = .center
         self.backgroundColor = UIColor.clear
         self.textColor = colorScheme.model.foregroundColor
-        self.font = UIFont(name: "Comicate", size: 64)
+        self.font = UIFont(name: "TimeBurner", size: 64)
     }
     
     func changeFontSize(to fontSize: CGFloat) {
-        self.font = UIFont(name: "Comicate", size: fontSize)
+        self.font = UIFont(name: "TimeBurner", size: fontSize)
     }
     
 
