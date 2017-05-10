@@ -18,6 +18,7 @@ struct SequencerEngine {
     var verb: AKReverb?
     var mode: SequencerMode = .solo
     
+    
     init() {}
     
     mutating func setUpSequencer() {
@@ -43,6 +44,7 @@ struct SequencerEngine {
         sequencer.setLength(AKDuration(beats: 4.0))
         sequencer.enableLooping()
         sequencer.play()
+        NotificationCenter.default.post(name: .playbackStarted, object: nil)
         
     }
     
@@ -56,10 +58,13 @@ struct SequencerEngine {
         print("sequencer length: \(score.beats.count)")
         var beatPostion = AKDuration(beats: 0)
         for beat in score.beats {
+            var notePosition = AKDuration(beats: 0)
+            let noteDuration = AKDuration(beats: (1/beat.rhythm.rawValue))
             for note in beat.notes{
                 if note.noteOn {
-                    sequencer.tracks[userNum].add(noteNumber: note.noteNumber, velocity: note.velocity, position: note.position + beatPostion, duration: note.duration)
+                    sequencer.tracks[userNum].add(noteNumber: note.noteNumber, velocity: note.velocity, position: notePosition + beatPostion, duration: noteDuration)
                 }
+                notePosition = notePosition + AKDuration(beats: 1/beat.rhythm.rawValue)
             }
             beatPostion = beatPostion + AKDuration(beats: 1.0)
         }
@@ -69,11 +74,13 @@ struct SequencerEngine {
     }
     
     func send(score: Score) {
-        if mode == .party {
+        switch mode {
+        case .party:
             MultipeerManager.sharedInstance.send(score: score)
-            print("SCORE SEND******************")
-        } else if mode == .neighborhood {
-            //TODO: send score to neighborhood
+        case .neighborhood(let hoodString):
+            FirebaseManager.sharedInstance.send(score: score, toUUID: hoodString)
+        case .solo:
+            print("solo mode, no data sent")
         }
     }
     
@@ -83,7 +90,9 @@ struct SequencerEngine {
         }
         self.sequencer.stop()
         AudioKit.output = nil
+        sequencer.stop()
         AudioKit.stop()
+        NotificationCenter.default.post(name: .playbackStopped, object: nil)
     }
 }
 

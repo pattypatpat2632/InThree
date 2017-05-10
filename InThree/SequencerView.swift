@@ -15,12 +15,13 @@ class SequencerView: UIView, BlipBloopView {
     let beat3View = BeatView()
     let beat4View = BeatView()
     let circleOfFifthsView = CircleOfFifthsView()
-    let backButton = UIButton()
+    let backButton = BlipButton()
     
     var delegate: SequencerViewDelegate?
-
+    
+    var allViews = [UIView]()
     var allBeatViews = [BeatView]()
-
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -44,7 +45,7 @@ class SequencerView: UIView, BlipBloopView {
         beat1View.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
         beat1View.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         beat1View.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/5).isActive = true
-        beat1View.backgroundColor = colorScheme.model.baseColor
+        
         
         self.addSubview(beat2View)
         beat2View.translatesAutoresizingMaskIntoConstraints = false
@@ -52,7 +53,7 @@ class SequencerView: UIView, BlipBloopView {
         beat2View.topAnchor.constraint(equalTo: beat1View.bottomAnchor).isActive = true
         beat2View.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         beat2View.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/5).isActive = true
-        beat2View.backgroundColor = colorScheme.model.baseColor
+        
         
         self.addSubview(beat3View)
         beat3View.translatesAutoresizingMaskIntoConstraints = false
@@ -60,7 +61,7 @@ class SequencerView: UIView, BlipBloopView {
         beat3View.topAnchor.constraint(equalTo: beat2View.bottomAnchor).isActive = true
         beat3View.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         beat3View.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/5).isActive = true
-        beat3View.backgroundColor = colorScheme.model.baseColor
+        
         
         self.addSubview(beat4View)
         beat4View.translatesAutoresizingMaskIntoConstraints = false
@@ -68,7 +69,7 @@ class SequencerView: UIView, BlipBloopView {
         beat4View.topAnchor.constraint(equalTo: beat3View.bottomAnchor).isActive = true
         beat4View.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         beat4View.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1/5).isActive = true
-        beat4View.backgroundColor = colorScheme.model.baseColor
+        
         
         self.addSubview(backButton)
         backButton.translatesAutoresizingMaskIntoConstraints = false
@@ -85,23 +86,21 @@ class SequencerView: UIView, BlipBloopView {
         circleOfFifthsView.heightAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         circleOfFifthsView.isHidden = true
         
+        allViews = [beat1View, beat2View, beat3View, beat4View, backButton]
         allBeatViews = [beat1View, beat2View, beat3View, beat4View]
     }
     
     func setSubviewProperties() {
         backButton.setTitle("Back", for: .normal)
-        backButton.setTitleColor(colorScheme.model.foregroundColor, for: .normal)
-        backButton.backgroundColor = colorScheme.model.baseColor
-        backButton.layer.cornerRadius = 5
-        backButton.layer.borderWidth = 2
-        backButton.layer.borderColor = colorScheme.model.foregroundColor.cgColor
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
     
     func backButtonTapped() {
-        delegate?.returnToDashboard()
+        self.indicateSelected(view: backButton) {
+            self.delegate?.returnToDashboard()
+        }
     }
-
+    
 }
 
 protocol SequencerViewDelegate {

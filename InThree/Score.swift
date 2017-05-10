@@ -30,6 +30,13 @@ extension Score {
             self.beats.append(newBeat)
         }
     }
+    
+    init(rhythm: Rhythm) {
+        self.add(beat: Beat(rhythm: rhythm))
+        self.add(beat: Beat(rhythm: rhythm))
+        self.add(beat: Beat(rhythm: rhythm))
+        self.add(beat: Beat(rhythm: rhythm))
+    }
 }
 
 extension Score {
@@ -63,6 +70,15 @@ extension Score {
         let beat2 = Beat.randomBeat(position: 2)
         let beat3 = Beat.randomBeat(position: 3)
         return Score(beats: [beat0, beat1, beat2, beat3])
+    }
+    
+    mutating func addStep(toBeatNum beatNum: Int, newRhythm: Rhythm) {
+        let note = Note(noteOn: false, noteNumber: 0, velocity: 127)
+        beats[beatNum].add(note: note, forNewRhythm: newRhythm)
+    }
+    
+    mutating func removeStep(fromBeatNum beatNum: Int, newRhythm: Rhythm) {
+        beats[beatNum].removeLastNote(forNewRhythm: newRhythm)
     }
     
 }

@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,7 +26,9 @@
                 <outlet property="fS" destination="ipy-Hw-T5x" id="eR2-if-G8r"/>
                 <outlet property="g" destination="beo-Es-EMD" id="hMg-2c-KAG"/>
                 <outlet property="gS" destination="bG0-i5-eJ3" id="FaH-r3-jUB"/>
+                <outlet property="octaveDownButton" destination="brH-vq-oh2" id="brr-Zv-ga4"/>
                 <outlet property="octaveLabel" destination="5Wi-Nt-ozr" id="EgO-fI-zgm"/>
+                <outlet property="octaveUpButton" destination="6CX-8u-Bwp" id="uMA-3U-57a"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -124,17 +125,10 @@
                     <state key="normal" title="C#"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6CX-8u-Bwp">
-                    <rect key="frame" x="202" y="169" width="144.5" height="57.5"/>
-                    <state key="normal" title="Octave Up"/>
+                    <rect key="frame" x="231" y="337" width="173" height="58"/>
+                    <state key="normal" title="Octave +"/>
                     <connections>
                         <action selector="octaveUpTapped:" destination="-1" eventType="touchUpInside" id="G8d-nm-PZn"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="brH-vq-oh2">
-                    <rect key="frame" x="57.5" y="168.5" width="144.5" height="58"/>
-                    <state key="normal" title="Octave Down"/>
-                    <connections>
-                        <action selector="octaveDownTapped:" destination="-1" eventType="touchUpInside" id="z1l-6z-uMb"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="beo-Es-EMD" customClass="NoteButton" customModule="InThree" customModuleProvider="target">
@@ -146,22 +140,29 @@
                     <state key="normal" title="G"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Octave #" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Wi-Nt-ozr">
-                    <rect key="frame" x="115" y="129.5" width="174" height="21"/>
+                    <rect key="frame" x="115" y="110" width="174" height="169.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="brH-vq-oh2">
+                    <rect key="frame" x="0.0" y="337" width="173" height="58"/>
+                    <state key="normal" title="Octave -"/>
+                    <connections>
+                        <action selector="octaveDownTapped:" destination="-1" eventType="touchUpInside" id="z1l-6z-uMb"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="fxN-5g-Spt" firstAttribute="top" secondItem="CSf-az-MOt" secondAttribute="bottom" constant="-4.5" id="09L-Wi-95v"/>
                 <constraint firstItem="DPv-R5-FKg" firstAttribute="leading" secondItem="kRz-Ia-768" secondAttribute="trailing" id="14P-Tw-eAx"/>
                 <constraint firstItem="4cB-sc-21d" firstAttribute="width" secondItem="wBn-tf-Vvc" secondAttribute="width" id="1xM-4S-iqc"/>
+                <constraint firstItem="5Wi-Nt-ozr" firstAttribute="leading" secondItem="DPv-R5-FKg" secondAttribute="trailing" id="2bT-8s-gfg"/>
                 <constraint firstItem="beo-Es-EMD" firstAttribute="leading" secondItem="CSf-az-MOt" secondAttribute="trailing" id="2rj-tf-A1d"/>
+                <constraint firstItem="brH-vq-oh2" firstAttribute="top" secondItem="s1H-S2-xaK" secondAttribute="bottom" id="3RO-dR-DDQ"/>
                 <constraint firstItem="ipy-Hw-T5x" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.142857" id="5lR-kG-F40"/>
                 <constraint firstItem="ArK-52-NMc" firstAttribute="top" secondItem="wBn-tf-Vvc" secondAttribute="bottom" id="6eu-lh-iSz"/>
-                <constraint firstItem="brH-vq-oh2" firstAttribute="leading" secondItem="kRz-Ia-768" secondAttribute="trailing" id="7rQ-Ui-SQQ"/>
-                <constraint firstItem="6CX-8u-Bwp" firstAttribute="top" secondItem="4cB-sc-21d" secondAttribute="bottom" id="88T-FX-1lm"/>
                 <constraint firstItem="s1H-S2-xaK" firstAttribute="width" secondItem="ipy-Hw-T5x" secondAttribute="width" id="8xy-p3-Kq7"/>
                 <constraint firstItem="DPv-R5-FKg" firstAttribute="bottom" secondItem="kRz-Ia-768" secondAttribute="top" id="90i-gm-OFp"/>
                 <constraint firstItem="wBn-tf-Vvc" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.142857" id="AaE-nD-OlB"/>
@@ -170,24 +171,21 @@
                 <constraint firstItem="CSf-az-MOt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-1" id="EOB-Sq-eVp"/>
                 <constraint firstItem="wBn-tf-Vvc" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="EWD-A5-JnQ"/>
                 <constraint firstItem="ipy-Hw-T5x" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="FQa-dC-ETI"/>
-                <constraint firstItem="wBn-tf-Vvc" firstAttribute="leading" secondItem="6CX-8u-Bwp" secondAttribute="trailing" id="FfV-jH-jyk"/>
+                <constraint firstAttribute="bottom" secondItem="6CX-8u-Bwp" secondAttribute="bottom" id="Gbx-Fo-ez4"/>
                 <constraint firstItem="P7a-Cw-Bi7" firstAttribute="width" secondItem="ipy-Hw-T5x" secondAttribute="width" id="Gyl-jY-ZGf"/>
-                <constraint firstItem="5Wi-Nt-ozr" firstAttribute="centerX" secondItem="CSf-az-MOt" secondAttribute="centerX" id="ICs-S2-duc"/>
-                <constraint firstItem="5Wi-Nt-ozr" firstAttribute="centerY" secondItem="DPv-R5-FKg" secondAttribute="centerY" id="IMm-uV-2oR"/>
                 <constraint firstItem="kRz-Ia-768" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="JOt-8a-H2c"/>
-                <constraint firstItem="6CX-8u-Bwp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="centerX" id="K8T-Jb-FKv"/>
                 <constraint firstItem="ipy-Hw-T5x" firstAttribute="top" secondItem="s1H-S2-xaK" secondAttribute="bottom" id="LUd-SL-gNS"/>
+                <constraint firstItem="ipy-Hw-T5x" firstAttribute="leading" secondItem="brH-vq-oh2" secondAttribute="trailing" id="MCw-lc-O7F"/>
+                <constraint firstItem="5Wi-Nt-ozr" firstAttribute="top" secondItem="fxN-5g-Spt" secondAttribute="bottom" id="Mfo-s1-2zt"/>
                 <constraint firstItem="ipy-Hw-T5x" firstAttribute="leading" secondItem="s1H-S2-xaK" secondAttribute="trailing" id="MzE-sc-p9z"/>
                 <constraint firstItem="bG0-i5-eJ3" firstAttribute="leading" secondItem="kRz-Ia-768" secondAttribute="trailing" id="NbR-kV-C6p"/>
-                <constraint firstItem="brH-vq-oh2" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="centerX" id="QH8-Fx-85r"/>
                 <constraint firstItem="bG0-i5-eJ3" firstAttribute="width" secondItem="kRz-Ia-768" secondAttribute="width" id="RQI-jF-Jzh"/>
                 <constraint firstItem="wBn-tf-Vvc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="UKH-YS-umX"/>
-                <constraint firstItem="ArK-52-NMc" firstAttribute="top" secondItem="6CX-8u-Bwp" secondAttribute="bottom" id="VSe-mT-Bjn"/>
-                <constraint firstItem="bG0-i5-eJ3" firstAttribute="top" secondItem="brH-vq-oh2" secondAttribute="bottom" id="Zl4-TG-8To"/>
+                <constraint firstItem="6CX-8u-Bwp" firstAttribute="leading" secondItem="ipy-Hw-T5x" secondAttribute="trailing" id="YLs-cK-SHg"/>
                 <constraint firstItem="ipy-Hw-T5x" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Zzk-T6-m3Z"/>
                 <constraint firstItem="kRz-Ia-768" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.142857" id="bNF-ds-yEd"/>
+                <constraint firstItem="6CX-8u-Bwp" firstAttribute="top" secondItem="P7a-Cw-Bi7" secondAttribute="bottom" id="by3-aX-054"/>
                 <constraint firstItem="beo-Es-EMD" firstAttribute="width" secondItem="CSf-az-MOt" secondAttribute="width" id="cd0-za-QEY"/>
-                <constraint firstItem="4cB-sc-21d" firstAttribute="leading" secondItem="5Wi-Nt-ozr" secondAttribute="trailing" id="ec6-F3-Cct"/>
                 <constraint firstItem="P7a-Cw-Bi7" firstAttribute="leading" secondItem="ipy-Hw-T5x" secondAttribute="trailing" id="gfW-nc-o8l"/>
                 <constraint firstItem="fxN-5g-Spt" firstAttribute="trailing" secondItem="CSf-az-MOt" secondAttribute="leading" id="kFY-CT-bya"/>
                 <constraint firstItem="CSf-az-MOt" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.142857" id="knn-ea-o3h"/>
@@ -196,12 +194,15 @@
                 <constraint firstItem="wBn-tf-Vvc" firstAttribute="leading" secondItem="4cB-sc-21d" secondAttribute="trailing" id="nWY-NA-mNR"/>
                 <constraint firstItem="ipy-Hw-T5x" firstAttribute="top" secondItem="P7a-Cw-Bi7" secondAttribute="bottom" id="orM-na-i05"/>
                 <constraint firstItem="CSf-az-MOt" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="pPc-Tc-scr"/>
+                <constraint firstItem="4cB-sc-21d" firstAttribute="leading" secondItem="5Wi-Nt-ozr" secondAttribute="trailing" id="qfU-Gw-4DA"/>
                 <constraint firstItem="ArK-52-NMc" firstAttribute="trailing" secondItem="wBn-tf-Vvc" secondAttribute="leading" id="qhx-DN-rfS"/>
-                <constraint firstItem="5Wi-Nt-ozr" firstAttribute="leading" secondItem="DPv-R5-FKg" secondAttribute="trailing" id="rXW-SB-4u7"/>
+                <constraint firstAttribute="bottom" secondItem="brH-vq-oh2" secondAttribute="bottom" id="sKc-g7-kfh"/>
+                <constraint firstItem="P7a-Cw-Bi7" firstAttribute="top" secondItem="5Wi-Nt-ozr" secondAttribute="bottom" id="tAE-v8-wjJ"/>
                 <constraint firstItem="bG0-i5-eJ3" firstAttribute="top" secondItem="kRz-Ia-768" secondAttribute="bottom" id="ttx-nk-4O5"/>
-                <constraint firstItem="brH-vq-oh2" firstAttribute="top" secondItem="DPv-R5-FKg" secondAttribute="bottom" id="wRX-FV-v3e"/>
+                <constraint firstAttribute="trailing" secondItem="6CX-8u-Bwp" secondAttribute="trailing" id="v08-Hf-ffb"/>
                 <constraint firstItem="fxN-5g-Spt" firstAttribute="width" secondItem="CSf-az-MOt" secondAttribute="width" id="wuB-sv-69C"/>
                 <constraint firstItem="wBn-tf-Vvc" firstAttribute="top" secondItem="4cB-sc-21d" secondAttribute="bottom" id="x7r-uk-BpJ"/>
+                <constraint firstItem="brH-vq-oh2" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="z8J-6c-Qjo"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="50" y="-82.5"/>

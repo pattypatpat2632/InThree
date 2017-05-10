@@ -59,38 +59,45 @@ extension LocalPeerVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard selectedPeers.count <= 3 else {
-            print("Selected peer count is already at maximum")
-            return
-        }
-        selectedPeers.append(localPeers[indexPath.row])
-        print("Number of selected peers: \(selectedPeers.count)")
-        for peer in selectedPeers {
-            print("Users listed in selected peers: \(peer.name)")
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let uidForDeselectedPeer = localPeers[indexPath.row].uid
-        for (index, blipUser) in selectedPeers.enumerated() {
-            if blipUser.uid == uidForDeselectedPeer {
-                selectedPeers.remove(at: index)
-                for peer in selectedPeers {
-                    print("Users listed in selected peers: \(peer.name)")
+        let cell = tableView.cellForRow(at: indexPath) as! BlipUserCell
+        if !cell.chosen {
+            guard selectedPeers.count <= 3 else {
+                print("Selected peer count is already at maximum")
+                return
+            }
+            selectedPeers.append(localPeers[indexPath.row])
+            print("Number of selected peers: \(selectedPeers.count)")
+            for peer in selectedPeers {
+                print("Users listed in selected peers: \(peer.name)")
+            }
+            cell.backgroundColor = localPeerView.colorScheme.model.highlightColor
+            cell.chosen = true
+        } else {
+            cell.backgroundColor = localPeerView.colorScheme.model.baseColor
+            let uidForDeselectedPeer = localPeers[indexPath.row].uid
+            for (index, blipUser) in selectedPeers.enumerated() {
+                if blipUser.uid == uidForDeselectedPeer {
+                    selectedPeers.remove(at: index)
+                    for peer in selectedPeers {
+                        print("Users listed in selected peers: \(peer.name)")
+                    }
                 }
             }
+            cell.chosen = false
         }
+        
     }
+
 }
 
 //MARK: Local Peer View Delegate
 extension LocalPeerVC: LocalPeerViewDelegate {
     
     func goToPartySquencer() {
-        let sequenerVC = SequencerVC()
-        sequenerVC.selectedPeers = self.selectedPeers
-        sequenerVC.sequencerEngine.mode = .party
-        navigationController?.pushViewController(sequenerVC, animated: true)
+        let partySequencerVC = PartySequencerVC()
+        partySequencerVC.selectedPeers = self.selectedPeers
+        partySequencerVC.sequencerEngine.mode = .party
+        navigationController?.pushViewController(partySequencerVC, animated: true)
     }
     
     func returnToDashboard() {
