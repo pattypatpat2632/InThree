@@ -50,6 +50,7 @@
 		EC7C14681EB780FF009FACDA /* SequencerMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C14671EB780FF009FACDA /* SequencerMode.swift */; };
 		EC7FEDEE1EAE59CF00E50A62 /* ColorSchemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */; };
 		EC7FEDF01EAE65D500E50A62 /* NoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */; };
+		EC9028B21EC35FB200027FCE /* Party.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9028B11EC35FB200027FCE /* Party.swift */; };
 		EC9559761EA59EFB008FA5FA /* SequencerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9559751EA59EFB008FA5FA /* SequencerView.swift */; };
 		ECA6D4A51EB7C6B1008A027B /* MultipeerTestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA6D4A41EB7C6B1008A027B /* MultipeerTestManager.swift */; };
 		ECA6D4A71EB914AB008A027B /* ScoreIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA6D4A61EB914AB008A027B /* ScoreIndex.swift */; };
@@ -138,6 +139,7 @@
 		EC7C14671EB780FF009FACDA /* SequencerMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerMode.swift; sourceTree = "<group>"; };
 		EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSchemeModel.swift; sourceTree = "<group>"; };
 		EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteButton.swift; sourceTree = "<group>"; };
+		EC9028B11EC35FB200027FCE /* Party.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Party.swift; sourceTree = "<group>"; };
 		EC9559751EA59EFB008FA5FA /* SequencerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerView.swift; sourceTree = "<group>"; };
 		ECA6D4A41EB7C6B1008A027B /* MultipeerTestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerTestManager.swift; sourceTree = "<group>"; };
 		ECA6D4A61EB914AB008A027B /* ScoreIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreIndex.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 				EC7C14671EB780FF009FACDA /* SequencerMode.swift */,
 				ECA6D4A61EB914AB008A027B /* ScoreIndex.swift */,
 				EC74C8AA1EC1228E00666BDF /* LightTrigger.swift */,
+				EC9028B11EC35FB200027FCE /* Party.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -663,6 +666,7 @@
 				EC5B3FC01EB13EE800410BD2 /* DashboardView.swift in Sources */,
 				EC4BD2141EA2C7F30076B4D0 /* BeatView.swift in Sources */,
 				EC05C7611EA4570D0031864A /* Rhythm.swift in Sources */,
+				EC9028B21EC35FB200027FCE /* Party.swift in Sources */,
 				EC9559761EA59EFB008FA5FA /* SequencerView.swift in Sources */,
 				EC74C8A51EC10A8900666BDF /* CitySequencerVC.swift in Sources */,
 				EC5B3FA51EB0E31100410BD2 /* FirebaseManager.swift in Sources */,

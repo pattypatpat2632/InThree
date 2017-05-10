@@ -67,14 +67,14 @@ class LocalPeerView: UIView, BlipBloopView {
         self.backgroundColor = colorScheme.model.baseColor
         
         titleLabel.text = "Select users to play music with:"
-        titleLabel.changeFontSize(to: 18)
+        titleLabel.changeFontSize(to: 24)
         titleLabel.textAlignment = .center
         titleLabel.backgroundColor = UIColor.clear
         titleLabel.textColor = colorScheme.model.foregroundColor
         
         peerTable.backgroundColor  = UIColor.clear
         
-        continueButton.setTitle("Party", for: .normal)
+        continueButton.setTitle("Invite", for: .normal)
         continueButton.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
         
         backButton.setTitle("Back", for: .normal)

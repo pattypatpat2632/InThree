@@ -11,7 +11,10 @@ import UIKit
 class LocalPeerVC: UIViewController {
     
     let localPeerView = LocalPeerView()
-    var localPeers = [BlipUser]()
+    
+    var localPeers: [BlipUser] {
+        return MultipeerManager.sharedInstance.allAvailablePeers
+    }
     var selectedPeers = [BlipUser]()
     
     override func viewDidLoad() {
@@ -21,22 +24,14 @@ class LocalPeerVC: UIViewController {
         localPeerView.peerTable.register(BlipUserCell.self, forCellReuseIdentifier: BlipUserCell.identifier)
         
         localPeerView.delegate = self
+        MultipeerManager.sharedInstance.partyDelegate = self
         
         self.view = localPeerView
         MultipeerTestManager.sharedInstance.generateRandomScores()
-        
-        NotificationCenter.default.addObserver(forName: .newPeerFound, object: nil, queue: nil) { (notification) in
-            DispatchQueue.main.async {
-                self.localPeers = MultipeerManager.sharedInstance.peers
-                self.localPeerView.peerTable.reloadData()
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.localPeers = MultipeerManager.sharedInstance.peers
-        print("Local peers: \(self.localPeers)")
         localPeerView.peerTable.reloadData()
     }
     
@@ -94,15 +89,36 @@ extension LocalPeerVC: UITableViewDelegate, UITableViewDataSource {
 extension LocalPeerVC: LocalPeerViewDelegate {
     
     func goToPartySquencer() {
+        inviteSelectedPeers()
         let partySequencerVC = PartySequencerVC()
-        partySequencerVC.selectedPeers = self.selectedPeers
-        partySequencerVC.sequencerEngine.mode = .party
         navigationController?.pushViewController(partySequencerVC, animated: true)
+    }
+    
+    private func inviteSelectedPeers() {
+            MultipeerManager.sharedInstance.invitePeers(self.selectedPeers)
     }
     
     func returnToDashboard() {
         navigationController?.popViewController(animated: true)
     }
     
+}
+
+extension LocalPeerVC: PartyDelegate {
+    func askIfAttending(fromInvitee invitee: BlipUser, completion: @escaping (Bool) -> Void) {
+        let alertController = UIAlertController(title: "Would you like to join the party?", message: "Invited by: \(invitee.name)", preferredStyle: .alert)
+        
+        let noAction = UIAlertAction(title: "No", style: .cancel) { (action) in
+            completion(false)
+        }
+        alertController.addAction(noAction)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+            completion(true)
+            let partyVC = PartySequencerVC()
+            self.navigationController?.pushViewController(partyVC, animated: true)
+        }
+        alertController.addAction(yesAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
 

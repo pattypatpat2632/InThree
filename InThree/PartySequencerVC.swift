@@ -10,9 +10,25 @@ import UIKit
 
 class PartySequencerVC: SequencerVC {
     
+    let allBlipUsers = FirebaseManager.sharedInstance.allBlipUsers
+    
+    var connectedPeers: [BlipUser] {
+        var returnPeers = [BlipUser]()
+        let sessionPeers = MultipeerManager.sharedInstance.session.connectedPeers
+        for peer in sessionPeers {
+            for blipUser in allBlipUsers {
+                if blipUser.uid == peer.displayName {
+                    returnPeers.append(blipUser)
+                }
+            }
+        }
+        return returnPeers
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         MultipeerManager.sharedInstance.delegate = self
+        self.sequencerEngine.mode = .party
     }
 
 }
@@ -20,7 +36,7 @@ class PartySequencerVC: SequencerVC {
 extension PartySequencerVC: MultipeerManagerDelegate {
     
     func musicChanged(forUID uid: String, score: Score, manager: MultipeerManager) {
-        for (index, blipUser) in selectedPeers.enumerated() {
+        for (index, blipUser) in connectedPeers.enumerated() {
             if blipUser.uid == uid {
                 sequencerEngine.generateSequence(fromScore: score, forUserNumber: index + 1)
             }
@@ -28,11 +44,6 @@ extension PartySequencerVC: MultipeerManagerDelegate {
     }
     
     func connectionLost(forUID uid: String, manager: MultipeerManager) {
-        for (index, blipUser) in self.selectedPeers.enumerated() {
-            if blipUser.uid == uid {
-                self.selectedPeers.remove(at: index)
-            }
-            //TODO: remove peer that has disconnected, and fade out their score
-        }
+        
     }
 }

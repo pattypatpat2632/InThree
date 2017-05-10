@@ -40,7 +40,7 @@ class BlipUserCell: UITableViewCell, BlipBloopView {
     }
     
     func commonInit() {
-        nameLabel.changeFontSize(to: 16)
+        nameLabel.changeFontSize(to: 20)
         self.selectionStyle = .none
         self.backgroundColor = colorScheme.model.baseColor
         

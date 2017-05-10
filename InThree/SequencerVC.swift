@@ -18,7 +18,6 @@ class SequencerVC: UIViewController {
     var sequencerEngine = SequencerEngine()
     var sequencerView = SequencerView()
     var score = Score(rhythm: .four)
-    var selectedPeers = [BlipUser]()
     var locationManager: CLLocationManager?
     var lightTrigger = LightTrigger()
     var beatToLight: Int = 0
@@ -36,14 +35,6 @@ class SequencerVC: UIViewController {
         
         
         sequencerEngine.setUpSequencer()
-        switch sequencerEngine.mode {
-        case .party:
-            print("party")
-        case .neighborhood( _):
-            print("City")
-        case .solo:
-            print("sequencer entering solo mode")
-        }
         
         for (index, beatView) in sequencerView.allBeatViews.enumerated() {
             beatView.delegate = self
