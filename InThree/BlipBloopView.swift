@@ -26,7 +26,7 @@ extension BlipBloopView where Self: UIView {
         UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: .calculationModeLinear, animations: {
             let holdColor = fieldView.backgroundColor
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.25, animations: {
-                fieldView.backgroundColor = self.colorScheme.model.highlightColor
+                fieldView.backgroundColor = self.colorScheme.model.foregroundColor
                 fieldView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
             })
             UIView.addKeyframe(withRelativeStartTime: 0.25, relativeDuration: 0.25, animations: {
@@ -40,7 +40,7 @@ extension BlipBloopView where Self: UIView {
         UIView.animateKeyframes(withDuration: 0.8, delay: 0, options: .calculationModeLinear, animations: {
             let holdColor = view.backgroundColor
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.2, animations: {
-                view.backgroundColor = self.colorScheme.model.highlightColor
+                view.backgroundColor = self.colorScheme.model.foregroundColor
                 view.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
             })
             UIView.addKeyframe(withRelativeStartTime: 0.2, relativeDuration: 0.2, animations: {
@@ -48,7 +48,7 @@ extension BlipBloopView where Self: UIView {
                 view.transform = CGAffineTransform(scaleX: 1, y: 1)
             })
             UIView.addKeyframe(withRelativeStartTime: 0.4, relativeDuration: 0.2, animations: {
-                view.backgroundColor = self.colorScheme.model.highlightColor
+                view.backgroundColor = self.colorScheme.model.foregroundColor
                 view.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
             })
             UIView.addKeyframe(withRelativeStartTime: 0.6, relativeDuration: 0.2, animations: {
