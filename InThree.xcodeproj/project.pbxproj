@@ -64,6 +64,8 @@
 		ECF32BB61EC3F17900135EEB /* ResetNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BB51EC3F17900135EEB /* ResetNavController.swift */; };
 		ECF32BB81EC4A35000135EEB /* Pixeled.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECF32BB71EC4A35000135EEB /* Pixeled.ttf */; };
 		ECF32BBC1EC4E82B00135EEB /* UserAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BBB1EC4E82B00135EEB /* UserAlert.swift */; };
+		ECF32BBE1EC4FE2600135EEB /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BBD1EC4FE2600135EEB /* CreditsView.swift */; };
+		ECF32BC01EC500ED00135EEB /* CreditsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BBF1EC500ED00135EEB /* CreditsVC.swift */; };
 		ECFDC4831EA3295F00902F15 /* SequencerEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */; };
 		FEC6EACC79488617263FC929 /* Pods_InThree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE165AF62EB552E59C6FC01F /* Pods_InThree.framework */; };
 /* End PBXBuildFile section */
@@ -157,6 +159,8 @@
 		ECF32BB51EC3F17900135EEB /* ResetNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetNavController.swift; sourceTree = "<group>"; };
 		ECF32BB71EC4A35000135EEB /* Pixeled.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pixeled.ttf; sourceTree = "<group>"; };
 		ECF32BBB1EC4E82B00135EEB /* UserAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAlert.swift; sourceTree = "<group>"; };
+		ECF32BBD1EC4FE2600135EEB /* CreditsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
+		ECF32BBF1EC500ED00135EEB /* CreditsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsVC.swift; sourceTree = "<group>"; };
 		ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -282,6 +286,7 @@
 				ECB181691EB245DB0025F017 /* LocalPeerVC.swift */,
 				EC9028B51EC398D000027FCE /* ForgotPasswordVC.swift */,
 				ECF32BB51EC3F17900135EEB /* ResetNavController.swift */,
+				ECF32BBF1EC500ED00135EEB /* CreditsVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -306,6 +311,7 @@
 				EC4472101EC27757009EB271 /* BlipButton.swift */,
 				EC9028B31EC398B100027FCE /* ForgotPasswordView.swift */,
 				ECF32BB31EC3EAE500135EEB /* BlipTextField.swift */,
+				ECF32BBD1EC4FE2600135EEB /* CreditsView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -667,6 +673,7 @@
 				ECB1816A1EB245DB0025F017 /* LocalPeerVC.swift in Sources */,
 				EC4BD2191EA2EEBE0076B4D0 /* SequencerVC.swift in Sources */,
 				EC5B3FA91EB0E92100410BD2 /* LoginVC.swift in Sources */,
+				ECF32BBE1EC4FE2600135EEB /* CreditsView.swift in Sources */,
 				ECFDC4831EA3295F00902F15 /* SequencerEngine.swift in Sources */,
 				EC7FEDEE1EAE59CF00E50A62 /* ColorSchemeModel.swift in Sources */,
 				EC05C7631EA45AC20031864A /* Score.swift in Sources */,
@@ -696,6 +703,7 @@
 				EC44720F1EC27673009EB271 /* BlipLabel.swift in Sources */,
 				EC5B3FAD1EB0EDFE00410BD2 /* DashboardNavC.swift in Sources */,
 				EC5B3FA31EB0E25000410BD2 /* BlipUser.swift in Sources */,
+				ECF32BC01EC500ED00135EEB /* CreditsVC.swift in Sources */,
 				ECAE16F01EA6FD210013696C /* KeyboardView.swift in Sources */,
 				EC5B3FBE1EB13A6700410BD2 /* UIVCExtension.swift in Sources */,
 				ECA6D4A51EB7C6B1008A027B /* MultipeerTestManager.swift in Sources */,

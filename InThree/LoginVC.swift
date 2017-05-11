@@ -28,6 +28,7 @@ class LoginVC: UIViewController, UserAlert {
         loginView.createUserButton.addTarget(self, action: #selector(createUserTapped), for: .touchUpInside)
         loginView.loginButton.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
         loginView.forgotPasswordButton.addTarget(self, action: #selector(forgotPasswordTapped), for: .touchUpInside)
+        loginView.creditsButton.addTarget(self, action: #selector(creditsButtonTapped), for: .touchUpInside)
     }
     
     func createUserTapped() {
@@ -67,6 +68,13 @@ class LoginVC: UIViewController, UserAlert {
         self.loginView.indicatePushed(view: loginView.forgotPasswordButton) {
             let resetVC = ForgotPasswordVC()
             self.navigationController?.pushViewController(resetVC, animated: true)
+        }
+    }
+    
+    func creditsButtonTapped() {
+        self.loginView.indicatePushed(view: loginView.creditsButton) {
+            let creditsVC = CreditsVC()
+            self.navigationController?.pushViewController(creditsVC, animated: true)
         }
     }
 }

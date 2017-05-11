@@ -16,6 +16,7 @@ class LoginView: UIView, BlipBloopView {
     let loginButton = BlipButton()
     let createUserButton = BlipButton()
     let forgotPasswordButton = BlipButton()
+    let creditsButton = BlipButton()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -74,6 +75,15 @@ class LoginView: UIView, BlipBloopView {
         forgotPasswordButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         forgotPasswordButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
         forgotPasswordButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
+        
+        addSubview(creditsButton)
+        creditsButton.translatesAutoresizingMaskIntoConstraints = false
+        creditsButton.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: 50).isActive = true
+        creditsButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        creditsButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
+        creditsButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
+        
+        
     }
     
     func setSubviewProperties() {
@@ -93,6 +103,10 @@ class LoginView: UIView, BlipBloopView {
         forgotPasswordButton.setTitle("Forgot Password?", for: .normal)
         forgotPasswordButton.layer.borderWidth = 0
         forgotPasswordButton.changeFontSize(to: 20)
+        
+        creditsButton.setTitle("About BlipBlip", for: .normal)
+        creditsButton.layer.borderWidth = 0
+        creditsButton.changeFontSize(to: 14)
     }
 
 }
