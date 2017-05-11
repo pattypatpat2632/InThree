@@ -83,7 +83,7 @@ class CreateUserView: UIView, BlipBloopView {
         self.backgroundColor = colorScheme.model.baseColor
         
         titleLabel.text = "Create New User"
-
+        titleLabel.changeFontSize(to: 24)
         
         nameField.placeholder = "Your Name"
    

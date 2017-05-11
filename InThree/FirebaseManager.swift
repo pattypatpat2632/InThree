@@ -43,15 +43,12 @@ final class FirebaseManager {
     func createUser(fromEmail email: String, name: String, andPassword password: String, completion: @escaping (FirebaseResponse) -> Void) {
         print("create user called")
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (firUser, error) in
-            print("response from attempt to create user received")
             guard let firUser = firUser else {completion(.failure("Could not create new user")); return} //TODO: handle possibility off different error types eg. invalid email or password
             let newBlipUser = BlipUser(name: name, uid: firUser.uid, email: email)
             self.storeNew(blipUser: newBlipUser) {
                 completion(.success("New user created: \(newBlipUser.name)"))
                 self.observeCurrentBlipUser(uid: newBlipUser.uid, completion: {
-                    print("Observing current blip user: \(self.currentBlipUser?.uid)")
                 })
-                
             }
         })
     }
@@ -79,7 +76,7 @@ extension FirebaseManager {
                     completion(.success("Login successful for user: \(FirebaseManager.sharedInstance.currentBlipUser?.name ?? "No Name")"))
                 })
             } else {
-                completion(.failure("Could not log in user"))
+                completion(.failure("Could not log you in; check your email and password"))
             }
         })
     }
@@ -115,9 +112,9 @@ extension FirebaseManager {
     func resetPassword(from email: String, completion: @escaping (FirebaseResponse) -> Void) {
         FIRAuth.auth()?.sendPasswordReset(withEmail: email, completion: { (error) in
             if error == nil {
-                completion(.success("Password Reset sent to user"))
+                completion(.success("Check your email to reset your password"))
             } else {
-                completion(.failure("Could not reset password"))
+                completion(.failure("Sorry, could not reset your password"))
             }
         })
     }

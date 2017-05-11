@@ -46,7 +46,7 @@ class LoginVC: UIViewController, UserAlert {
             return
         } else {
             loginView.indicateSelected(view: loginView.loginButton) {
-                guard let email = self.loginView.emailField.text, let password = self.loginView.passwordField.text else {return} //TODO: handle this better
+                guard let email = self.loginView.emailField.text, let password = self.loginView.passwordField.text else {return}
                 FirebaseManager.sharedInstance.loginUser(fromEmail: email, password: password, completion: { (firResponse) in
                     switch firResponse {
                     case .success(let successString):
@@ -69,5 +69,4 @@ class LoginVC: UIViewController, UserAlert {
             self.navigationController?.pushViewController(resetVC, animated: true)
         }
     }
-    
 }
