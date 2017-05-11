@@ -60,6 +60,8 @@
 		ECB1816A1EB245DB0025F017 /* LocalPeerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB181691EB245DB0025F017 /* LocalPeerVC.swift */; };
 		ECCE22F41EA84C95006691D8 /* CircleOfFifthsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECCE22F31EA84C95006691D8 /* CircleOfFifthsView.xib */; };
 		ECCE22F61EA84E28006691D8 /* CircleOfFifthsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE22F51EA84E28006691D8 /* CircleOfFifthsView.swift */; };
+		ECF32BB41EC3EAE500135EEB /* BlipTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BB31EC3EAE500135EEB /* BlipTextField.swift */; };
+		ECF32BB61EC3F17900135EEB /* ResetNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BB51EC3F17900135EEB /* ResetNavController.swift */; };
 		ECFDC4831EA3295F00902F15 /* SequencerEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */; };
 		FEC6EACC79488617263FC929 /* Pods_InThree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE165AF62EB552E59C6FC01F /* Pods_InThree.framework */; };
 /* End PBXBuildFile section */
@@ -149,6 +151,8 @@
 		ECB181691EB245DB0025F017 /* LocalPeerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalPeerVC.swift; sourceTree = "<group>"; };
 		ECCE22F31EA84C95006691D8 /* CircleOfFifthsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleOfFifthsView.xib; sourceTree = "<group>"; };
 		ECCE22F51EA84E28006691D8 /* CircleOfFifthsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleOfFifthsView.swift; sourceTree = "<group>"; };
+		ECF32BB31EC3EAE500135EEB /* BlipTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlipTextField.swift; sourceTree = "<group>"; };
+		ECF32BB51EC3F17900135EEB /* ResetNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetNavController.swift; sourceTree = "<group>"; };
 		ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -272,6 +276,7 @@
 				EC5B3FB21EB0FF3800410BD2 /* CreateUserVC.swift */,
 				ECB181691EB245DB0025F017 /* LocalPeerVC.swift */,
 				EC9028B51EC398D000027FCE /* ForgotPasswordVC.swift */,
+				ECF32BB51EC3F17900135EEB /* ResetNavController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -295,6 +300,7 @@
 				EC44720E1EC27673009EB271 /* BlipLabel.swift */,
 				EC4472101EC27757009EB271 /* BlipButton.swift */,
 				EC9028B31EC398B100027FCE /* ForgotPasswordView.swift */,
+				ECF32BB31EC3EAE500135EEB /* BlipTextField.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -674,9 +680,11 @@
 				EC4BD2171EA2D2CB0076B4D0 /* UIColorExtenstion.swift in Sources */,
 				EC74C8AB1EC1228E00666BDF /* LightTrigger.swift in Sources */,
 				EC9028B41EC398B100027FCE /* ForgotPasswordView.swift in Sources */,
+				ECF32BB61EC3F17900135EEB /* ResetNavController.swift in Sources */,
 				EC5B3FB51EB0FF6300410BD2 /* CreateUserView.swift in Sources */,
 				EC5B3FA11EB0E04E00410BD2 /* FirebaseResponse.swift in Sources */,
 				EC5B3FAB1EB0E9E000410BD2 /* DashboardVC.swift in Sources */,
+				ECF32BB41EC3EAE500135EEB /* BlipTextField.swift in Sources */,
 				EC4BD1DD1EA29ECC0076B4D0 /* AppDelegate.swift in Sources */,
 				EC44720F1EC27673009EB271 /* BlipLabel.swift in Sources */,
 				EC5B3FAD1EB0EDFE00410BD2 /* DashboardNavC.swift in Sources */,

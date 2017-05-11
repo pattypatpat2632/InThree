@@ -11,8 +11,8 @@ import UIKit
 class LoginView: UIView, BlipBloopView {
     
     let titleLabel = BlipLabel()
-    let emailField = UITextField()
-    let passwordField = UITextField()
+    let emailField = BlipTextField()
+    let passwordField = BlipTextField()
     let loginButton = BlipButton()
     let createUserButton = BlipButton()
     let forgotPasswordButton = BlipButton()
@@ -82,16 +82,9 @@ class LoginView: UIView, BlipBloopView {
         titleLabel.text = "BlipBloop"
         
         emailField.placeholder = "Email"
-        emailField.backgroundColor = colorScheme.model.backgroundColor
-        emailField.layer.cornerRadius = 5
-        emailField.layer.borderWidth = 2
-        emailField.layer.borderColor = colorScheme.model.highlightColor.cgColor
+
         
         passwordField.placeholder = "Password"
-        passwordField.backgroundColor = colorScheme.model.backgroundColor
-        passwordField.layer.cornerRadius = 5
-        passwordField.layer.borderWidth = 2
-        passwordField.layer.borderColor = colorScheme.model.highlightColor.cgColor
         passwordField.isSecureTextEntry = true
         
         loginButton.setTitle("LOGIN", for: .normal)

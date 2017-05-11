@@ -1,5 +1,5 @@
 //
-//  ForgotPasswordVC.swift
+//  ResetNavController.swift
 //  InThree
 //
 //  Created by Patrick O'Leary on 5/10/17.
@@ -8,13 +8,12 @@
 
 import UIKit
 
-class ForgotPasswordVC: UIViewController {
-    
-    let forgotPasswordView = ForgotPasswordView()
-    
+class ResetNavController: UINavigationController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view = forgotPasswordView
+        self.navigationBar.isHidden = false
+        self.setViewControllers([ForgotPasswordVC()], animated: false)
     }
 
 

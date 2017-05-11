@@ -63,9 +63,9 @@ class LoginVC: UIViewController {
     }
     
     func forgotPasswordTapped() {
-        
-        self.loginView.indicatePushed(view: loginView.forgotPasswordButton) { 
-            
+        print("Forgot password")
+        self.loginView.indicatePushed(view: loginView.forgotPasswordButton) {
+            NotificationCenter.default.post(name: .resetPassword, object: nil)
         }
     }
     
