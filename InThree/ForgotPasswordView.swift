@@ -9,19 +9,18 @@
 import UIKit
 
 class ForgotPasswordView: UIView, BlipBloopView {
-
+    
     let titleLabel = BlipLabel()
     let emailField = BlipTextField()
-    let passwordField = BlipTextField()
-    let confirmField = BlipTextField()
     let submitButton = BlipButton()
-    var delegate: ForgotPasswordFieldDelegate?
+    let backButton = BlipButton()
+    var delegate: ForgotPasswordViewDelegate?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
     }
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -49,26 +48,19 @@ class ForgotPasswordView: UIView, BlipBloopView {
         emailField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
         emailField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.05).isActive = true
         
-        addSubview(passwordField)
-        passwordField.translatesAutoresizingMaskIntoConstraints = false
-        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 5).isActive = true
-        passwordField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        passwordField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
-        passwordField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.05).isActive = true
-        
-        addSubview(confirmField)
-        confirmField.translatesAutoresizingMaskIntoConstraints = false
-        confirmField.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 5).isActive = true
-        confirmField.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        confirmField.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
-        confirmField.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.05).isActive = true
-        
         addSubview(submitButton)
         submitButton.translatesAutoresizingMaskIntoConstraints = false
-        submitButton.topAnchor.constraint(equalTo: confirmField.bottomAnchor, constant: 5).isActive = true
+        submitButton.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 5).isActive = true
         submitButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         submitButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
         submitButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.15).isActive = true
+        
+        addSubview(backButton)
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.topAnchor.constraint(equalTo: submitButton.bottomAnchor, constant: 5).isActive = true
+        backButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        backButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
+        backButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.15).isActive = true
         
     }
     
@@ -78,25 +70,25 @@ class ForgotPasswordView: UIView, BlipBloopView {
         
         emailField.placeholder = "Email"
         
-        passwordField.placeholder = "Password"
-        passwordField.isSecureTextEntry = true
-        
-        confirmField.placeholder = "Confirm Password"
-        confirmField.isSecureTextEntry = true
-        
         submitButton.setTitle("Submit", for: .normal)
         submitButton.addTarget(self, action: #selector(submitTapped), for: .touchUpInside)
+        
+        backButton.setTitle("Back", for: .normal)
+        backButton.addTarget(self, action: #selector(backTapped), for: .touchUpInside)
         
     }
     
     func submitTapped() {
-        self.indicateSelected(view: submitButton) { 
-            self.delegate?.submit()
-        }
+        self.delegate?.submit()
     }
-
+    
+    func backTapped() {
+        self.delegate?.goBack()
+    }
+    
 }
 
-protocol ForgotPasswordFieldDelegate {
+protocol ForgotPasswordViewDelegate {
     func submit()
+    func goBack()
 }

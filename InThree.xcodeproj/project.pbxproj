@@ -62,6 +62,8 @@
 		ECCE22F61EA84E28006691D8 /* CircleOfFifthsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE22F51EA84E28006691D8 /* CircleOfFifthsView.swift */; };
 		ECF32BB41EC3EAE500135EEB /* BlipTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BB31EC3EAE500135EEB /* BlipTextField.swift */; };
 		ECF32BB61EC3F17900135EEB /* ResetNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BB51EC3F17900135EEB /* ResetNavController.swift */; };
+		ECF32BB81EC4A35000135EEB /* Pixeled.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECF32BB71EC4A35000135EEB /* Pixeled.ttf */; };
+		ECF32BBC1EC4E82B00135EEB /* UserAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BBB1EC4E82B00135EEB /* UserAlert.swift */; };
 		ECFDC4831EA3295F00902F15 /* SequencerEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */; };
 		FEC6EACC79488617263FC929 /* Pods_InThree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE165AF62EB552E59C6FC01F /* Pods_InThree.framework */; };
 /* End PBXBuildFile section */
@@ -153,6 +155,8 @@
 		ECCE22F51EA84E28006691D8 /* CircleOfFifthsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleOfFifthsView.swift; sourceTree = "<group>"; };
 		ECF32BB31EC3EAE500135EEB /* BlipTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlipTextField.swift; sourceTree = "<group>"; };
 		ECF32BB51EC3F17900135EEB /* ResetNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetNavController.swift; sourceTree = "<group>"; };
+		ECF32BB71EC4A35000135EEB /* Pixeled.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pixeled.ttf; sourceTree = "<group>"; };
+		ECF32BBB1EC4E82B00135EEB /* UserAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAlert.swift; sourceTree = "<group>"; };
 		ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -198,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				EC4472181EC2AD00009EB271 /* timeburnerbold.ttf */,
+				ECF32BB71EC4A35000135EEB /* Pixeled.ttf */,
 				EC4472161EC2ABE9009EB271 /* timeburnernormal.ttf */,
 			);
 			name = Resources;
@@ -347,6 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				EC5B3FBB1EB10A9000410BD2 /* BlipBloopView.swift */,
+				ECF32BBB1EC4E82B00135EEB /* UserAlert.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -490,6 +496,7 @@
 			files = (
 				EC5B3F9D1EB0DB0000410BD2 /* GoogleService-Info.plist in Resources */,
 				EC4BD1E71EA29ECC0076B4D0 /* LaunchScreen.storyboard in Resources */,
+				ECF32BB81EC4A35000135EEB /* Pixeled.ttf in Resources */,
 				ECCE22F41EA84C95006691D8 /* CircleOfFifthsView.xib in Resources */,
 				EC4BD1E41EA29ECC0076B4D0 /* Assets.xcassets in Resources */,
 				EC4472171EC2ABE9009EB271 /* timeburnernormal.ttf in Resources */,
@@ -702,6 +709,7 @@
 				EC74C8A31EC1088B00666BDF /* PartySequencerVC.swift in Sources */,
 				EC05C7651EA460400031864A /* Beat.swift in Sources */,
 				EC7FEDF01EAE65D500E50A62 /* NoteButton.swift in Sources */,
+				ECF32BBC1EC4E82B00135EEB /* UserAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

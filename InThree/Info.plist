@@ -4,10 +4,9 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>COMICATE.TTF</string>
-		<string>molten.ttf</string>
 		<string>timeburnernormal.ttf</string>
 		<string>timeburnerbold.ttf</string>
+		<string>Pixeled.ttf</string>
 	</array>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Allow BlipBloop to continually access your location?</string>

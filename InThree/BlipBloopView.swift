@@ -19,7 +19,7 @@ protocol BlipBloopView {
 extension BlipBloopView where Self: UIView {
     
     var colorScheme: ColorScheme {
-        get { return .gameboy }
+        get { return .paint }
     }
     
     func indicateRequired(fieldView: UIView) {

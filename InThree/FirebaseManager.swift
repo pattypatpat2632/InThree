@@ -111,6 +111,16 @@ extension FirebaseManager {
             completion()
         })
     }
+    
+    func resetPassword(from email: String, completion: @escaping (FirebaseResponse) -> Void) {
+        FIRAuth.auth()?.sendPasswordReset(withEmail: email, completion: { (error) in
+            if error == nil {
+                completion(.success("Password Reset sent to user"))
+            } else {
+                completion(.failure("Could not reset password"))
+            }
+        })
+    }
 }
 
 //MARK: City mode functions

@@ -30,7 +30,6 @@ extension AppController {
     func addNotifcationObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .closeLoginVC, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .closeDashboardVC, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(switchViewController(with:)), name: .resetPassword, object: nil)
     }
 }
 
@@ -74,8 +73,6 @@ extension AppController {
             switchToViewController(with: DashboardNavC())
         case Notification.Name.closeDashboardVC:
             switchToViewController(with: LoginNavC())
-        case Notification.Name.resetPassword:
-            switchToViewController(with: ResetNavController())
         default:
             fatalError("\(#function) - Unable to match notficiation name.")
         }
@@ -109,6 +106,5 @@ extension Notification.Name {
     static let newPeerFound = Notification.Name("new-peer-found")
     static let playbackStarted = Notification.Name("playback-started")
     static let playbackStopped = Notification.Name("playback-stopped")
-    static let resetPassword = Notification.Name("reset-password")
 }
 

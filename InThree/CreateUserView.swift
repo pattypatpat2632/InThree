@@ -10,14 +10,13 @@ import UIKit
 
 class CreateUserView: UIView, BlipBloopView {
     
-    let colorScheme: ColorScheme = .normal
-    let titleLabel = UILabel()
-    let nameField = UITextField()
-    let emailField = UITextField()
-    let passwordField = UITextField()
-    let confirmField = UITextField()
+    let titleLabel = BlipLabel()
+    let nameField = BlipTextField()
+    let emailField = BlipTextField()
+    let passwordField = BlipTextField()
+    let confirmField = BlipTextField()
     let submitButton = BlipButton()
-    var allFields = [UITextField]()
+    var allFields = [BlipTextField]()
     
 
     required init?(coder aDecoder: NSCoder) {
@@ -39,7 +38,7 @@ class CreateUserView: UIView, BlipBloopView {
     func setConstraints() {
         addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 100).isActive = true
         titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         titleLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
         titleLabel.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
@@ -84,34 +83,18 @@ class CreateUserView: UIView, BlipBloopView {
         self.backgroundColor = colorScheme.model.baseColor
         
         titleLabel.text = "Create New User"
-        titleLabel.textAlignment = .center
-        titleLabel.backgroundColor = UIColor.clear
-        titleLabel.textColor = colorScheme.model.foregroundColor
+
         
         nameField.placeholder = "Your Name"
-        nameField.backgroundColor = colorScheme.model.backgroundColor
-        nameField.layer.cornerRadius = 5
-        nameField.layer.borderWidth = 2
-        nameField.layer.borderColor = colorScheme.model.highlightColor.cgColor
+   
         
         emailField.placeholder = "Email"
-        emailField.backgroundColor = colorScheme.model.backgroundColor
-        emailField.layer.cornerRadius = 5
-        emailField.layer.borderWidth = 2
-        emailField.layer.borderColor = colorScheme.model.highlightColor.cgColor
+
         
         passwordField.placeholder = "Password"
-        passwordField.backgroundColor = colorScheme.model.backgroundColor
-        passwordField.layer.cornerRadius = 5
-        passwordField.layer.borderWidth = 2
-        passwordField.layer.borderColor = colorScheme.model.highlightColor.cgColor
         passwordField.isSecureTextEntry = true
         
         confirmField.placeholder = "Confirm Password"
-        confirmField.backgroundColor = colorScheme.model.backgroundColor
-        confirmField.layer.cornerRadius = 5
-        confirmField.layer.borderWidth = 2
-        confirmField.layer.borderColor = colorScheme.model.highlightColor.cgColor
         confirmField.isSecureTextEntry = true
         
         submitButton.setTitle("Submit", for: .normal)

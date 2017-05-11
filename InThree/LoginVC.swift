@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginVC: UIViewController {
+class LoginVC: UIViewController, UserAlert {
     
     let loginView = LoginView()
 
@@ -55,7 +55,7 @@ class LoginVC: UIViewController {
                             NotificationCenter.default.post(name: .closeLoginVC, object: nil)
                         }
                     case .failure(let failString):
-                        print(failString)
+                        self.alertUser(with: failString, viewController: self, completion: nil)
                     }
                 })
             }
@@ -65,7 +65,8 @@ class LoginVC: UIViewController {
     func forgotPasswordTapped() {
         print("Forgot password")
         self.loginView.indicatePushed(view: loginView.forgotPasswordButton) {
-            NotificationCenter.default.post(name: .resetPassword, object: nil)
+            let resetVC = ForgotPasswordVC()
+            self.navigationController?.pushViewController(resetVC, animated: true)
         }
     }
     
