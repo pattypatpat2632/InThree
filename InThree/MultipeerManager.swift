@@ -85,7 +85,9 @@ extension MultipeerManager: MCNearbyServiceAdvertiserDelegate {
 //MARK: Browser Delegate
 extension MultipeerManager: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        print("Boo")//TODO: remove peer from party if lost connection
+
+        //TODO: remove peer from peers array
+
     }
     func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
         print("Did not start browsing for peers")//TODO: INdicate to user that browser could not be established
@@ -125,7 +127,7 @@ extension MultipeerManager: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         switch state {
         case .notConnected:
-            remove(blipUserWithUID: peerID.displayName)
+            print("not connected")
         case .connecting:
             print("connecting") //TODO: Enable notifications for newly connected users
         case .connected:

@@ -13,10 +13,8 @@
 		EC05C7631EA45AC20031864A /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC05C7621EA45AC20031864A /* Score.swift */; };
 		EC05C7651EA460400031864A /* Beat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC05C7641EA460400031864A /* Beat.swift */; };
 		EC05C7671EA463A20031864A /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC05C7661EA463A20031864A /* Note.swift */; };
-		EC44720D1EC2732D009EB271 /* COMICATE.TTF in Resources */ = {isa = PBXBuildFile; fileRef = EC44720C1EC2732D009EB271 /* COMICATE.TTF */; };
 		EC44720F1EC27673009EB271 /* BlipLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC44720E1EC27673009EB271 /* BlipLabel.swift */; };
 		EC4472111EC27757009EB271 /* BlipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4472101EC27757009EB271 /* BlipButton.swift */; };
-		EC4472131EC2799E009EB271 /* molten.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4472121EC27954009EB271 /* molten.ttf */; };
 		EC4472171EC2ABE9009EB271 /* timeburnernormal.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4472161EC2ABE9009EB271 /* timeburnernormal.ttf */; };
 		EC4472191EC2AD00009EB271 /* timeburnerbold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4472181EC2AD00009EB271 /* timeburnerbold.ttf */; };
 		EC4BD1DD1EA29ECC0076B4D0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4BD1DC1EA29ECC0076B4D0 /* AppDelegate.swift */; };
@@ -50,7 +48,12 @@
 		EC7C14681EB780FF009FACDA /* SequencerMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7C14671EB780FF009FACDA /* SequencerMode.swift */; };
 		EC7FEDEE1EAE59CF00E50A62 /* ColorSchemeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */; };
 		EC7FEDF01EAE65D500E50A62 /* NoteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */; };
+
 		EC9028B21EC35FB200027FCE /* Party.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9028B11EC35FB200027FCE /* Party.swift */; };
+
+		EC9028B41EC398B100027FCE /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9028B31EC398B100027FCE /* ForgotPasswordView.swift */; };
+		EC9028B61EC398D000027FCE /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9028B51EC398D000027FCE /* ForgotPasswordVC.swift */; };
+
 		EC9559761EA59EFB008FA5FA /* SequencerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9559751EA59EFB008FA5FA /* SequencerView.swift */; };
 		ECA6D4A51EB7C6B1008A027B /* MultipeerTestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA6D4A41EB7C6B1008A027B /* MultipeerTestManager.swift */; };
 		ECA6D4A71EB914AB008A027B /* ScoreIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA6D4A61EB914AB008A027B /* ScoreIndex.swift */; };
@@ -61,6 +64,12 @@
 		ECB1816A1EB245DB0025F017 /* LocalPeerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB181691EB245DB0025F017 /* LocalPeerVC.swift */; };
 		ECCE22F41EA84C95006691D8 /* CircleOfFifthsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECCE22F31EA84C95006691D8 /* CircleOfFifthsView.xib */; };
 		ECCE22F61EA84E28006691D8 /* CircleOfFifthsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE22F51EA84E28006691D8 /* CircleOfFifthsView.swift */; };
+		ECF32BB41EC3EAE500135EEB /* BlipTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BB31EC3EAE500135EEB /* BlipTextField.swift */; };
+		ECF32BB61EC3F17900135EEB /* ResetNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BB51EC3F17900135EEB /* ResetNavController.swift */; };
+		ECF32BB81EC4A35000135EEB /* Pixeled.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECF32BB71EC4A35000135EEB /* Pixeled.ttf */; };
+		ECF32BBC1EC4E82B00135EEB /* UserAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BBB1EC4E82B00135EEB /* UserAlert.swift */; };
+		ECF32BBE1EC4FE2600135EEB /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BBD1EC4FE2600135EEB /* CreditsView.swift */; };
+		ECF32BC01EC500ED00135EEB /* CreditsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BBF1EC500ED00135EEB /* CreditsVC.swift */; };
 		ECFDC4831EA3295F00902F15 /* SequencerEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */; };
 		FEC6EACC79488617263FC929 /* Pods_InThree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE165AF62EB552E59C6FC01F /* Pods_InThree.framework */; };
 /* End PBXBuildFile section */
@@ -96,10 +105,8 @@
 		EC05C7621EA45AC20031864A /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		EC05C7641EA460400031864A /* Beat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beat.swift; sourceTree = "<group>"; };
 		EC05C7661EA463A20031864A /* Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
-		EC44720C1EC2732D009EB271 /* COMICATE.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = COMICATE.TTF; sourceTree = "<group>"; };
 		EC44720E1EC27673009EB271 /* BlipLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlipLabel.swift; sourceTree = "<group>"; };
 		EC4472101EC27757009EB271 /* BlipButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlipButton.swift; sourceTree = "<group>"; };
-		EC4472121EC27954009EB271 /* molten.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = molten.ttf; sourceTree = "<group>"; };
 		EC4472161EC2ABE9009EB271 /* timeburnernormal.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = timeburnernormal.ttf; sourceTree = "<group>"; };
 		EC4472181EC2AD00009EB271 /* timeburnerbold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = timeburnerbold.ttf; sourceTree = "<group>"; };
 		EC4BD1D91EA29ECC0076B4D0 /* InThree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InThree.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,7 +146,12 @@
 		EC7C14671EB780FF009FACDA /* SequencerMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerMode.swift; sourceTree = "<group>"; };
 		EC7FEDED1EAE59CF00E50A62 /* ColorSchemeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorSchemeModel.swift; sourceTree = "<group>"; };
 		EC7FEDEF1EAE65D500E50A62 /* NoteButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoteButton.swift; sourceTree = "<group>"; };
+
 		EC9028B11EC35FB200027FCE /* Party.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Party.swift; sourceTree = "<group>"; };
+
+		EC9028B31EC398B100027FCE /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		EC9028B51EC398D000027FCE /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
+
 		EC9559751EA59EFB008FA5FA /* SequencerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerView.swift; sourceTree = "<group>"; };
 		ECA6D4A41EB7C6B1008A027B /* MultipeerTestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerTestManager.swift; sourceTree = "<group>"; };
 		ECA6D4A61EB914AB008A027B /* ScoreIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreIndex.swift; sourceTree = "<group>"; };
@@ -151,6 +163,12 @@
 		ECB181691EB245DB0025F017 /* LocalPeerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalPeerVC.swift; sourceTree = "<group>"; };
 		ECCE22F31EA84C95006691D8 /* CircleOfFifthsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CircleOfFifthsView.xib; sourceTree = "<group>"; };
 		ECCE22F51EA84E28006691D8 /* CircleOfFifthsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleOfFifthsView.swift; sourceTree = "<group>"; };
+		ECF32BB31EC3EAE500135EEB /* BlipTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlipTextField.swift; sourceTree = "<group>"; };
+		ECF32BB51EC3F17900135EEB /* ResetNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetNavController.swift; sourceTree = "<group>"; };
+		ECF32BB71EC4A35000135EEB /* Pixeled.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pixeled.ttf; sourceTree = "<group>"; };
+		ECF32BBB1EC4E82B00135EEB /* UserAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAlert.swift; sourceTree = "<group>"; };
+		ECF32BBD1EC4FE2600135EEB /* CreditsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
+		ECF32BBF1EC500ED00135EEB /* CreditsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsVC.swift; sourceTree = "<group>"; };
 		ECFDC4821EA3295F00902F15 /* SequencerEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerEngine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -196,9 +214,8 @@
 			isa = PBXGroup;
 			children = (
 				EC4472181EC2AD00009EB271 /* timeburnerbold.ttf */,
+				ECF32BB71EC4A35000135EEB /* Pixeled.ttf */,
 				EC4472161EC2ABE9009EB271 /* timeburnernormal.ttf */,
-				EC4472121EC27954009EB271 /* molten.ttf */,
-				EC44720C1EC2732D009EB271 /* COMICATE.TTF */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -275,6 +292,9 @@
 				EC5B3FAE1EB0EEB100410BD2 /* LoginNavC.swift */,
 				EC5B3FB21EB0FF3800410BD2 /* CreateUserVC.swift */,
 				ECB181691EB245DB0025F017 /* LocalPeerVC.swift */,
+				EC9028B51EC398D000027FCE /* ForgotPasswordVC.swift */,
+				ECF32BB51EC3F17900135EEB /* ResetNavController.swift */,
+				ECF32BBF1EC500ED00135EEB /* CreditsVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -297,6 +317,9 @@
 				EC7C14651EB67D51009FACDA /* BlipUserCell.swift */,
 				EC44720E1EC27673009EB271 /* BlipLabel.swift */,
 				EC4472101EC27757009EB271 /* BlipButton.swift */,
+				EC9028B31EC398B100027FCE /* ForgotPasswordView.swift */,
+				ECF32BB31EC3EAE500135EEB /* BlipTextField.swift */,
+				ECF32BBD1EC4FE2600135EEB /* CreditsView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -344,6 +367,7 @@
 			isa = PBXGroup;
 			children = (
 				EC5B3FBB1EB10A9000410BD2 /* BlipBloopView.swift */,
+				ECF32BBB1EC4E82B00135EEB /* UserAlert.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -485,10 +509,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC4472131EC2799E009EB271 /* molten.ttf in Resources */,
 				EC5B3F9D1EB0DB0000410BD2 /* GoogleService-Info.plist in Resources */,
-				EC44720D1EC2732D009EB271 /* COMICATE.TTF in Resources */,
 				EC4BD1E71EA29ECC0076B4D0 /* LaunchScreen.storyboard in Resources */,
+				ECF32BB81EC4A35000135EEB /* Pixeled.ttf in Resources */,
 				ECCE22F41EA84C95006691D8 /* CircleOfFifthsView.xib in Resources */,
 				EC4BD1E41EA29ECC0076B4D0 /* Assets.xcassets in Resources */,
 				EC4472171EC2ABE9009EB271 /* timeburnernormal.ttf in Resources */,
@@ -659,6 +682,7 @@
 				ECB1816A1EB245DB0025F017 /* LocalPeerVC.swift in Sources */,
 				EC4BD2191EA2EEBE0076B4D0 /* SequencerVC.swift in Sources */,
 				EC5B3FA91EB0E92100410BD2 /* LoginVC.swift in Sources */,
+				ECF32BBE1EC4FE2600135EEB /* CreditsView.swift in Sources */,
 				ECFDC4831EA3295F00902F15 /* SequencerEngine.swift in Sources */,
 				EC7FEDEE1EAE59CF00E50A62 /* ColorSchemeModel.swift in Sources */,
 				EC05C7631EA45AC20031864A /* Score.swift in Sources */,
@@ -679,16 +703,21 @@
 				EC5B3FA71EB0E81100410BD2 /* AppController.swift in Sources */,
 				EC4BD2171EA2D2CB0076B4D0 /* UIColorExtenstion.swift in Sources */,
 				EC74C8AB1EC1228E00666BDF /* LightTrigger.swift in Sources */,
+				EC9028B41EC398B100027FCE /* ForgotPasswordView.swift in Sources */,
+				ECF32BB61EC3F17900135EEB /* ResetNavController.swift in Sources */,
 				EC5B3FB51EB0FF6300410BD2 /* CreateUserView.swift in Sources */,
 				EC5B3FA11EB0E04E00410BD2 /* FirebaseResponse.swift in Sources */,
 				EC5B3FAB1EB0E9E000410BD2 /* DashboardVC.swift in Sources */,
+				ECF32BB41EC3EAE500135EEB /* BlipTextField.swift in Sources */,
 				EC4BD1DD1EA29ECC0076B4D0 /* AppDelegate.swift in Sources */,
 				EC44720F1EC27673009EB271 /* BlipLabel.swift in Sources */,
 				EC5B3FAD1EB0EDFE00410BD2 /* DashboardNavC.swift in Sources */,
 				EC5B3FA31EB0E25000410BD2 /* BlipUser.swift in Sources */,
+				ECF32BC01EC500ED00135EEB /* CreditsVC.swift in Sources */,
 				ECAE16F01EA6FD210013696C /* KeyboardView.swift in Sources */,
 				EC5B3FBE1EB13A6700410BD2 /* UIVCExtension.swift in Sources */,
 				ECA6D4A51EB7C6B1008A027B /* MultipeerTestManager.swift in Sources */,
+				EC9028B61EC398D000027FCE /* ForgotPasswordVC.swift in Sources */,
 				EC7C14681EB780FF009FACDA /* SequencerMode.swift in Sources */,
 				EC4BD2101EA2A6B40076B4D0 /* PadView.swift in Sources */,
 				EC5B3FB31EB0FF3800410BD2 /* CreateUserVC.swift in Sources */,
@@ -698,6 +727,7 @@
 				EC74C8A31EC1088B00666BDF /* PartySequencerVC.swift in Sources */,
 				EC05C7651EA460400031864A /* Beat.swift in Sources */,
 				EC7FEDF01EAE65D500E50A62 /* NoteButton.swift in Sources */,
+				ECF32BBC1EC4E82B00135EEB /* UserAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

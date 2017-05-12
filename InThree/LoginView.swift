@@ -11,10 +11,12 @@ import UIKit
 class LoginView: UIView, BlipBloopView {
     
     let titleLabel = BlipLabel()
-    let emailField = UITextField()
-    let passwordField = UITextField()
+    let emailField = BlipTextField()
+    let passwordField = BlipTextField()
     let loginButton = BlipButton()
     let createUserButton = BlipButton()
+    let forgotPasswordButton = BlipButton()
+    let creditsButton = BlipButton()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -66,6 +68,22 @@ class LoginView: UIView, BlipBloopView {
         createUserButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         createUserButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
         createUserButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.15).isActive = true
+        
+        addSubview(forgotPasswordButton)
+        forgotPasswordButton.translatesAutoresizingMaskIntoConstraints = false
+        forgotPasswordButton.topAnchor.constraint(equalTo: createUserButton.bottomAnchor, constant: 10).isActive = true
+        forgotPasswordButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        forgotPasswordButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
+        forgotPasswordButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
+        
+        addSubview(creditsButton)
+        creditsButton.translatesAutoresizingMaskIntoConstraints = false
+        creditsButton.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: 50).isActive = true
+        creditsButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        creditsButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
+        creditsButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
+        
+        
     }
     
     func setSubviewProperties() {
@@ -74,20 +92,21 @@ class LoginView: UIView, BlipBloopView {
         titleLabel.text = "BlipBloop"
         
         emailField.placeholder = "Email"
-        emailField.backgroundColor = colorScheme.model.backgroundColor
-        emailField.layer.cornerRadius = 5
-        emailField.layer.borderWidth = 2
-        emailField.layer.borderColor = colorScheme.model.highlightColor.cgColor
+
         
         passwordField.placeholder = "Password"
-        passwordField.backgroundColor = colorScheme.model.backgroundColor
-        passwordField.layer.cornerRadius = 5
-        passwordField.layer.borderWidth = 2
-        passwordField.layer.borderColor = colorScheme.model.highlightColor.cgColor
         passwordField.isSecureTextEntry = true
         
         loginButton.setTitle("LOGIN", for: .normal)
         createUserButton.setTitle("CREATE USER", for: .normal)
+        
+        forgotPasswordButton.setTitle("Forgot Password?", for: .normal)
+        forgotPasswordButton.layer.borderWidth = 0
+        forgotPasswordButton.changeFontSize(to: 20)
+        
+        creditsButton.setTitle("About BlipBlip", for: .normal)
+        creditsButton.layer.borderWidth = 0
+        creditsButton.changeFontSize(to: 14)
     }
 
 }

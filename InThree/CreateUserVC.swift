@@ -8,10 +8,10 @@
 
 import UIKit
 
-class CreateUserVC: UIViewController {
+class CreateUserVC: UIViewController, UserAlert {
     
     let createUserView = CreateUserView()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
@@ -19,13 +19,15 @@ class CreateUserVC: UIViewController {
         self.hideKeyboardWhenTappedAround()
         createUserView.submitButton.addTarget(self, action: #selector(submitTapped), for: .touchUpInside)
     }
-
+    
     func submitTapped() {
-        print("Submit tapped")
         guard allFieldsEntered() else {return}
-        print("All fields entered")
-        guard let email = createUserView.emailField.text, let name = createUserView.nameField.text, let password = createUserView.passwordField.text, let confirm = createUserView.confirmField.text else {return} //TODO: this error should never occur since we're already checking for empty fields in the allFieldsEntered function. Refactor
-        guard password == confirm else {return} //TODO: indicate to the user that the password and confirm fields do not match
+        guard let email = createUserView.emailField.text, let name = createUserView.nameField.text, let password = createUserView.passwordField.text, let confirm = createUserView.confirmField.text else {return}
+        guard password == confirm else {
+            alertUser(with: "Password does not match confirmation", viewController: self, completion: {
+            })
+            return
+        }
         createUserView.indicateSelected(view: createUserView.submitButton) {
             print("passwords match, creating user")
             FirebaseManager.sharedInstance.createUser(fromEmail: email, name: name, andPassword: password) { (firResponse) in
@@ -53,5 +55,5 @@ class CreateUserVC: UIViewController {
         }
         return allFieldsEntered
     }
-
+    
 }
