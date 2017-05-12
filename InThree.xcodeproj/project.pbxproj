@@ -51,7 +51,6 @@
 		EC9028B41EC398B100027FCE /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9028B31EC398B100027FCE /* ForgotPasswordView.swift */; };
 		EC9028B61EC398D000027FCE /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9028B51EC398D000027FCE /* ForgotPasswordVC.swift */; };
 		EC9559761EA59EFB008FA5FA /* SequencerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9559751EA59EFB008FA5FA /* SequencerView.swift */; };
-		ECA6D4A51EB7C6B1008A027B /* MultipeerTestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA6D4A41EB7C6B1008A027B /* MultipeerTestManager.swift */; };
 		ECA6D4A71EB914AB008A027B /* ScoreIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA6D4A61EB914AB008A027B /* ScoreIndex.swift */; };
 		ECAE16EE1EA6FCD10013696C /* KeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ECAE16ED1EA6FCD10013696C /* KeyboardView.xib */; };
 		ECAE16F01EA6FD210013696C /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECAE16EF1EA6FD210013696C /* KeyboardView.swift */; };
@@ -145,9 +144,7 @@
 		EC9028B31EC398B100027FCE /* ForgotPasswordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		EC9028B51EC398D000027FCE /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		EC9559751EA59EFB008FA5FA /* SequencerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerView.swift; sourceTree = "<group>"; };
-		ECA6D4A41EB7C6B1008A027B /* MultipeerTestManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerTestManager.swift; sourceTree = "<group>"; };
 		ECA6D4A61EB914AB008A027B /* ScoreIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreIndex.swift; sourceTree = "<group>"; };
-		ECA6D4A91EBA31A3008A027B /* FlatironLocation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FlatironLocation.gpx; sourceTree = "<group>"; };
 		ECAE16ED1EA6FCD10013696C /* KeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeyboardView.xib; sourceTree = "<group>"; };
 		ECAE16EF1EA6FD210013696C /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		ECB181651EB2424E0025F017 /* MultipeerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerManager.swift; sourceTree = "<group>"; };
@@ -348,8 +345,6 @@
 				EC5B3FA01EB0E04E00410BD2 /* FirebaseResponse.swift */,
 				EC5B3FA41EB0E31100410BD2 /* FirebaseManager.swift */,
 				ECB181651EB2424E0025F017 /* MultipeerManager.swift */,
-				ECA6D4A41EB7C6B1008A027B /* MultipeerTestManager.swift */,
-				ECA6D4A91EBA31A3008A027B /* FlatironLocation.gpx */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -706,7 +701,6 @@
 				ECF32BC01EC500ED00135EEB /* CreditsVC.swift in Sources */,
 				ECAE16F01EA6FD210013696C /* KeyboardView.swift in Sources */,
 				EC5B3FBE1EB13A6700410BD2 /* UIVCExtension.swift in Sources */,
-				ECA6D4A51EB7C6B1008A027B /* MultipeerTestManager.swift in Sources */,
 				EC9028B61EC398D000027FCE /* ForgotPasswordVC.swift in Sources */,
 				EC7C14681EB780FF009FACDA /* SequencerMode.swift in Sources */,
 				EC4BD2101EA2A6B40076B4D0 /* PadView.swift in Sources */,
