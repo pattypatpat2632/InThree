@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:InThree/FlatironLocation.gpx">
-   </FileRef>
-   <FileRef
       location = "group:InThree.xcodeproj">
    </FileRef>
    <FileRef
