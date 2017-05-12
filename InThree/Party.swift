@@ -8,10 +8,36 @@
 
 import Foundation
 
-class Party {
+struct Party {
     
-    var partyMembers = [BlipUser]()
-    var partyTurn = 0
+    var members = [BlipUser]()
+    var userTurnID: String = ""
+    var turnCount: Int = 0
     
+    mutating func add(member: BlipUser) {
+        self.members.append(member)
+    }
+    
+    mutating func nextTurn() {
+        if turnCount < members.count - 1{
+            turnCount += 1
+            userTurnID = members[turnCount].uid
+        } else {
+            turnCount = 0
+            userTurnID = members[turnCount].uid
+        }
+    }
+    
+//    func asDicionary() -> [String: Any] {
+//        
+//        
+//        
+//    }
+//    
+//    func asData() -> Data {
+//        
+//        
+//        
+//    }
     
 }

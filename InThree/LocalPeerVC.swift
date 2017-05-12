@@ -104,7 +104,7 @@ extension LocalPeerVC: LocalPeerViewDelegate {
     
 }
 
-extension LocalPeerVC: PartyDelegate {
+extension LocalPeerVC: PartyInviteDelegate {
     func askIfAttending(fromInvitee invitee: BlipUser, completion: @escaping (Bool) -> Void) {
         let alertController = UIAlertController(title: "Would you like to join the party?", message: "Invited by: \(invitee.name)", preferredStyle: .alert)
         

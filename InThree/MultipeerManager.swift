@@ -15,12 +15,13 @@ final class MultipeerManager: NSObject {
     let service = "blipbloop-2632"
     let myPeerID = MCPeerID(displayName: (FirebaseManager.sharedInstance.currentBlipUser?.uid)!)//TODO: fix this force unwrap
     var allAvailablePeers = [BlipUser]()
+    var party = Party()
     
     let serviceAdvertiser: MCNearbyServiceAdvertiser
     let serviceBrowser: MCNearbyServiceBrowser
     
     var delegate: MultipeerManagerDelegate?
-    var partyDelegate: PartyDelegate?
+    var partyDelegate: PartyInviteDelegate?
     
     lazy var session : MCSession = {
         let session = MCSession(peer: self.myPeerID, securityIdentity: nil, encryptionPreference: .required)
@@ -45,7 +46,7 @@ final class MultipeerManager: NSObject {
         serviceBrowser.stopBrowsingForPeers()
     }
     
-    func send(score: Score) { //Send a score to another user
+    func send(score: Score, party: Party) { //Send a score to another user
         guard let scoreData = score.asData() else {
             print("Score data returned nil")
             return
@@ -164,7 +165,7 @@ protocol MultipeerManagerDelegate {
 
 }
 
-protocol PartyDelegate {
+protocol PartyInviteDelegate {
     func askIfAttending(fromInvitee invitee: BlipUser, completion: @escaping (Bool) -> Void)
 }
 
