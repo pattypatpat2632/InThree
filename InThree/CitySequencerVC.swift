@@ -35,13 +35,20 @@ extension CitySequencerVC: CLLocationManagerDelegate {
     func setLocationData() {
         print("LOCATION DATA BEING SET**************")
         if CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
-            let title = "Flatiron"
+            let title = "NYC"
             let coordinate = CLLocationCoordinate2DMake(40.705253, -74.014070)
-            let regionRadius = 160934.0
+            let regionRadius = 1609.34 * 8
             let clCoordinate = CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude)
             let region = CLCircularRegion(center: clCoordinate, radius: regionRadius, identifier: title)
             print("LOCATION MANAGER START MONITORING**************")
             locationManager?.startMonitoring(for: region)
+            
+            let rochester = "Rochester"
+            let rochesterCoordinate = CLLocationCoordinate2DMake(43.1610, 77.6109)
+            let rochesterRadius = 1609.34 * 5
+            let clRocCoordinate = CLLocationCoordinate2D(latitude: rochesterCoordinate.latitude, longitude: rochesterCoordinate.longitude)
+            let rocRegion = CLCircularRegion(center: clRocCoordinate, radius: rochesterRadius, identifier: rochester)
+            locationManager?.startMonitoring(for: rocRegion)
             
         }
     }
