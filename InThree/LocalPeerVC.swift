@@ -28,7 +28,7 @@ class LocalPeerVC: UIViewController {
         MultipeerManager.sharedInstance.partyDelegate = self
         
         self.view = localPeerView
-        MultipeerTestManager.sharedInstance.generateRandomScores()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
