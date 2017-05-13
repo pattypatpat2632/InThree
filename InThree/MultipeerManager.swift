@@ -13,6 +13,7 @@ final class MultipeerManager: NSObject {
     
     static let sharedInstance = MultipeerManager()
     let service = "blipbloop-2632"
+    let blipUser = FirebaseManager.sharedInstance.currentBlipUser
     let myPeerID = MCPeerID(displayName: (FirebaseManager.sharedInstance.currentBlipUser?.uid)!)//TODO: fix this force unwrap
     var allAvailablePeers = [BlipUser]()
     var party = Party()
@@ -46,17 +47,58 @@ final class MultipeerManager: NSObject {
         serviceBrowser.stopBrowsingForPeers()
     }
     
-    func send(score: Score, party: Party) { //Send a score to another user
-        guard let scoreData = score.asData() else {
-            print("Score data returned nil")
-            return
+    func send(score: Score? = nil, party: Party? = nil) { //Send a score to all other users
+        if let score = score {
+            send(score: score)
         }
-        if session.connectedPeers.count > 0 {
-            do {
-                try self.session.send(scoreData, toPeers: session.connectedPeers, with: .reliable)
-                print("Sent score to connected peers")
-            } catch{
-                print("Errah")
+        if let party = party {
+            self.party = party
+            send(party: party)
+        }
+    }
+    
+    private func send(party: Party) {//send party to all other peers
+        let dictionary = [
+            "party": party.asDictionary()
+        ]
+        do {
+            let partyData = try JSONSerialization.data(withJSONObject: dictionary, options: [])
+            if session.connectedPeers.count > 0 {
+                do {
+                    try self.session.send(partyData, toPeers: session.connectedPeers, with: .reliable)
+                    print("Sent score to connected peers")
+                } catch{
+                    print("Errah")
+                }
+            }
+        } catch {
+            print("Could not JSONSerialize the score dictionary")
+        }
+    }
+    
+    private func send(score: Score) {
+        let dictionary = [
+            "score": score.asDictionary()
+        ]
+        do {
+            let scoreData = try JSONSerialization.data(withJSONObject: dictionary, options: [])
+            if session.connectedPeers.count > 0 {
+                do {
+                    try self.session.send(scoreData, toPeers: session.connectedPeers, with: .reliable)
+                    print("Sent score to connected peers")
+                } catch{
+                    print("Errah")
+                }
+            }
+        } catch {
+            print("Could not JSONSerialize the score dictionary")
+        }
+    }
+    
+    fileprivate func updateParty(fromData data: Data?) {
+        if let data = data {
+            if let newParty = Party(data: data) {
+                self.party = newParty
             }
         }
     }
@@ -68,6 +110,7 @@ extension MultipeerManager: MCNearbyServiceAdvertiserDelegate {
     }
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
+        
         var invitee: BlipUser?
         for peer in self.allAvailablePeers {
             if peer.uid == peerID.displayName {
@@ -75,7 +118,12 @@ extension MultipeerManager: MCNearbyServiceAdvertiserDelegate {
                 guard let invitee = invitee else {return}
                 partyDelegate?.askIfAttending(fromInvitee: invitee, completion: { (attending) in
                     if attending {
-                       invitationHandler(true, self.session)//If a user accepts an invitation, add it to the session.connectedPeers
+                        self.updateParty(fromData: context)
+                        if let blipUser = self.blipUser {
+                            self.party.add(member: blipUser)
+                            self.send(party: self.party)
+                        }
+                        invitationHandler(true, self.session)//If a user accepts an invitation, add it to the session.connectedPeers
                     }
                 })
             }
@@ -86,9 +134,9 @@ extension MultipeerManager: MCNearbyServiceAdvertiserDelegate {
 //MARK: Browser Delegate
 extension MultipeerManager: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-
+        
         //TODO: remove peer from peers array
-
+        
     }
     func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
         print("Did not start browsing for peers")//TODO: INdicate to user that browser could not be established
@@ -106,7 +154,11 @@ extension MultipeerManager: MCNearbyServiceBrowserDelegate {
     func invitePeers(_ blipUsers: [BlipUser]) {
         for blipUser in blipUsers {
             let mcPeerID = MCPeerID(displayName: blipUser.uid)
-            serviceBrowser.invitePeer(mcPeerID, to: session, withContext: nil, timeout: 10)
+            if let context = party.asData() {
+                serviceBrowser.invitePeer(mcPeerID, to: session, withContext: context, timeout: 30)
+            } else {
+                print("Error: could not create context from party as data")
+            }
         }
     }
 }
@@ -115,14 +167,20 @@ extension MultipeerManager: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] ?? [:]
-            if let newScore = Score(dictionary: json) {
-                delegate?.musicChanged(forUID: peerID.displayName, score: newScore, manager: self)
+            if let scoreDictionary = json["score"] as? [String: Any] {
+                if let newScore = Score(dictionary: scoreDictionary) {
+                    delegate?.musicChanged(forUID: peerID.displayName, score: newScore, manager: self)
+                }
+            }
+            if let partyDictionary = json["party"] as? [String: Any] {
+                if let newParty = Party(dictionary: partyDictionary) {
+                    self.party = newParty
+                    delegate?.partyChanged()
+                }
             }
         } catch {
             print("Could not create JSON from received data")
         }
-        
-        
     }
     
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
@@ -145,7 +203,7 @@ extension MultipeerManager: MCSessionDelegate {
         }
     }
     
-// Unused required delegate functions
+    // Unused required delegate functions
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
     }
     
@@ -162,7 +220,8 @@ protocol MultipeerManagerDelegate {
     
     func connectionLost(forUID uid: String, manager: MultipeerManager)
     func musicChanged(forUID uid: String, score: Score, manager: MultipeerManager)
-
+    func partyChanged()
+    
 }
 
 protocol PartyInviteDelegate {

@@ -28,16 +28,53 @@ struct Party {
         }
     }
     
-//    func asDicionary() -> [String: Any] {
-//        
-//        
-//        
-//    }
-//    
-//    func asData() -> Data {
-//        
-//        
-//        
-//    }
+    func asDictionary() -> [String: Any] {
+        let dictionary: [String: Any] = [
+            "members": members.map{$0.asDictionary()},
+            "userTurnID": userTurnID,
+            "turnCount": turnCount
+        ]
+       return dictionary
+    }
+    
+    func asData() -> Data? {
+        let dictionary = self.asDictionary()
+        do {
+           let data = try JSONSerialization.data(withJSONObject: dictionary, options: [])
+            return data
+        } catch {
+            return nil
+        }
+    }
+}
+
+extension Party {
+    
+    init?(data: Data?){
+        guard let data = data else {return nil}
+        do{
+            guard let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {return nil}
+            
+            self.init(dictionary: json)
+            
+        } catch {
+            return nil
+        }
+    }
+    
+    init?(dictionary: [String: Any]) {
+        guard let userTurnID = dictionary["userTurnID"] as? String else {return nil}
+        guard let turnCount = dictionary["turnCount"] as? Int else {return nil}
+        self.userTurnID = userTurnID
+        self.turnCount = turnCount
+        
+        guard let membersArray = dictionary["members"] as? [[String: [String: String]]] else {return nil}
+        self.members.removeAll()
+        for member in membersArray {
+            if let newMember = BlipUser(dictionary: member) {
+                self.members.append(newMember)
+            }
+        }
+    }
     
 }

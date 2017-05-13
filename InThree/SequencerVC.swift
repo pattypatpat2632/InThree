@@ -12,7 +12,7 @@ import CoreLocation
 
 
 
-class SequencerVC: UIViewController {
+class SequencerVC: UIViewController, NoteButtonDelegate {
     
     
     var sequencerEngine = SequencerEngine()
@@ -21,6 +21,7 @@ class SequencerVC: UIViewController {
     var locationManager: CLLocationManager?
     var lightTrigger = LightTrigger()
     var beatToLight: Int = 0
+    var currentUser = FirebaseManager.sharedInstance.currentBlipUser
     
     
     override func viewDidLoad() {
@@ -44,6 +45,21 @@ class SequencerVC: UIViewController {
             }
         }
         
+    }
+//MARK: Note button delegate
+    func respondTo(noteNumber: MIDINoteNumber, scoreIndex: ScoreIndex) {
+        score.beats[scoreIndex.beatIndex].notes[scoreIndex.noteIndex].noteNumber = noteNumber
+        score.beats[scoreIndex.beatIndex].notes[scoreIndex.noteIndex].velocity = 127
+        score.beats[scoreIndex.beatIndex].notes[scoreIndex.noteIndex].noteOn = true
+        
+        sequencerEngine.generateSequence(fromScore: score)
+        
+        sequencerView.circleOfFifthsView.isHidden = true
+        sequencerView.allViews = sequencerView.allViews.map({ (uiView) -> UIView in
+            uiView.alpha = uiView.alpha * 5
+            uiView.isUserInteractionEnabled = true
+            return uiView
+        })
     }
 }
 
@@ -87,26 +103,6 @@ extension SequencerVC: PadViewDelegate {
         
     }
 }
-
-extension SequencerVC: NoteButtonDelegate {
-    
-    func respondTo(noteNumber: MIDINoteNumber, scoreIndex: ScoreIndex) {
-        score.beats[scoreIndex.beatIndex].notes[scoreIndex.noteIndex].noteNumber = noteNumber
-        score.beats[scoreIndex.beatIndex].notes[scoreIndex.noteIndex].velocity = 127
-        score.beats[scoreIndex.beatIndex].notes[scoreIndex.noteIndex].noteOn = true
-        
-        sequencerEngine.generateSequence(fromScore: score)
-        
-        sequencerView.circleOfFifthsView.isHidden = true
-        sequencerView.allViews = sequencerView.allViews.map({ (uiView) -> UIView in
-            uiView.alpha = uiView.alpha * 5
-            uiView.isUserInteractionEnabled = true
-            return uiView
-        })
-    }
-}
-
-
 
 extension SequencerVC: SequencerViewDelegate {
     func returnToDashboard() {

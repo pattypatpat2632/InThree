@@ -24,11 +24,25 @@ extension BlipUser {
         self.email = dictionary["email"] as? String ?? "No Email"
     }
     
+    init?(jsonData: Data) {
+        do {
+            guard let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: [String: String]] else {return nil}
+            self.init(dictionary: json)
+        } catch {
+            return nil
+        }
+    }
+    
+    init?(dictionary: [String: [String: String]]) {
+        guard let uid = dictionary.keys.first else {return nil}
+        self.uid = uid
+        let properties = dictionary[uid] ?? [:]
+        self.name = properties["name"] ?? "No name"
+        self.email = properties["email"] ?? "No email"
+    }
+    
     func jsonData() -> Data? {
-        let jsonDict: [String: Any] = [
-            "name": self.name,
-            "email": self.email
-        ]
+        let jsonDict = self.asDictionary()
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: jsonDict, options: [])
             return jsonData
@@ -40,9 +54,10 @@ extension BlipUser {
     
     func asDictionary() -> [String: Any] {
         let dictionary = [
-            "name": self.name,
-            "uid": self.uid,
-            "email": self.email
+            self.uid: [
+                "name": self.name,
+                "email": self.email
+            ]
         ]
         return dictionary
     }

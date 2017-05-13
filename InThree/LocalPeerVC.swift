@@ -11,6 +11,7 @@ import UIKit
 class LocalPeerVC: UIViewController {
     
     let localPeerView = LocalPeerView()
+    let currentUser = FirebaseManager.sharedInstance.currentBlipUser
     
     var localPeers: [BlipUser] {
         return MultipeerManager.sharedInstance.allAvailablePeers
@@ -82,7 +83,7 @@ extension LocalPeerVC: UITableViewDelegate, UITableViewDataSource {
         }
         
     }
-
+    
 }
 
 //MARK: Local Peer View Delegate
@@ -95,7 +96,10 @@ extension LocalPeerVC: LocalPeerViewDelegate {
     }
     
     private func inviteSelectedPeers() {
+        if let currentUser = currentUser {
+            MultipeerManager.sharedInstance.party.add(member: currentUser)
             MultipeerManager.sharedInstance.invitePeers(self.selectedPeers)
+        }
     }
     
     func returnToDashboard() {
