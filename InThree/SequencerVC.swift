@@ -129,7 +129,6 @@ extension SequencerVC: LightTriggerDelegate {
     }
     
     func fired() {
-        print("FIRED LIGHT TRIGGER")
         if beatToLight < 3 {
             self.sequencerView.allBeatViews[beatToLight].allPads = self.sequencerView.allBeatViews[beatToLight].allPads.map({ (padView) -> PadView in
                 padView.backgroundColor = self.sequencerView.colorScheme.model.backgroundColor

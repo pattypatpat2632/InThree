@@ -26,8 +26,10 @@ class PartySequencerVC: SequencerVC {
         willSet {
             print("USER TURN; \(newValue)")
             if newValue == true {
-                self.sequencerView.isUserInteractionEnabled = true
-                self.sequencerView.alpha = 1
+                self.sequencerView.subviews.map{
+                    $0.isUserInteractionEnabled = true
+                    $0.alpha = 1.0
+                }
             } else {
                 self.sequencerView.subviews.map{
                     $0.isUserInteractionEnabled = false
@@ -76,7 +78,6 @@ extension PartySequencerVC: MultipeerManagerDelegate {
     }
     
     func partyChanged() {
-        userTurn = false
         for member in party.members {
             if member.uid == currentUser?.uid {
                 userTurn = true
