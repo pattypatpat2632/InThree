@@ -27,6 +27,8 @@ class LocalPeerVC: UIViewController {
         
         self.view = localPeerView
         
+        MultipeerManager.sharedInstance.startBrowsing()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -82,13 +84,13 @@ extension LocalPeerVC: UITableViewDelegate, UITableViewDataSource {
 extension LocalPeerVC: LocalPeerViewDelegate {
     
     func goToPartySquencer() {
+        //let partySequencerVC = PartySequencerVC()
         inviteSelectedPeers()
-        let partySequencerVC = PartySequencerVC()
-        navigationController?.pushViewController(partySequencerVC, animated: true)
+        //navigationController?.pushViewController(partySequencerVC, animated: true)
     }
     
     private func inviteSelectedPeers() {
-        MultipeerManager.sharedInstance.invitePeers(self.selectedPeers)
+        //MultipeerManager.sharedInstance.invitePeers(selectedPeers, browser: MultipeerManager.sharedInstance.serviceBrowser)
     }
     
     func returnToDashboard() {
@@ -98,20 +100,9 @@ extension LocalPeerVC: LocalPeerViewDelegate {
 }
 
 extension LocalPeerVC: PartyInviteDelegate {
+    
     func askIfAttending(fromInvitee invitee: BlipUser, completion: @escaping (Bool) -> Void) {
-        let alertController = UIAlertController(title: "Would you like to join the party?", message: "Invited by: \(invitee.name)", preferredStyle: .alert)
         
-        let noAction = UIAlertAction(title: "No", style: .cancel) { (action) in
-            completion(false)
-        }
-        alertController.addAction(noAction)
-        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
-            completion(true)
-            let partyVC = PartySequencerVC()
-            self.navigationController?.pushViewController(partyVC, animated: true)
-        }
-        alertController.addAction(yesAction)
-        self.present(alertController, animated: true, completion: nil)
     }
     
     func availablePeersChanged() {

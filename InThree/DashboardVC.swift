@@ -17,7 +17,6 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         checkForLogin()
-        observeAllUsers()
     }
     
     func goToPartyMode() {
@@ -53,6 +52,9 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
             if userExists {
                 self.view = self.dashboardView
                 self.dashboardView.delegate = self
+                MultipeerManager.sharedInstance.startAdvertising()
+                MultipeerManager.sharedInstance.partyDelegate = self
+                self.observeAllUsers()
             } else {
                 NotificationCenter.default.post(name: .closeDashboardVC, object: nil)
             }
@@ -70,4 +72,25 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
         }
     }
     
+}
+
+extension DashboardVC: PartyInviteDelegate {
+    func askIfAttending(fromInvitee invitee: BlipUser, completion: @escaping (Bool) -> Void) {
+        let alertController = UIAlertController(title: "Would you like to join the party?", message: "Invited by: \(invitee.name)", preferredStyle: .alert)
+        
+        let noAction = UIAlertAction(title: "No", style: .cancel) { (action) in
+            completion(false)
+        }
+        alertController.addAction(noAction)
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+            completion(true)
+            let partyVC = PartySequencerVC()
+            self.navigationController?.pushViewController(partyVC, animated: true)
+        }
+        alertController.addAction(yesAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func availablePeersChanged() {
+    }
 }

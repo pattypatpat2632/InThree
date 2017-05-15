@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "InThree/AppController.swift"
-            timestampString = "516547759.008028"
+            timestampString = "516556262.257185"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "loadInitialViewController()"
             landmarkType = "7">
          </BreakpointContent>
