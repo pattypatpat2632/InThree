@@ -36,6 +36,7 @@ final class MultipeerManager: NSObject {
     }()
     
     private override init() {
+        
         serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: nil, serviceType: service)
         serviceBrowser = MCNearbyServiceBrowser(peer: myPeerID, serviceType: service)
         
@@ -138,9 +139,10 @@ extension MultipeerManager: MCNearbyServiceAdvertiserDelegate {
         for user in FirebaseManager.sharedInstance.allBlipUsers {
             if user.uid == peerID.displayName{
                 invitee = user
-                print("INVITEE DETERMINED: \(invitee?.name)")
                 guard let invitee = invitee else {return}
+                print("INVITEE DETERMINED: \(invitee.name)")
                 partyDelegate?.askIfAttending(fromInvitee: invitee, completion: { (attending) in
+                    print("asked if attending")
                     if attending {
                         self.updateParty(fromData: context)
                         if let blipUser = self.blipUser {
@@ -158,12 +160,8 @@ extension MultipeerManager: MCNearbyServiceAdvertiserDelegate {
 //MARK: Browser Delegate
 extension MultipeerManager: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        for (index, peer) in allAvailablePeers.enumerated() {
-            if peer.uid == peerID.displayName {
-                allAvailablePeers.remove(at: index)
-            }
-        }
-        
+        print("lost peer: \(peerID.displayName)")
+        //remove(peerID: peerID.displayName)
     }
     func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
         print("Did not start browsing for peers")//TODO: INdicate to user that browser could not be established
@@ -178,10 +176,15 @@ extension MultipeerManager: MCNearbyServiceBrowserDelegate {
     }
     
     func invitePeers(_ blipUsers: [BlipUser]) {
+        print("Inviting peers: \(blipUsers.count)")
+        guard let blipUser = blipUser else {return}
+        self.party.add(member: blipUser)
         for blipUser in blipUsers {
             let mcPeerID = MCPeerID(displayName: blipUser.uid)
             if let context = party.asData() {
-                serviceBrowser.invitePeer(mcPeerID, to: session, withContext: context, timeout: 30)
+                print("invitation send to: \(blipUser.name), \(blipUser.uid)")
+                print("MCPEERID: \(mcPeerID.displayName)")
+                serviceBrowser.invitePeer(mcPeerID, to: session, withContext: context, timeout: 30.0)
             } else {
                 print("Error: could not create context from party as data")
             }
@@ -234,6 +237,7 @@ extension MultipeerManager: MCSessionDelegate {
     
     
 }
+
 
 protocol MultipeerManagerDelegate {
     

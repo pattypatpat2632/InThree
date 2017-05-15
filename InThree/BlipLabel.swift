@@ -22,15 +22,6 @@ class BlipLabel: UILabel, BlipBloopView {
     
     func commonInit() {
         
-        for family: String in UIFont.familyNames
-        {
-            print("\(family)")
-            for names: String in UIFont.fontNames(forFamilyName: family)
-            {
-                print("== \(names)")
-            }
-        }
-        
         self.textAlignment = .center
         self.backgroundColor = UIColor.clear
         self.textColor = colorScheme.model.foregroundColor

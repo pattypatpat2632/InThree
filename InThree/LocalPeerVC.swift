@@ -88,10 +88,7 @@ extension LocalPeerVC: LocalPeerViewDelegate {
     }
     
     private func inviteSelectedPeers() {
-        if let currentUser = currentUser {
-            MultipeerManager.sharedInstance.party.add(member: currentUser)
-            MultipeerManager.sharedInstance.invitePeers(self.selectedPeers)
-        }
+        MultipeerManager.sharedInstance.invitePeers(self.selectedPeers)
     }
     
     func returnToDashboard() {
