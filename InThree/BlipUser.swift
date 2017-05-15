@@ -18,10 +18,10 @@ struct BlipUser {
 
 extension BlipUser {
     
-    init(uid: String, dictionary: [String: Any]) {
+    init(uid: String, dictionary: [String: String]) {
         self.uid = uid
-        self.name = dictionary["name"] as? String ?? "No Name"
-        self.email = dictionary["email"] as? String ?? "No Email"
+        self.name = dictionary["name"] ?? "No Name"
+        self.email = dictionary["email"] ?? "No Email"
     }
     
     init?(jsonData: Data) {

@@ -13,9 +13,7 @@ class LocalPeerVC: UIViewController {
     let localPeerView = LocalPeerView()
     let currentUser = FirebaseManager.sharedInstance.currentBlipUser
     
-    var localPeers: [BlipUser] {
-        return MultipeerManager.sharedInstance.allAvailablePeers
-    }
+    var localPeers: [BlipUser] = MultipeerManager.sharedInstance.allAvailablePeers
     var selectedPeers = [BlipUser]()
     
     override func viewDidLoad() {
@@ -57,15 +55,9 @@ extension LocalPeerVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! BlipUserCell
         if !cell.chosen {
-            guard selectedPeers.count <= 3 else {
-                print("Selected peer count is already at maximum")
-                return
-            }
+            guard selectedPeers.count <= 3 else {return}
             selectedPeers.append(localPeers[indexPath.row])
             print("Number of selected peers: \(selectedPeers.count)")
-            for peer in selectedPeers {
-                print("Users listed in selected peers: \(peer.name)")
-            }
             cell.backgroundColor = localPeerView.colorScheme.model.highlightColor
             cell.chosen = true
         } else {
@@ -123,6 +115,19 @@ extension LocalPeerVC: PartyInviteDelegate {
         }
         alertController.addAction(yesAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func availablePeersChanged() {
+        self.localPeers = MultipeerManager.sharedInstance.allAvailablePeers
+        DispatchQueue.main.async {
+            self.localPeerView.peerTable.reloadData()
+            print("RELOADED DATA")
+            print("LOCAL PEERS:")
+            print(self.localPeers.count)
+            for peer in self.localPeers {
+                print(peer.name)
+            }
+        }
     }
 }
 

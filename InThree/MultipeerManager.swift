@@ -15,7 +15,12 @@ final class MultipeerManager: NSObject {
     let service = "blipbloop-2632"
     let blipUser = FirebaseManager.sharedInstance.currentBlipUser
     let myPeerID = MCPeerID(displayName: (FirebaseManager.sharedInstance.currentBlipUser?.uid)!)//TODO: fix this force unwrap
-    var allAvailablePeers = [BlipUser]()
+    var allAvailablePeers = [BlipUser]() {
+        didSet {
+            print("ALL AVAILABLE PEERS CHANGED")
+            partyDelegate?.availablePeersChanged()
+        }
+    }
     var party = Party()
     
     let serviceAdvertiser: MCNearbyServiceAdvertiser
@@ -102,7 +107,25 @@ final class MultipeerManager: NSObject {
             }
         }
     }
+    
+    fileprivate func remove(peerID: String) {
+        for (index, user) in allAvailablePeers.enumerated() {
+            if peerID == user.uid {
+                allAvailablePeers.remove(at: index)
+                break
+            }
+        }
+    }
+    
+    fileprivate func add(peerID: String) {
+        for user in FirebaseManager.sharedInstance.allBlipUsers {
+            if user.uid == peerID {
+                self.allAvailablePeers.append(user)
+            }
+        }
+    }
 }
+
 //MARK: Advertiser Delegate
 extension MultipeerManager: MCNearbyServiceAdvertiserDelegate {
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
@@ -110,11 +133,12 @@ extension MultipeerManager: MCNearbyServiceAdvertiserDelegate {
     }
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        
+        print("received invitation")
         var invitee: BlipUser?
-        for peer in self.allAvailablePeers {
-            if peer.uid == peerID.displayName {
-                invitee = peer
+        for user in FirebaseManager.sharedInstance.allBlipUsers {
+            if user.uid == peerID.displayName{
+                invitee = user
+                print("INVITEE DETERMINED: \(invitee?.name)")
                 guard let invitee = invitee else {return}
                 partyDelegate?.askIfAttending(fromInvitee: invitee, completion: { (attending) in
                     if attending {
@@ -134,8 +158,11 @@ extension MultipeerManager: MCNearbyServiceAdvertiserDelegate {
 //MARK: Browser Delegate
 extension MultipeerManager: MCNearbyServiceBrowserDelegate {
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        
-        //TODO: remove peer from peers array
+        for (index, peer) in allAvailablePeers.enumerated() {
+            if peer.uid == peerID.displayName {
+                allAvailablePeers.remove(at: index)
+            }
+        }
         
     }
     func browser(_ browser: MCNearbyServiceBrowser, didNotStartBrowsingForPeers error: Error) {
@@ -143,10 +170,9 @@ extension MultipeerManager: MCNearbyServiceBrowserDelegate {
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        for blipUser in FirebaseManager.sharedInstance.allBlipUsers {
-            if blipUser.uid == peerID.displayName {
-                self.allAvailablePeers.append(blipUser)
-                break
+        for user in FirebaseManager.sharedInstance.allBlipUsers {
+            if peerID.displayName == user.uid {
+                self.allAvailablePeers.append(user)
             }
         }
     }
@@ -186,20 +212,13 @@ extension MultipeerManager: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         switch state {
         case .notConnected:
+            remove(peerID: peerID.displayName)
             print("not connected")
         case .connecting:
-            print("connecting") //TODO: Enable notifications for newly connected users
+            print("connecting")
         case .connected:
+            add(peerID: peerID.displayName)
             print("connected")
-        }
-    }
-    
-    private func remove(blipUserWithUID uid: String) {
-        for (index, blipUser) in allAvailablePeers.enumerated() {
-            if uid == blipUser.uid {
-                allAvailablePeers.remove(at: index)
-                delegate?.connectionLost(forUID: uid, manager: self)
-            }
         }
     }
     
@@ -226,6 +245,7 @@ protocol MultipeerManagerDelegate {
 
 protocol PartyInviteDelegate {
     func askIfAttending(fromInvitee invitee: BlipUser, completion: @escaping (Bool) -> Void)
+    func availablePeersChanged()
 }
 
 

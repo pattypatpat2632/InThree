@@ -24,13 +24,12 @@ final class FirebaseManager {
     
     private init() {}
     
-    private func observeAllBlipUsers(completion: @escaping (FirebaseResponse) -> Void) {
+    func observeAllBlipUsers(completion: @escaping (FirebaseResponse) -> Void) {
         dataRef.child("users").observe(.value, with: { (snapshot) in
             self.allBlipUsers.removeAll()
-            if let userDictionary = snapshot.value as? [String: Any] {
-                for key in userDictionary.keys {
-                    let propertyDictionary = userDictionary[key] as? [String: Any] ?? [:]
-                    let newBlipUser = BlipUser(uid: key, dictionary: propertyDictionary)
+            if let userDictionary = snapshot.value as? [String: [String: String]] {
+                for user in userDictionary {
+                    let newBlipUser = BlipUser(uid: user.key, dictionary: user.value)
                     self.allBlipUsers.append(newBlipUser)
                 }
                 completion(.success("Updated all Blip users"))
@@ -103,7 +102,7 @@ extension FirebaseManager {
     
     fileprivate func observeCurrentBlipUser(uid: String, completion: @escaping () -> Void) {
         userRef.child("uid").observe(.value, with: { (snapshot) in
-            let userProperties = snapshot.value as? [String: Any] ?? [:]
+            let userProperties = snapshot.value as? [String: String] ?? [:]
             self.currentBlipUser = BlipUser(uid: uid, dictionary: userProperties)
             completion()
         })

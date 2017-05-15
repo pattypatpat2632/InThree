@@ -16,17 +16,8 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        FirebaseManager.sharedInstance.checkForCurrentUser { (userExists) in
-            if userExists {
-                self.view = self.dashboardView
-                self.dashboardView.delegate = self
-                
-                // self.disableNeighborhoodMode()
-            } else {
-                NotificationCenter.default.post(name: .closeDashboardVC, object: nil)
-            }
-        }
-        
+        checkForLogin()
+        observeAllUsers()
     }
     
     func goToPartyMode() {
@@ -55,7 +46,28 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
                 print(failString)
             }
         }
-        
+    }
+    
+    func checkForLogin() {
+        FirebaseManager.sharedInstance.checkForCurrentUser { (userExists) in
+            if userExists {
+                self.view = self.dashboardView
+                self.dashboardView.delegate = self
+            } else {
+                NotificationCenter.default.post(name: .closeDashboardVC, object: nil)
+            }
+        }
+    }
+    
+    func observeAllUsers() {
+        FirebaseManager.sharedInstance.observeAllBlipUsers { (response) in
+            switch response {
+            case .success(let successString):
+                print(successString)
+            case .failure(let failString):
+                print(failString)
+            }
+        }
     }
     
 }
