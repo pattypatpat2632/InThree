@@ -11,6 +11,8 @@ import CoreLocation
 
 class CitySequencerVC: SequencerVC {
     
+    var locationManager: CLLocationManager?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -90,5 +92,11 @@ extension SequencerVC {
         let randNum = Int(arc4random_uniform(scoredIndex))
         let randomScore = FirebaseManager.sharedInstance.allLocationScores[randNum]
         sequencerEngine.generateSequence(fromScore: randomScore, forUserNumber: 1)
+    }
+}
+
+extension SequencerVC: FirebaseManagerDelegate {
+    func updateLocationScores() {
+        grabLocalSequence()
     }
 }

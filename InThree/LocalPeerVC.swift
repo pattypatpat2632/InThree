@@ -14,7 +14,6 @@ class LocalPeerVC: UIViewController {
     let currentUser = FirebaseManager.sharedInstance.currentBlipUser
     
     var localPeers: [BlipUser] = MultipeerManager.sharedInstance.allAvailablePeers
-    var selectedPeers = [BlipUser]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,30 +51,6 @@ extension LocalPeerVC: UITableViewDelegate, UITableViewDataSource {
         cell.blipUser = localPeers[indexPath.row]
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at: indexPath) as! BlipUserCell
-        if !cell.chosen {
-            guard selectedPeers.count <= 3 else {return}
-            selectedPeers.append(localPeers[indexPath.row])
-            print("Number of selected peers: \(selectedPeers.count)")
-            cell.backgroundColor = localPeerView.colorScheme.model.highlightColor
-            cell.chosen = true
-        } else {
-            cell.backgroundColor = localPeerView.colorScheme.model.baseColor
-            let uidForDeselectedPeer = localPeers[indexPath.row].uid
-            for (index, blipUser) in selectedPeers.enumerated() {
-                if blipUser.uid == uidForDeselectedPeer {
-                    selectedPeers.remove(at: index)
-                    for peer in selectedPeers {
-                        print("Users listed in selected peers: \(peer.name)")
-                    }
-                }
-            }
-            cell.chosen = false
-        }
-    }
-    
 }
 
 //MARK: Local Peer View Delegate

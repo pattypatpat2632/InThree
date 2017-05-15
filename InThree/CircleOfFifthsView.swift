@@ -86,7 +86,7 @@ class CircleOfFifthsView: UIView {
     
     @IBAction func octaveUpTapped(_ sender: UIButton) {
 
-        guard octaveNumber < 7 else {return}
+        guard octaveNumber < 7 else {return}//TODO: indicate to user that max octave has been hit
         noteButtons = noteButtons.map({ (noteButton) -> NoteButton in
             noteButton.noteValue = noteButton.noteValue + 12
             return noteButton
@@ -94,7 +94,7 @@ class CircleOfFifthsView: UIView {
         octaveNumber += 1
     }
     @IBAction func octaveDownTapped(_ sender: UIButton) {
-        guard octaveNumber > 1 else {return}
+        guard octaveNumber > 3 else {return}//TODO: indicate to user that min octave has been hit
         noteButtons = noteButtons.map({ (noteButton) -> NoteButton in
             noteButton.noteValue = noteButton.noteValue - 12
             return noteButton

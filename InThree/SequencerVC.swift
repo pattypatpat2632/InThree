@@ -18,7 +18,7 @@ class SequencerVC: UIViewController, NoteButtonDelegate {
     var sequencerEngine = SequencerEngine()
     var sequencerView = SequencerView()
     var score = Score(rhythm: .four)
-    var locationManager: CLLocationManager?
+    
     var lightTrigger = LightTrigger()
     var beatToLight: Int = 0
     var currentUser = FirebaseManager.sharedInstance.currentBlipUser
@@ -33,7 +33,6 @@ class SequencerVC: UIViewController, NoteButtonDelegate {
         lightTrigger.delegate = self
         NotificationCenter.default.addObserver(self, selector: #selector(startLightTrigger), name: .playbackStarted, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(stopLightTrigger), name: .playbackStopped, object: nil)
-        
         
         sequencerEngine.setUpSequencer()
         
@@ -108,13 +107,6 @@ extension SequencerVC: SequencerViewDelegate {
     func returnToDashboard() {
         sequencerEngine.stopAll() //TODO: add audio fadeout
         navigationController?.popViewController(animated: true)
-        
-    }
-}
-
-extension SequencerVC: FirebaseManagerDelegate {
-    func updateLocationScores() {
-        grabLocalSequence()
     }
 }
 

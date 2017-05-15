@@ -76,7 +76,7 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
 
 extension DashboardVC: PartyInviteDelegate {
     func askIfAttending(fromInvitee invitee: BlipUser, completion: @escaping (Bool) -> Void) {
-        let alertController = UIAlertController(title: "Would you like to join the party?", message: "Invited by: \(invitee.name)", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "\(invitee.name) has started a party!", message: "Would you like to join?", preferredStyle: .alert)
         
         let noAction = UIAlertAction(title: "No", style: .cancel) { (action) in
             completion(false)

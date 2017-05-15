@@ -150,15 +150,12 @@ extension MultipeerManager: MCNearbyServiceAdvertiserDelegate {
     }
     
         func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-            print("received invitation")
             var invitee: BlipUser?
             for user in FirebaseManager.sharedInstance.allBlipUsers {
                 if user.uid == peerID.displayName{
                     invitee = user
                     guard let invitee = invitee else {return}
-                    print("INVITEE DETERMINED: \(invitee.name)")
                     partyDelegate?.askIfAttending(fromInvitee: invitee, completion: { (attending) in
-                        print("asked if attending")
                         if attending {
                             self.updateParty(fromData: context)
                             if let blipUser = self.blipUser {
