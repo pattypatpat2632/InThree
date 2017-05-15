@@ -149,33 +149,28 @@ extension MultipeerManager: MCNearbyServiceAdvertiserDelegate {
         print("Boo")// TODO: indicate to user that there is no available connection to broadcast advertiser
     }
     
-    //    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-    //        print("received invitation")
-    //        var invitee: BlipUser?
-    //        for user in FirebaseManager.sharedInstance.allBlipUsers {
-    //            if user.uid == peerID.displayName{
-    //                invitee = user
-    //                guard let invitee = invitee else {return}
-    //                print("INVITEE DETERMINED: \(invitee.name)")
-    //                partyDelegate?.askIfAttending(fromInvitee: invitee, completion: { (attending) in
-    //                    print("asked if attending")
-    //                    if attending {
-    //                        self.updateParty(fromData: context)
-    //                        if let blipUser = self.blipUser {
-    //                            self.party.add(member: blipUser)
-    //                            self.send(party: self.party)
-    //                        }
-    //                        invitationHandler(true, self.session)//If a user accepts an invitation, add it to the session.connectedPeers
-    //                    }
-    //                })
-    //            }
-    //        }
-    //    }
-    
-    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        print("received invite")
-        invitationHandler(true, session)
-    }
+        func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
+            print("received invitation")
+            var invitee: BlipUser?
+            for user in FirebaseManager.sharedInstance.allBlipUsers {
+                if user.uid == peerID.displayName{
+                    invitee = user
+                    guard let invitee = invitee else {return}
+                    print("INVITEE DETERMINED: \(invitee.name)")
+                    partyDelegate?.askIfAttending(fromInvitee: invitee, completion: { (attending) in
+                        print("asked if attending")
+                        if attending {
+                            self.updateParty(fromData: context)
+                            if let blipUser = self.blipUser {
+                                self.party.add(member: blipUser)
+                                self.send(party: self.party)
+                            }
+                            invitationHandler(true, self.session)//If a user accepts an invitation, add it to the session.connectedPeers
+                        }
+                    })
+                }
+            }
+        }
 }
 
 //MARK: Browser Delegate
@@ -198,22 +193,6 @@ extension MultipeerManager: MCNearbyServiceBrowserDelegate {
             browser.invitePeer(peerID, to: self.session, withContext: partyData, timeout: 10.0)
         }
     }
-    
-//    func invitePeers(_ blipUsers: [BlipUser], browser: MCNearbyServiceBrowser) {
-//            print("Inviting peers: \(blipUsers.count)")
-//            guard let blipUser = blipUser else {return}
-//            self.party.add(member: blipUser)
-//            for blipUser in blipUsers {
-//                let mcPeerID = MCPeerID(displayName: blipUser.uid)
-//                if let context = party.asData() {
-//                    print("invitation send to: \(blipUser.name), \(blipUser.uid)")
-//                    print("MCPEERID: \(mcPeerID.displayName)")
-//                    browser.invitePeer(mcPeerID, to: self.session, withContext: context, timeout: 10.0)
-//                } else {
-//                    print("Error: could not create context from party as data")
-//                }
-//            }
-//        }
 }
 
 extension MultipeerManager: MCSessionDelegate {

@@ -28,7 +28,6 @@ class LocalPeerVC: UIViewController {
         self.view = localPeerView
         
         MultipeerManager.sharedInstance.startBrowsing()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,7 +74,6 @@ extension LocalPeerVC: UITableViewDelegate, UITableViewDataSource {
             }
             cell.chosen = false
         }
-        
     }
     
 }
@@ -84,13 +82,8 @@ extension LocalPeerVC: UITableViewDelegate, UITableViewDataSource {
 extension LocalPeerVC: LocalPeerViewDelegate {
     
     func goToPartySquencer() {
-        //let partySequencerVC = PartySequencerVC()
-        inviteSelectedPeers()
-        //navigationController?.pushViewController(partySequencerVC, animated: true)
-    }
-    
-    private func inviteSelectedPeers() {
-        //MultipeerManager.sharedInstance.invitePeers(selectedPeers, browser: MultipeerManager.sharedInstance.serviceBrowser)
+        let partySequencerVC = PartySequencerVC()
+        navigationController?.pushViewController(partySequencerVC, animated: true)
     }
     
     func returnToDashboard() {
