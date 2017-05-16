@@ -13,146 +13,58 @@ final class MultipeerManager: NSObject {
     
     static let sharedInstance = MultipeerManager()
     let service = "blipbloop-2632"
-    var blipUser = FirebaseManager.sharedInstance.currentBlipUser
-    let myPeerID = MCPeerID(displayName: (FirebaseManager.sharedInstance.currentBlipUser?.uid)!)//TODO: fix this force unwrap
-    var allAvailablePeers = [BlipUser]() {
-        didSet {
-            print("ALL AVAILABLE PEERS CHANGED")
-            partyDelegate?.availablePeersChanged()
-        }
-    }
-    var party = Party()
+    var currentUser = FirebaseManager.sharedInstance.currentBlipUser
+    let myPeerID = MCPeerID(displayName: (FirebaseManager.sharedInstance.currentBlipUser?.uid)!)
+    var availablePeers = [BlipUser]()
     
-    let serviceAdvertiser: MCNearbyServiceAdvertiser
-    let serviceBrowser: MCNearbyServiceBrowser
+    var serviceAdvertiser: MCNearbyServiceAdvertiser?
+    var serviceBrowser: MCNearbyServiceBrowser?
     
     var delegate: MultipeerManagerDelegate?
-    var partyDelegate: PartyInviteDelegate?
+    var multipeerDelegate: MultipeerDelegate?
     
-    lazy var session : MCSession = {
+    lazy var session: MCSession = {
         
         let session = MCSession(peer: self.myPeerID, securityIdentity: nil, encryptionPreference: .optional)
         session.delegate = self
         return session
+        
     }()
     
     private override init() {
-        
-        serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: nil, serviceType: service)
-        serviceBrowser = MCNearbyServiceBrowser(peer: myPeerID, serviceType: service)
-        
         super.init()
-        serviceAdvertiser.delegate = self
-        serviceAdvertiser.startAdvertisingPeer()
-        serviceBrowser.delegate = self
-        serviceBrowser.startBrowsingForPeers()
     }
     
     func startBrowsing() {
-        print("Started browsing")
-        serviceAdvertiser.delegate = nil
-        serviceAdvertiser.stopAdvertisingPeer()
-        serviceBrowser.delegate = self
-        serviceBrowser.startBrowsingForPeers()
-        startNewParty()
+        serviceBrowser = MCNearbyServiceBrowser(peer: myPeerID, serviceType: service)
+        serviceBrowser?.delegate = self
+        serviceBrowser?.startBrowsingForPeers()
     }
     
     func startAdvertising() {
-        print("started advertising")
-        serviceAdvertiser.delegate = self
-        serviceAdvertiser.startAdvertisingPeer()
-        serviceBrowser.delegate = nil
-        serviceBrowser.stopBrowsingForPeers()
+        serviceAdvertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: nil, serviceType: service)
+        serviceAdvertiser?.delegate = self
+        serviceAdvertiser?.startAdvertisingPeer()
     }
     
     deinit {
-        serviceAdvertiser.stopAdvertisingPeer()
-        serviceBrowser.stopBrowsingForPeers()
+        serviceAdvertiser?.stopAdvertisingPeer()
+        serviceBrowser?.stopBrowsingForPeers()
     }
     
-    func update(_ party: Party) {
-        self.party = party
-        send(score: nil, party: party)
-    }
-    
-    func send(score: Score? = nil, party: Party? = nil) { //Send a score to all other users
-        if let score = score {
-            send(score: score)
-        }
-        if let party = party {
-            self.party = party
-            send(party: party)
-        }
-    }
-    
-    private func send(party: Party) {//send party to all other peers
-        let dictionary = [
-            "party": party.asDictionary()
-        ]
-        do {
-            let partyData = try JSONSerialization.data(withJSONObject: dictionary, options: [])
-            if session.connectedPeers.count > 0 {
-                do {
-                    try self.session.send(partyData, toPeers: session.connectedPeers, with: .reliable)
-                    print("Sent score to connected peers")
-                } catch{
-                    print("Errah")
+    func updateAvailablePeers() {
+        availablePeers.removeAll()
+        for peer in session.connectedPeers {
+            for user in FirebaseManager.sharedInstance.allBlipUsers {
+                if user.uid == peer.displayName {
+                    availablePeers.append(user)
+                    break
                 }
             }
-        } catch {
-            print("Could not JSONSerialize the score dictionary")
         }
+        NotificationCenter.default.post(name: .availablePeersUpdated, object: nil)
     }
     
-    private func send(score: Score) {
-        let dictionary = [
-            "score": score.asDictionary()
-        ]
-        do {
-            let scoreData = try JSONSerialization.data(withJSONObject: dictionary, options: [])
-            if session.connectedPeers.count > 0 {
-                do {
-                    try self.session.send(scoreData, toPeers: session.connectedPeers, with: .reliable)
-                    print("Sent score to connected peers")
-                } catch{
-                    print("Errah")
-                }
-            }
-        } catch {
-            print("Could not JSONSerialize the score dictionary")
-        }
-    }
-    
-    fileprivate func updateParty(fromData data: Data?) {
-        if let data = data {
-            if let newParty = Party(data: data) {
-                self.party = newParty
-            }
-        }
-    }
-    
-    fileprivate func remove(peerID: String) {
-        for (index, user) in allAvailablePeers.enumerated() {
-            if peerID == user.uid {
-                allAvailablePeers.remove(at: index)
-                break
-            }
-        }
-    }
-    
-    fileprivate func add(peerID: String) {
-        for user in FirebaseManager.sharedInstance.allBlipUsers {
-            if user.uid == peerID {
-                self.allAvailablePeers.append(user)
-            }
-        }
-    }
-    
-    fileprivate func startNewParty() {
-        if let blipUser = self.blipUser {
-            self.party = Party(members: [blipUser], userTurnID: blipUser.uid, turnCount: 0)
-        }
-    }
 }
 
 //MARK: Advertiser Delegate
@@ -162,25 +74,15 @@ extension MultipeerManager: MCNearbyServiceAdvertiserDelegate {
     }
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        var invitee: BlipUser?
         for user in FirebaseManager.sharedInstance.allBlipUsers {
-            if user.uid == peerID.displayName{
-                invitee = user
-                guard let invitee = invitee else {return}
-                if var blipUser = self.blipUser {
-                    if !blipUser.isInParty {
-                        partyDelegate?.askIfAttending(fromInvitee: invitee, completion: { (attending) in
-                            if attending {
-                                self.blipUser?.isInParty = true
-                                self.updateParty(fromData: context)
-                                self.party.add(member: blipUser)
-                                self.delegate?.partyChanged()
-                                self.send(score: nil, party: self.party)
-                                invitationHandler(true, self.session)//If a user accepts an invitation, add it to the session.connectedPeers
-                            }
-                        })
+            if user.uid == peerID.displayName {
+                multipeerDelegate?.askPermission(fromInvitee: user, completion: { (permission) in
+                    if permission {
+                        invitationHandler(true, self.session)
+                        
                     }
-                }
+                })
+                break
             }
         }
     }
@@ -196,41 +98,19 @@ extension MultipeerManager: MCNearbyServiceBrowserDelegate {
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        for user in FirebaseManager.sharedInstance.allBlipUsers {
-            if peerID.displayName == user.uid {
-                self.allAvailablePeers.append(user)
-            }
-        }
-        if let partyData = party.asData() {
-            browser.invitePeer(peerID, to: self.session, withContext: partyData, timeout: 10.0)
-        }
+
+        browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 10.0) //If
+        
     }
 }
 
 extension MultipeerManager: MCSessionDelegate {
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        do {
-            let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] ?? [:]
-            if let scoreDictionary = json["score"] as? [String: Any] {
-                if let newScore = Score(dictionary: scoreDictionary) {
-                    delegate?.musicChanged(forUID: peerID.displayName, score: newScore, manager: self)
-                }
-            }
-            if let partyDictionary = json["party"] as? [String: Any] {
-                if let newParty = Party(dictionary: partyDictionary) {
-                    self.party = newParty
-                    delegate?.partyChanged()
-                }
-            }
-        } catch {
-            print("Could not create JSON from received data")
-        }
     }
     
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         switch state {
         case .notConnected:
-            //remove(peerID: peerID.displayName)
             print("not connected")
         case .connecting:
             print("connecting")
@@ -238,10 +118,6 @@ extension MultipeerManager: MCSessionDelegate {
             //add(peerID: peerID.displayName)
             print("connected")
         }
-    }
-    
-    func session(_ session: MCSession, didReceiveCertificate certificate: [Any]?, fromPeer peerID: MCPeerID, certificateHandler: @escaping (Bool) -> Void) {
-        certificateHandler(true)
     }
     
     // Unused required delegate functions
@@ -257,18 +133,8 @@ extension MultipeerManager: MCSessionDelegate {
     
 }
 
-
-protocol MultipeerManagerDelegate {
-    
-    func connectionLost(forUID uid: String, manager: MultipeerManager)
-    func musicChanged(forUID uid: String, score: Score, manager: MultipeerManager)
-    func partyChanged()
-    
-}
-
-protocol PartyInviteDelegate {
-    func askIfAttending(fromInvitee invitee: BlipUser, completion: @escaping (Bool) -> Void)
-    func availablePeersChanged()
+protocol MultipeerDelegate {
+    func askPermission(fromInvitee invitee: BlipUser, completion: @escaping (Bool) -> Void)
 }
 
 

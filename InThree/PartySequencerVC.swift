@@ -13,18 +13,6 @@ class PartySequencerVC: SequencerVC {
     
     let allBlipUsers = FirebaseManager.sharedInstance.allBlipUsers
     
-    var party = MultipeerManager.sharedInstance.party
-    var userTurn: Bool = false {
-        didSet {
-            print("USER TURN; \(userTurn)")
-            if userTurn == true {
-              enableTurn()
-            } else {
-                disableTurn()
-            }
-        }
-    }
-    
     var connectedPeers: [BlipUser] {
         var returnPeers = [BlipUser]()
         let sessionPeers = MultipeerManager.sharedInstance.session.connectedPeers
@@ -42,30 +30,15 @@ class PartySequencerVC: SequencerVC {
         super.viewDidLoad()
         MultipeerManager.sharedInstance.delegate = self
         self.sequencerEngine.mode = .party
-        MultipeerManager.sharedInstance.startBrowsing()
     }
     
     override func respondTo(noteNumber: MIDINoteNumber, scoreIndex: ScoreIndex) {
         super.respondTo(noteNumber: noteNumber, scoreIndex: scoreIndex)
-        userTurn = false
-        party.nextTurn()
-        MultipeerManager.sharedInstance.update(party)
     }
     
-    func enableTurn() {
-        print("Enabled turn")
-        for subview in sequencerView.subviews {
-            subview.alpha = 1.0
-            subview.isUserInteractionEnabled = true
-        }
-    }
-    
-    func disableTurn() {
-        print("Disabled turn")
-        for subview in sequencerView.subviews {
-            subview.alpha = 0.5
-            subview.isUserInteractionEnabled = false
-        }
+    override func returnToDashboard() {
+        super.returnToDashboard()
+        MultipeerManager.sharedInstance.startAdvertising()
     }
 
 }
@@ -77,16 +50,6 @@ extension PartySequencerVC: MultipeerManagerDelegate {
             if blipUser.uid == uid {
                 sequencerEngine.generateSequence(fromScore: score, forUserNumber: index + 1)
             }
-        }
-    }
-    
-    func partyChanged() {
-        self.party = MultipeerManager.sharedInstance.party
-        guard let uid = FirebaseManager.sharedInstance.currentBlipUser?.uid else {return}
-        if party.userTurnID == uid {
-            userTurn = true
-        } else {
-            userTurn = false
         }
     }
     

@@ -10,7 +10,9 @@ import Foundation
 
 struct Party {
     
+    var id: String? = nil
     var members = [BlipUser]()
+    var creator: BlipUser
     var userTurnID: String = ""
     var turnCount: Int = 0
     
@@ -65,8 +67,10 @@ extension Party {
     init?(dictionary: [String: Any]) {
         guard let userTurnID = dictionary["userTurnID"] as? String else {return nil}
         guard let turnCount = dictionary["turnCount"] as? Int else {return nil}
+        guard let creator = dictionary["creator"] as? BlipUser else {return nil}
         self.userTurnID = userTurnID
         self.turnCount = turnCount
+        self.creator = creator
         
         guard let membersArray = dictionary["members"] as? [[String: [String: String]]] else {return nil}
         self.members.removeAll()

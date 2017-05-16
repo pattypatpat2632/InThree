@@ -13,7 +13,7 @@ class LocalPeerVC: UIViewController {
     let localPeerView = LocalPeerView()
     let currentUser = FirebaseManager.sharedInstance.currentBlipUser
     
-    var localPeers: [BlipUser] = MultipeerManager.sharedInstance.allAvailablePeers
+    var localPeers: [BlipUser] = MultipeerManager.sharedInstance.availablePeers
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,15 +22,21 @@ class LocalPeerVC: UIViewController {
         localPeerView.peerTable.register(BlipUserCell.self, forCellReuseIdentifier: BlipUserCell.identifier)
         
         localPeerView.delegate = self
-        MultipeerManager.sharedInstance.partyDelegate = self
-        
         self.view = localPeerView
         
         MultipeerManager.sharedInstance.startBrowsing()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLocalPeers), name: .availablePeersUpdated, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        DispatchQueue.main.async {
+            self.localPeerView.peerTable.reloadData()
+        }
+    }
+    
+    func updateLocalPeers() {
+        self.localPeers = MultipeerManager.sharedInstance.availablePeers
         localPeerView.peerTable.reloadData()
     }
     
@@ -67,23 +73,4 @@ extension LocalPeerVC: LocalPeerViewDelegate {
     
 }
 
-extension LocalPeerVC: PartyInviteDelegate {
-    
-    func askIfAttending(fromInvitee invitee: BlipUser, completion: @escaping (Bool) -> Void) {
-        
-    }
-    
-    func availablePeersChanged() {
-        self.localPeers = MultipeerManager.sharedInstance.allAvailablePeers
-        DispatchQueue.main.async {
-            self.localPeerView.peerTable.reloadData()
-            print("RELOADED DATA")
-            print("LOCAL PEERS:")
-            print(self.localPeers.count)
-            for peer in self.localPeers {
-                print(peer.name)
-            }
-        }
-    }
-}
 
