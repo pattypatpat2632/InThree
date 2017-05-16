@@ -13,7 +13,7 @@ struct BlipUser {
     let name: String
     let uid: String
     let email: String
-    
+    var isInParty: Bool = false
 }
 
 extension BlipUser {

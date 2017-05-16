@@ -13,30 +13,14 @@ class PartySequencerVC: SequencerVC {
     
     let allBlipUsers = FirebaseManager.sharedInstance.allBlipUsers
     
-    var party = MultipeerManager.sharedInstance.party {
-        didSet {
-            if party.userTurnID == currentUser?.uid {
-                userTurn = true
-            } else {
-                userTurn = false
-            }
-        }
-    }
+    var party = MultipeerManager.sharedInstance.party
     var userTurn: Bool = false {
-        willSet {
-            print("USER TURN; \(newValue)")
-            if newValue == true {
-              self.sequencerView.subviews.map({ (subView) -> UIView in
-                subView.alpha = 1.0
-                subView.isUserInteractionEnabled = true
-                return subView
-              })
+        didSet {
+            print("USER TURN; \(userTurn)")
+            if userTurn == true {
+              enableTurn()
             } else {
-                self.sequencerView.subviews.map({ (subView) -> UIView in
-                    subView.alpha = 0.5
-                    subView.isUserInteractionEnabled = false
-                    return subView
-                })
+                disableTurn()
             }
         }
     }
@@ -58,13 +42,30 @@ class PartySequencerVC: SequencerVC {
         super.viewDidLoad()
         MultipeerManager.sharedInstance.delegate = self
         self.sequencerEngine.mode = .party
+        MultipeerManager.sharedInstance.startBrowsing()
     }
     
     override func respondTo(noteNumber: MIDINoteNumber, scoreIndex: ScoreIndex) {
         super.respondTo(noteNumber: noteNumber, scoreIndex: scoreIndex)
         userTurn = false
         party.nextTurn()
-        MultipeerManager.sharedInstance.send(score: nil, party: party)
+        MultipeerManager.sharedInstance.update(party)
+    }
+    
+    func enableTurn() {
+        print("Enabled turn")
+        for subview in sequencerView.subviews {
+            subview.alpha = 1.0
+            subview.isUserInteractionEnabled = true
+        }
+    }
+    
+    func disableTurn() {
+        print("Disabled turn")
+        for subview in sequencerView.subviews {
+            subview.alpha = 0.5
+            subview.isUserInteractionEnabled = false
+        }
     }
 
 }
@@ -81,6 +82,12 @@ extension PartySequencerVC: MultipeerManagerDelegate {
     
     func partyChanged() {
         self.party = MultipeerManager.sharedInstance.party
+        guard let uid = FirebaseManager.sharedInstance.currentBlipUser?.uid else {return}
+        if party.userTurnID == uid {
+            userTurn = true
+        } else {
+            userTurn = false
+        }
     }
     
     func connectionLost(forUID uid: String, manager: MultipeerManager) {

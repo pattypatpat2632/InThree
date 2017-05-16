@@ -13,7 +13,7 @@ final class MultipeerManager: NSObject {
     
     static let sharedInstance = MultipeerManager()
     let service = "blipbloop-2632"
-    let blipUser = FirebaseManager.sharedInstance.currentBlipUser
+    var blipUser = FirebaseManager.sharedInstance.currentBlipUser
     let myPeerID = MCPeerID(displayName: (FirebaseManager.sharedInstance.currentBlipUser?.uid)!)//TODO: fix this force unwrap
     var allAvailablePeers = [BlipUser]() {
         didSet {
@@ -68,6 +68,11 @@ final class MultipeerManager: NSObject {
     deinit {
         serviceAdvertiser.stopAdvertisingPeer()
         serviceBrowser.stopBrowsingForPeers()
+    }
+    
+    func update(_ party: Party) {
+        self.party = party
+        send(score: nil, party: party)
     }
     
     func send(score: Score? = nil, party: Party? = nil) { //Send a score to all other users
@@ -162,16 +167,20 @@ extension MultipeerManager: MCNearbyServiceAdvertiserDelegate {
             if user.uid == peerID.displayName{
                 invitee = user
                 guard let invitee = invitee else {return}
-                partyDelegate?.askIfAttending(fromInvitee: invitee, completion: { (attending) in
-                    if attending {
-                        self.updateParty(fromData: context)
-                        if let blipUser = self.blipUser {
-                            self.party.add(member: blipUser)
-                            self.send(score: nil, party: self.party)
-                        }
-                        invitationHandler(true, self.session)//If a user accepts an invitation, add it to the session.connectedPeers
+                if var blipUser = self.blipUser {
+                    if !blipUser.isInParty {
+                        partyDelegate?.askIfAttending(fromInvitee: invitee, completion: { (attending) in
+                            if attending {
+                                self.blipUser?.isInParty = true
+                                self.updateParty(fromData: context)
+                                self.party.add(member: blipUser)
+                                self.delegate?.partyChanged()
+                                self.send(score: nil, party: self.party)
+                                invitationHandler(true, self.session)//If a user accepts an invitation, add it to the session.connectedPeers
+                            }
+                        })
                     }
-                })
+                }
             }
         }
     }

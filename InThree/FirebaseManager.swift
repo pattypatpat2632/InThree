@@ -43,7 +43,7 @@ final class FirebaseManager {
         print("create user called")
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (firUser, error) in
             guard let firUser = firUser else {completion(.failure("Could not create new user")); return} //TODO: handle possibility off different error types eg. invalid email or password
-            let newBlipUser = BlipUser(name: name, uid: firUser.uid, email: email)
+            let newBlipUser = BlipUser(name: name, uid: firUser.uid, email: email, isInParty: false)
             self.storeNew(blipUser: newBlipUser) {
                 completion(.success("New user created: \(newBlipUser.name)"))
                 self.observeCurrentBlipUser(uid: newBlipUser.uid, completion: {

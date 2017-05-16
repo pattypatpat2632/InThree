@@ -20,8 +20,8 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
     }
     
     func goToPartyMode() {
-        let localPeerVC = LocalPeerVC()
-        self.navigationController?.pushViewController(localPeerVC, animated: true)
+        let partySequencerVC = PartySequencerVC()
+        self.navigationController?.pushViewController(partySequencerVC, animated: true)
     }
     
     func goToSoloMode() {
