@@ -26,15 +26,17 @@ class PartySequencerVC: SequencerVC {
         willSet {
             print("USER TURN; \(newValue)")
             if newValue == true {
-                self.sequencerView.subviews.map{
-                    $0.isUserInteractionEnabled = true
-                    $0.alpha = 1.0
-                }
+              self.sequencerView.subviews.map({ (subView) -> UIView in
+                subView.alpha = 1.0
+                subView.isUserInteractionEnabled = true
+                return subView
+              })
             } else {
-                self.sequencerView.subviews.map{
-                    $0.isUserInteractionEnabled = false
-                    $0.alpha = 0.5
-                }
+                self.sequencerView.subviews.map({ (subView) -> UIView in
+                    subView.alpha = 0.5
+                    subView.isUserInteractionEnabled = false
+                    return subView
+                })
             }
         }
     }
@@ -78,11 +80,7 @@ extension PartySequencerVC: MultipeerManagerDelegate {
     }
     
     func partyChanged() {
-        for member in party.members {
-            if member.uid == currentUser?.uid {
-                userTurn = true
-            }
-        }
+        self.party = MultipeerManager.sharedInstance.party
     }
     
     func connectionLost(forUID uid: String, manager: MultipeerManager) {

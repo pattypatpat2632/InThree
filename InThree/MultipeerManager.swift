@@ -54,6 +54,7 @@ final class MultipeerManager: NSObject {
         serviceAdvertiser.stopAdvertisingPeer()
         serviceBrowser.delegate = self
         serviceBrowser.startBrowsingForPeers()
+        startNewParty()
     }
     
     func startAdvertising() {
@@ -141,6 +142,12 @@ final class MultipeerManager: NSObject {
             }
         }
     }
+    
+    fileprivate func startNewParty() {
+        if let blipUser = self.blipUser {
+            self.party = Party(members: [blipUser], userTurnID: blipUser.uid, turnCount: 0)
+        }
+    }
 }
 
 //MARK: Advertiser Delegate
@@ -149,25 +156,25 @@ extension MultipeerManager: MCNearbyServiceAdvertiserDelegate {
         print("Boo")// TODO: indicate to user that there is no available connection to broadcast advertiser
     }
     
-        func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-            var invitee: BlipUser?
-            for user in FirebaseManager.sharedInstance.allBlipUsers {
-                if user.uid == peerID.displayName{
-                    invitee = user
-                    guard let invitee = invitee else {return}
-                    partyDelegate?.askIfAttending(fromInvitee: invitee, completion: { (attending) in
-                        if attending {
-                            self.updateParty(fromData: context)
-                            if let blipUser = self.blipUser {
-                                self.party.add(member: blipUser)
-                                self.send(party: self.party)
-                            }
-                            invitationHandler(true, self.session)//If a user accepts an invitation, add it to the session.connectedPeers
+    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
+        var invitee: BlipUser?
+        for user in FirebaseManager.sharedInstance.allBlipUsers {
+            if user.uid == peerID.displayName{
+                invitee = user
+                guard let invitee = invitee else {return}
+                partyDelegate?.askIfAttending(fromInvitee: invitee, completion: { (attending) in
+                    if attending {
+                        self.updateParty(fromData: context)
+                        if let blipUser = self.blipUser {
+                            self.party.add(member: blipUser)
+                            self.send(score: nil, party: self.party)
                         }
-                    })
-                }
+                        invitationHandler(true, self.session)//If a user accepts an invitation, add it to the session.connectedPeers
+                    }
+                })
             }
         }
+    }
 }
 
 //MARK: Browser Delegate
@@ -185,7 +192,6 @@ extension MultipeerManager: MCNearbyServiceBrowserDelegate {
                 self.allAvailablePeers.append(user)
             }
         }
-        self.party.add(member: blipUser!) //TODO: stop force unwrap
         if let partyData = party.asData() {
             browser.invitePeer(peerID, to: self.session, withContext: partyData, timeout: 10.0)
         }
