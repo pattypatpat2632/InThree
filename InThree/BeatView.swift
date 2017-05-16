@@ -44,7 +44,7 @@ class BeatView: UIView, BlipBloopView {
     
     func commonInit() {
         
-        self.backgroundColor = colorScheme.model.backgroundColor
+        self.backgroundColor = colorScheme.model.baseColor
         self.layer.cornerRadius = 5
         
         allPads = [pad0, pad1, pad2, pad3, pad4]
@@ -63,7 +63,7 @@ class BeatView: UIView, BlipBloopView {
             padView.padIndex = ScoreIndex(beatIndex: self.beatNumber, noteIndex: index)
         }
         pad4.isHidden = true
-        stackView.backgroundColor = colorScheme.model.backgroundColor
+        stackView.backgroundColor = colorScheme.model.baseColor
         
         let addPadGesture = UISwipeGestureRecognizer(target: self, action: #selector(addPad))
         addPadGesture.direction = .left

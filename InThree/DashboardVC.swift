@@ -20,9 +20,9 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
     }
     
     func goToPartyMode() {
-        let localPeerVC = LocalPeerVC()
+        let partyVC = LocalPeerVC()
         MultipeerManager.sharedInstance.startBrowsing()
-        self.navigationController?.pushViewController(localPeerVC, animated: true)
+        self.navigationController?.pushViewController(partyVC, animated: true)
     }
     
     func goToSoloMode() {
@@ -77,19 +77,17 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
 
 extension DashboardVC: MultipeerDelegate {
     func askPermission(fromInvitee invitee: BlipUser, completion: @escaping (Bool) -> Void) {
-        let alertController = UIAlertController(title: "\(invitee.name) has started a party!", message: "Allow invitations from \(invitee.name)?", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "\(invitee.name) is starting a party", message: "Would you like to connect to \(invitee.name) so that you can be invited?", preferredStyle: .alert)
         
         let noAction = UIAlertAction(title: "No", style: .cancel) { (action) in
             completion(false)
         }
         alertController.addAction(noAction)
+        
         let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
             completion(true)
         }
         alertController.addAction(yesAction)
         self.present(alertController, animated: true, completion: nil)
-    }
-    
-    func availablePeersChanged() {
     }
 }

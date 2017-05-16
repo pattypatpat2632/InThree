@@ -15,12 +15,17 @@ final class MultipeerManager: NSObject {
     let service = "blipbloop-2632"
     var currentUser = FirebaseManager.sharedInstance.currentBlipUser
     let myPeerID = MCPeerID(displayName: (FirebaseManager.sharedInstance.currentBlipUser?.uid)!)
-    var availablePeers = [BlipUser]()
+    var availablePeers = [BlipUser]() {
+        didSet{
+            for peer in availablePeers {
+                print(peer.name)
+            }
+        }
+    }
     
     var serviceAdvertiser: MCNearbyServiceAdvertiser?
     var serviceBrowser: MCNearbyServiceBrowser?
-    
-    var delegate: MultipeerManagerDelegate?
+
     var multipeerDelegate: MultipeerDelegate?
     
     lazy var session: MCSession = {
@@ -53,6 +58,7 @@ final class MultipeerManager: NSObject {
     }
     
     func updateAvailablePeers() {
+        print("UPDATING AVAILABLE PEERS")
         availablePeers.removeAll()
         for peer in session.connectedPeers {
             for user in FirebaseManager.sharedInstance.allBlipUsers {
@@ -62,6 +68,7 @@ final class MultipeerManager: NSObject {
                 }
             }
         }
+        print("post notification")
         NotificationCenter.default.post(name: .availablePeersUpdated, object: nil)
     }
     
@@ -79,7 +86,6 @@ extension MultipeerManager: MCNearbyServiceAdvertiserDelegate {
                 multipeerDelegate?.askPermission(fromInvitee: user, completion: { (permission) in
                     if permission {
                         invitationHandler(true, self.session)
-                        
                     }
                 })
                 break
@@ -117,6 +123,7 @@ extension MultipeerManager: MCSessionDelegate {
         case .connected:
             //add(peerID: peerID.displayName)
             print("connected")
+            self.updateAvailablePeers()
         }
     }
     

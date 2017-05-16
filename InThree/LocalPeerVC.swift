@@ -14,6 +14,13 @@ class LocalPeerVC: UIViewController {
     let currentUser = FirebaseManager.sharedInstance.currentBlipUser
     
     var localPeers: [BlipUser] = MultipeerManager.sharedInstance.availablePeers
+    var selectedPeers = [BlipUser]() {
+        didSet {
+            for peer in selectedPeers {
+                print(peer.name)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +43,11 @@ class LocalPeerVC: UIViewController {
     }
     
     func updateLocalPeers() {
+        print("updating local peers")
         self.localPeers = MultipeerManager.sharedInstance.availablePeers
+        for peer in self.localPeers {
+            print(peer.name)
+        }
         localPeerView.peerTable.reloadData()
     }
     
@@ -56,6 +67,30 @@ extension LocalPeerVC: UITableViewDelegate, UITableViewDataSource {
         let cell = localPeerView.peerTable.dequeueReusableCell(withIdentifier: BlipUserCell.identifier, for: indexPath) as! BlipUserCell
         cell.blipUser = localPeers[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = localPeerView.peerTable.cellForRow(at: indexPath) as! BlipUserCell
+        if !cell.chosen {
+            cell.chosen = true
+            if let blipUser = cell.blipUser {
+                selectedPeers.append(blipUser)
+            }
+        } else {
+            cell.chosen = false
+            if let blipUser = cell.blipUser {
+                deselect(peer: blipUser)
+            }
+        }
+    }
+    
+    private func deselect(peer: BlipUser) {
+        for (index, selected) in selectedPeers.enumerated() {
+            if selected.uid == peer.uid {
+                selectedPeers.remove(at: index)
+                break
+            }
+        }
     }
 }
 

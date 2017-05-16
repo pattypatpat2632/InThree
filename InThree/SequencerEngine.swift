@@ -76,7 +76,7 @@ struct SequencerEngine {
     func send(score: Score) {
         switch mode {
         case .party:
-            MultipeerManager.sharedInstance.send(score: score)
+            PartyManager.sharedInstance.send(score: score)
         case .neighborhood(let hoodString):
             FirebaseManager.sharedInstance.send(score: score, toUUID: hoodString)
         case .solo:

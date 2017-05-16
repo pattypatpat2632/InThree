@@ -66,7 +66,7 @@ class LocalPeerView: UIView, BlipBloopView {
     func setSubviewProperties() {
         self.backgroundColor = colorScheme.model.baseColor
         
-        titleLabel.text = "Inviting users to join party:"
+        titleLabel.text = "Invite users to join party:"
         titleLabel.changeFontSize(to: 24)
         titleLabel.textAlignment = .center
         titleLabel.backgroundColor = UIColor.clear

@@ -9,7 +9,7 @@
 import UIKit
 import AudioKit
 
-class CircleOfFifthsView: UIView {
+class CircleOfFifthsView: UIView, BlipBloopView {
 
     @IBOutlet var contentView: UIView!
     
@@ -48,7 +48,6 @@ class CircleOfFifthsView: UIView {
     
     func commonInit() {
         Bundle.main.loadNibNamed("CircleOfFifthsView", owner: self, options: nil)
-        let colorScheme: ColorScheme = .normal
         
         self.backgroundColor = UIColor.clear
         self.contentView.backgroundColor = UIColor.clear

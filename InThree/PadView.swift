@@ -27,7 +27,7 @@ class PadView: UIView, BlipBloopView {
     }
     
     func commonInit() {
-        self.backgroundColor = colorScheme.model.backgroundColor
+        self.backgroundColor = colorScheme.model.baseColor
         self.translatesAutoresizingMaskIntoConstraints = false
         self.widthAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         

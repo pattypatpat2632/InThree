@@ -64,7 +64,7 @@ class DashboardView: UIView, BlipBloopView {
     }
     
     private func setSubviewProperties() {
-        partyModeButton.setTitle("Party Mode", for: .normal)
+        partyModeButton.setTitle("Create Party", for: .normal)
         partyModeButton.addTarget(self, action: #selector(partyModeButtonPressed), for: .touchUpInside)
         
         soloModeButton.setTitle("Solo Mode", for: .normal)

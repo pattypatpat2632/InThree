@@ -123,22 +123,22 @@ extension SequencerVC: LightTriggerDelegate {
     func fired() {
         if beatToLight < 3 {
             self.sequencerView.allBeatViews[beatToLight].allPads = self.sequencerView.allBeatViews[beatToLight].allPads.map({ (padView) -> PadView in
-                padView.backgroundColor = self.sequencerView.colorScheme.model.backgroundColor
+                padView.backgroundColor = self.sequencerView.colorScheme.model.baseColor
                 return padView
             })
             beatToLight += 1
             self.sequencerView.allBeatViews[beatToLight].allPads = self.sequencerView.allBeatViews[beatToLight].allPads.map({ (padView) -> PadView in
-                padView.backgroundColor = self.sequencerView.colorScheme.model.highlightColor
+                padView.backgroundColor = self.sequencerView.colorScheme.model.backgroundColor
                 return padView
             })
         } else {
             self.sequencerView.allBeatViews[beatToLight].allPads = self.sequencerView.allBeatViews[beatToLight].allPads.map({ (padView) -> PadView in
-                padView.backgroundColor = self.sequencerView.colorScheme.model.backgroundColor
+                padView.backgroundColor = self.sequencerView.colorScheme.model.baseColor
                 return padView
             })
             beatToLight = 0
             self.sequencerView.allBeatViews[beatToLight].allPads = self.sequencerView.allBeatViews[beatToLight].allPads.map({ (padView) -> PadView in
-                padView.backgroundColor = self.sequencerView.colorScheme.model.highlightColor
+                padView.backgroundColor = self.sequencerView.colorScheme.model.backgroundColor
                 return padView
             })
         }

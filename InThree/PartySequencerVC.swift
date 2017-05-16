@@ -12,23 +12,12 @@ import AudioKit
 class PartySequencerVC: SequencerVC {
     
     let allBlipUsers = FirebaseManager.sharedInstance.allBlipUsers
-    
-    var connectedPeers: [BlipUser] {
-        var returnPeers = [BlipUser]()
-        let sessionPeers = MultipeerManager.sharedInstance.session.connectedPeers
-        for peer in sessionPeers {
-            for blipUser in allBlipUsers {
-                if blipUser.uid == peer.displayName {
-                    returnPeers.append(blipUser)
-                }
-            }
-        }
-        return returnPeers
-    }
+    var party = Party()
+    var connectedPeers = [BlipUser]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        MultipeerManager.sharedInstance.delegate = self
+        PartyManager.sharedInstance.delegate = self
         self.sequencerEngine.mode = .party
     }
     
@@ -43,7 +32,7 @@ class PartySequencerVC: SequencerVC {
 
 }
 
-extension PartySequencerVC: MultipeerManagerDelegate {
+extension PartySequencerVC: PartyDelegate {
     
     func musicChanged(forUID uid: String, score: Score, manager: MultipeerManager) {
         for (index, blipUser) in connectedPeers.enumerated() {

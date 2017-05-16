@@ -12,7 +12,7 @@ struct Party {
     
     var id: String? = nil
     var members = [BlipUser]()
-    var creator: BlipUser
+    var creator: BlipUser?
     var userTurnID: String = ""
     var turnCount: Int = 0
     
