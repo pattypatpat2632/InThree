@@ -87,7 +87,7 @@ class InstructionsView: UIView, BlipBloopView {
         partyMode.backgroundColor = colorScheme.model.baseColor
         partyMode.textColor = colorScheme.model.foregroundColor
         partyMode.font = UIFont(name: "TimeBurner", size: 20)
-        partyMode.text = "Create Party:\nYou can connect and play BlipBloop with anybody via your WIFI network,\nor Bluetooth"
+        partyMode.text = "Create Party:\nYou can connect and play BlipBloop with anybody nearby on the same WIFI network,\nor via Bluetooth"
     }
 
 }

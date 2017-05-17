@@ -119,7 +119,7 @@ extension MultipeerManager: MCNearbyServiceBrowserDelegate {
     
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
 
-        browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 10.0) //If
+        browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 30.0) //If
         
     }
 }

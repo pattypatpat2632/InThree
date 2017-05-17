@@ -25,6 +25,7 @@ class SequencerVC: UIViewController, NoteButtonDelegate {
     
     
     override func viewDidLoad() {
+        FirebaseManager.sharedInstance.currentBlipUser?.isInParty = true
         super.viewDidLoad()
         self.view = sequencerView
         self.sequencerView.delegate = self
@@ -105,8 +106,11 @@ extension SequencerVC: PadViewDelegate {
 
 extension SequencerVC: SequencerViewDelegate {
     func returnToDashboard() {
+        FirebaseManager.sharedInstance.currentBlipUser?.isInParty = false
         sequencerEngine.stopAll() //TODO: add audio fadeout
-        navigationController?.popViewController(animated: true)
+        DispatchQueue.main.async {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }
 

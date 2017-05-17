@@ -50,7 +50,7 @@ class DashboardView: UIView, BlipBloopView {
         addSubview(logoutButton)
         logoutButton.translatesAutoresizingMaskIntoConstraints = false
         logoutButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        logoutButton.topAnchor.constraint(equalTo: soloModeButton.bottomAnchor, constant: 10).isActive = true
+        logoutButton.topAnchor.constraint(equalTo: partyModeButton.bottomAnchor, constant: 10).isActive = true
         logoutButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
         logoutButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.15).isActive = true
         

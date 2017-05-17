@@ -22,6 +22,7 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+        FirebaseManager.sharedInstance.currentBlipUser?.isInParty = false
     }
     
     func goToPartyMode() {
@@ -81,42 +82,47 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
 
 extension DashboardVC: MultipeerDelegate {
     func askPermission(fromInvitee invitee: BlipUser, completion: @escaping (Bool) -> Void) {
-        let alertController = UIAlertController(title: "\(invitee.name) is starting a party", message: "Would you like to connect to \(invitee.name) so that you can be invited?", preferredStyle: .alert)
-        
-        let noAction = UIAlertAction(title: "No", style: .cancel) { (action) in
-            completion(false)
+        if FirebaseManager.sharedInstance.currentBlipUser?.isInParty == false {
+            let alertController = UIAlertController(title: "\(invitee.name) is starting a party", message: "Would you like to connect to \(invitee.name) so that you can be invited?", preferredStyle: .alert)
+            
+            let noAction = UIAlertAction(title: "No", style: .cancel) { (action) in
+                completion(false)
+            }
+            alertController.addAction(noAction)
+            
+            let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+                completion(true)
+            }
+            alertController.addAction(yesAction)
+            self.present(alertController, animated: true, completion: nil)
         }
-        alertController.addAction(noAction)
-        
-        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
-            completion(true)
-        }
-        alertController.addAction(yesAction)
-        self.present(alertController, animated: true, completion: nil)
     }
     
     func respondToInvite(fromUser blipUser: BlipUser, withPartyID partyID: String) {
-        print("asked to join party: \(partyID)")
-        let alertController = UIAlertController(title: "\(blipUser.name) has invited you to party!", message: "Would you like to join?", preferredStyle: .alert)
-        
-        let noAction = UIAlertAction(title: "No", style: .cancel) { (action) in
-            print("User did not join party :(")
-        }
-        alertController.addAction(noAction)
-        
-        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
-            PartyManager.sharedInstance.join(partyWithID: partyID) {
-                let partyVC = PartySequencerVC()
-                partyVC.partyID = partyID
-                DispatchQueue.main.async {
-                    self.navigationController?.pushViewController(partyVC, animated: true)
-                }
-                
+        if FirebaseManager.sharedInstance.currentBlipUser?.isInParty == false {
+            print("asked to join party: \(partyID)")
+            let alertController = UIAlertController(title: "\(blipUser.name) has invited you to party!", message: "Would you like to join?", preferredStyle: .alert)
+            
+            let noAction = UIAlertAction(title: "No", style: .cancel) { (action) in
+                print("User did not join party :(")
             }
+            alertController.addAction(noAction)
+            
+            let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+                FirebaseManager.sharedInstance.currentBlipUser?.isInParty = true
+                PartyManager.sharedInstance.join(partyWithID: partyID) {
+                    let partyVC = PartySequencerVC()
+                    partyVC.partyID = partyID
+                    DispatchQueue.main.async {
+                        self.navigationController?.pushViewController(partyVC, animated: true)
+                    }
+                    
+                }
+            }
+            alertController.addAction(yesAction)
+            
+            self.present(alertController, animated: true, completion: nil)
         }
-        alertController.addAction(yesAction)
-        
-        self.present(alertController, animated: true, completion: nil)
         
     }
 }

@@ -105,6 +105,7 @@ extension LocalPeerVC: UITableViewDelegate, UITableViewDataSource {
 extension LocalPeerVC: LocalPeerViewDelegate {
     
     func goToPartySquencer() {
+        FirebaseManager.sharedInstance.currentBlipUser?.isInParty = true
         guard let currentUser = self.currentUser else {return} //TODO: return user to dashboard because no valid login
         PartyManager.sharedInstance.newParty(byUser: currentUser) { (partyID) in
             MultipeerManager.sharedInstance.invite(blipUsers: self.selectedPeers, toParty: PartyManager.sharedInstance.party)
