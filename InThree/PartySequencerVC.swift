@@ -15,6 +15,7 @@ class PartySequencerVC: SequencerVC {
     var connectedPeers = PartyManager.sharedInstance.party.members
     var partyID: String = ""{
         didSet {
+            print("SET PARTYID, CALLING OBSERVE FUNCTION")
             PartyManager.sharedInstance.observe(partyWithID: partyID)
         }
     }

@@ -21,7 +21,7 @@ final class PartyManager {
     
     func newParty(byUser user: BlipUser, completion: @escaping (String) -> Void) { //Create new party in firebase
         let partyID = partiesRef.childByAutoId().key
-        let party = Party(id: partyID, members: [user], creator: user, userTurnID: user.uid, turnCount: 0)
+        let party = Party(id: partyID, members: [user], creator: user.uid, userTurnID: user.uid, turnCount: 0)
         partiesRef.child(partyID).setValue(party.asDictionary())
         self.party.id = partyID
         completion(partyID)
@@ -29,11 +29,21 @@ final class PartyManager {
     }
     
     func observe(partyWithID partyID: String) {
+        print("OBSERVE CALLED for partyID: \(partyID)")
         partiesRef.child(partyID).observe(.value, with: { (snapshot) in
+            print("OBSERVING PARTY")
             if let partyValues = snapshot.value as? [String: Any]{
-                guard let party = Party(dictionary: partyValues) else {return}
+                print("OBSERVE FOUND VALUES")
+                print(partyValues)
+                let party = Party(dictionary: partyValues)
+                print("NEW PARTY CREATED: \(party.creator)")
+                for member in party.members {
+                    print( "\(member.name)")
+                }
                 self.party = party
+                print("PARTY MANAGER NEW ID: \(self.party.id)")
                 self.party.id = partyID
+                print("PARTY MANAGER NEW ID: \(self.party.id)")
             }
             self.delegate?.partyChange()
         })

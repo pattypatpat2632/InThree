@@ -105,9 +105,9 @@ extension LocalPeerVC: LocalPeerViewDelegate {
             MultipeerManager.sharedInstance.invite(blipUsers: self.selectedPeers, toParty: PartyManager.sharedInstance.party)
             let partySequencerVC = PartySequencerVC()
             partySequencerVC.connectedPeers = self.selectedPeers
-            partySequencerVC.partyID = partyID
             DispatchQueue.main.async {
                 self.navigationController?.pushViewController(partySequencerVC, animated: true)
+                partySequencerVC.partyID = partyID
             }
         }
     }

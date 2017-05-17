@@ -12,7 +12,7 @@ struct Party {
     
     var id: String? = nil
     var members = [BlipUser]()
-    var creator: BlipUser?
+    var creator: String?
     var userTurnID: String = ""
     var turnCount: Int = 0
     
@@ -44,7 +44,7 @@ struct Party {
             "members": membersDict,
             "userTurnID": userTurnID,
             "turnCount": turnCount,
-            "creator": creator?.uid ?? "No Creator"
+            "creator": creator ?? "No Creator"
         ]
        return dictionary
     }
@@ -76,22 +76,21 @@ extension Party {
         }
     }
     
-    init?(dictionary: [String: Any]) {
-        guard let userTurnID = dictionary["userTurnID"] as? String else {return nil}
-        guard let turnCount = dictionary["turnCount"] as? Int else {return nil}
-        guard let creator = dictionary["creator"] as? BlipUser else {return nil}
+    init(dictionary: [String: Any]) {
+        guard let userTurnID = dictionary["userTurnID"] as? String else {return}
+        guard let turnCount = dictionary["turnCount"] as? Int else {return }
+        guard let creator = dictionary["creator"] as? String else {return}
         self.userTurnID = userTurnID
         self.turnCount = turnCount
         self.creator = creator
         
         var members = [BlipUser]()
-        guard let membersDict = dictionary["members"] as? [String: [String: String]] else {return nil}
+        guard let membersDict = dictionary["members"] as? [String: [String: String]] else {return}
         for (key, value) in membersDict {
             let newMember = BlipUser(uid: key, dictionary: value )
             members.append(newMember)
         }
         self.members = members
-        
     }
     
     
