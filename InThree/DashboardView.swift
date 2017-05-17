@@ -15,6 +15,7 @@ class DashboardView: UIView, BlipBloopView {
     let neighborhoodModeButton = BlipButton()
     var delegate: DashboardViewDelegate? = nil
     let logoutButton = BlipButton()
+    let instructionsButton = BlipButton()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -61,6 +62,13 @@ class DashboardView: UIView, BlipBloopView {
         logoutButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
         logoutButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.15).isActive = true
         
+        addSubview(instructionsButton)
+        instructionsButton.translatesAutoresizingMaskIntoConstraints = false
+        instructionsButton.topAnchor.constraint(equalTo: logoutButton.bottomAnchor, constant: 20).isActive = true
+        instructionsButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        instructionsButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
+        instructionsButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
+        
     }
     
     private func setSubviewProperties() {
@@ -75,6 +83,11 @@ class DashboardView: UIView, BlipBloopView {
         
         logoutButton.setTitle("Logout", for: .normal)
         logoutButton.addTarget(self, action: #selector(logoutButtonPressed), for: .touchUpInside)
+        
+        instructionsButton.setTitle("Instructions", for: .normal)
+        instructionsButton.layer.borderWidth = 0
+        instructionsButton.changeFontSize(to: 20)
+        instructionsButton.addTarget(self, action: #selector(instructionsPressed), for: .touchUpInside)
         
     }
     
@@ -101,11 +114,18 @@ class DashboardView: UIView, BlipBloopView {
             self.delegate?.logout()
         }
     }
+    
+    func instructionsPressed() {
+        self.indicatePushed(view: instructionsButton) { 
+            self.delegate?.goToInstructions()
+        }
+    }
 }
 
 protocol DashboardViewDelegate {
     func goToPartyMode()
     func goToSoloMode()
     func goToNeighborhoodMode()
+    func goToInstructions()
     func logout()
 }

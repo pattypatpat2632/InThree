@@ -69,6 +69,7 @@ class ForgotPasswordView: UIView, BlipBloopView {
         titleLabel.changeFontSize(to: 24)
         
         emailField.placeholder = "Email"
+        emailField.textAlignment = .center
         
         submitButton.setTitle("Submit", for: .normal)
         submitButton.addTarget(self, action: #selector(submitTapped), for: .touchUpInside)

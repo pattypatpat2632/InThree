@@ -99,10 +99,11 @@ class LoginView: UIView, BlipBloopView {
         titleLabel.text = "BlipBloop"
         
         emailField.placeholder = "Email"
+        emailField.textAlignment = .center
 
-        
         passwordField.placeholder = "Password"
         passwordField.isSecureTextEntry = true
+        passwordField.textAlignment = .center
         
         loginButton.setTitle("LOGIN", for: .normal)
         createUserButton.setTitle("CREATE USER", for: .normal)
@@ -113,7 +114,7 @@ class LoginView: UIView, BlipBloopView {
         
         creditsButton.setTitle("About BlipBlip", for: .normal)
         creditsButton.layer.borderWidth = 0
-        creditsButton.changeFontSize(to: 14)
+        creditsButton.changeFontSize(to: 18)
         
         batButton.setTitle("Batman", for: .normal)
     }

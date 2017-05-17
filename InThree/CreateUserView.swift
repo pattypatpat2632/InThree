@@ -85,16 +85,19 @@ class CreateUserView: UIView, BlipBloopView {
         titleLabel.changeFontSize(to: 24)
         
         nameField.placeholder = "Your Name"
-   
+        nameField.textAlignment = .center
         
         emailField.placeholder = "Email"
+        emailField.textAlignment = .center
 
         
         passwordField.placeholder = "Password"
         passwordField.isSecureTextEntry = true
+        passwordField.textAlignment = .center
         
         confirmField.placeholder = "Confirm Password"
         confirmField.isSecureTextEntry = true
+        confirmField.textAlignment = .center
         
         submitButton.setTitle("Submit", for: .normal)
     }

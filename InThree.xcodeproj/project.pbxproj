@@ -62,6 +62,8 @@
 		ECCE22F61EA84E28006691D8 /* CircleOfFifthsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECCE22F51EA84E28006691D8 /* CircleOfFifthsView.swift */; };
 		ECDADFDE1ECB5B6C00480BA3 /* PartyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDADFDD1ECB5B6C00480BA3 /* PartyManager.swift */; };
 		ECDADFE01ECB6BD700480BA3 /* NotificationExension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDADFDF1ECB6BD700480BA3 /* NotificationExension.swift */; };
+		ECDADFE21ECCCF5300480BA3 /* InstructionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDADFE11ECCCF5300480BA3 /* InstructionsView.swift */; };
+		ECDADFE41ECCD1F300480BA3 /* InstructionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDADFE31ECCD1F300480BA3 /* InstructionsVC.swift */; };
 		ECF32BB41EC3EAE500135EEB /* BlipTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BB31EC3EAE500135EEB /* BlipTextField.swift */; };
 		ECF32BB61EC3F17900135EEB /* ResetNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BB51EC3F17900135EEB /* ResetNavController.swift */; };
 		ECF32BB81EC4A35000135EEB /* Pixeled.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECF32BB71EC4A35000135EEB /* Pixeled.ttf */; };
@@ -159,6 +161,8 @@
 		ECCE22F51EA84E28006691D8 /* CircleOfFifthsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleOfFifthsView.swift; sourceTree = "<group>"; };
 		ECDADFDD1ECB5B6C00480BA3 /* PartyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartyManager.swift; sourceTree = "<group>"; };
 		ECDADFDF1ECB6BD700480BA3 /* NotificationExension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationExension.swift; sourceTree = "<group>"; };
+		ECDADFE11ECCCF5300480BA3 /* InstructionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsView.swift; sourceTree = "<group>"; };
+		ECDADFE31ECCD1F300480BA3 /* InstructionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsVC.swift; sourceTree = "<group>"; };
 		ECF32BB31EC3EAE500135EEB /* BlipTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlipTextField.swift; sourceTree = "<group>"; };
 		ECF32BB51EC3F17900135EEB /* ResetNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetNavController.swift; sourceTree = "<group>"; };
 		ECF32BB71EC4A35000135EEB /* Pixeled.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pixeled.ttf; sourceTree = "<group>"; };
@@ -291,6 +295,7 @@
 				EC9028B51EC398D000027FCE /* ForgotPasswordVC.swift */,
 				ECF32BB51EC3F17900135EEB /* ResetNavController.swift */,
 				ECF32BBF1EC500ED00135EEB /* CreditsVC.swift */,
+				ECDADFE31ECCD1F300480BA3 /* InstructionsVC.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -316,6 +321,7 @@
 				EC9028B31EC398B100027FCE /* ForgotPasswordView.swift */,
 				ECF32BB31EC3EAE500135EEB /* BlipTextField.swift */,
 				ECF32BBD1EC4FE2600135EEB /* CreditsView.swift */,
+				ECDADFE11ECCCF5300480BA3 /* InstructionsView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -697,6 +703,7 @@
 				EC5B3FBC1EB10A9000410BD2 /* BlipBloopView.swift in Sources */,
 				EC05C7671EA463A20031864A /* Note.swift in Sources */,
 				EC4472111EC27757009EB271 /* BlipButton.swift in Sources */,
+				ECDADFE41ECCD1F300480BA3 /* InstructionsVC.swift in Sources */,
 				ECA6D4A71EB914AB008A027B /* ScoreIndex.swift in Sources */,
 				EC5B3FB11EB0EF9500410BD2 /* LoginView.swift in Sources */,
 				EC5B3FA71EB0E81100410BD2 /* AppController.swift in Sources */,
@@ -719,6 +726,7 @@
 				EC7C14681EB780FF009FACDA /* SequencerMode.swift in Sources */,
 				EC4BD2101EA2A6B40076B4D0 /* PadView.swift in Sources */,
 				EC5B3FB31EB0FF3800410BD2 /* CreateUserVC.swift in Sources */,
+				ECDADFE21ECCCF5300480BA3 /* InstructionsView.swift in Sources */,
 				ECB181681EB245BD0025F017 /* LocalPeerView.swift in Sources */,
 				ECB181661EB2424E0025F017 /* MultipeerManager.swift in Sources */,
 				EC7C14661EB67D52009FACDA /* BlipUserCell.swift in Sources */,

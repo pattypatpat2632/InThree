@@ -19,6 +19,11 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
         checkForLogin()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     func goToPartyMode() {
         let partyVC = LocalPeerVC()
         MultipeerManager.sharedInstance.startBrowsing()
@@ -34,6 +39,11 @@ class DashboardVC: UIViewController, DashboardViewDelegate {
         let sequencerVC = SequencerVC()
         sequencerVC.sequencerEngine.mode = .neighborhood("No Neighborhood")
         self.navigationController?.pushViewController(sequencerVC, animated: true)//TODO: update if I decide to put a view in between dashboard and neighborhood sequencer
+    }
+    
+    func goToInstructions() {
+        let instructionsVC = InstructionsVC()
+        navigationController?.pushViewController(instructionsVC, animated: true)
     }
     
     func logout() {
