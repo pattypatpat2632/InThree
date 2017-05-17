@@ -39,11 +39,6 @@ final class PartyManager {
         })
     }
     
-    func add(member: BlipUser, toPartyWithID partyID: String, completion: @escaping () -> Void) {
-        
-        
-    }
-    
     func remove(member: BlipUser, fromPartyID partyID: String, completion: @escaping () -> Void) {
         partiesRef.child(partyID).child("members").child(member.uid).removeValue { (error, reference) in
             completion()
@@ -56,6 +51,7 @@ final class PartyManager {
                 partiesRef.child(partyID).child("members").child(key).setValue(value)
             }
         }
+        self.party.id = partyID
         completion()
     }
 }
