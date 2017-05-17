@@ -30,7 +30,7 @@ class CircleOfFifthsView: UIView, BlipBloopView {
     @IBOutlet weak var octaveDownButton: UIButton!
     
     var noteButtons = [NoteButton]()
-    var octaveNumber: Int = 4 {
+    var octaveNumber: Int = 2 {
         didSet {
             self.octaveLabel.text = "Octave \(octaveNumber)"
         }
@@ -69,7 +69,7 @@ class CircleOfFifthsView: UIView, BlipBloopView {
             return noteButton
         }
         
-        octaveLabel.text = "Octave 4"
+        octaveLabel.text = "Octave 2"
         octaveLabel.backgroundColor = UIColor.clear
         octaveLabel.font = UIFont(name: "System", size: 36)
         
@@ -85,7 +85,10 @@ class CircleOfFifthsView: UIView, BlipBloopView {
     
     @IBAction func octaveUpTapped(_ sender: UIButton) {
 
-        guard octaveNumber < 7 else {return}//TODO: indicate to user that max octave has been hit
+        guard octaveNumber < 3 else {
+            self.indicateSelected(view: octaveLabel){}
+            return
+        }
         noteButtons = noteButtons.map({ (noteButton) -> NoteButton in
             noteButton.noteValue = noteButton.noteValue + 12
             return noteButton
@@ -93,7 +96,10 @@ class CircleOfFifthsView: UIView, BlipBloopView {
         octaveNumber += 1
     }
     @IBAction func octaveDownTapped(_ sender: UIButton) {
-        guard octaveNumber > 3 else {return}//TODO: indicate to user that min octave has been hit
+        guard octaveNumber > 1 else {
+            self.indicateSelected(view: octaveLabel){}
+            return
+        }
         noteButtons = noteButtons.map({ (noteButton) -> NoteButton in
             noteButton.noteValue = noteButton.noteValue - 12
             return noteButton

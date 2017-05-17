@@ -80,5 +80,8 @@ extension Score {
     mutating func removeStep(fromBeatNum beatNum: Int, newRhythm: Rhythm) {
         beats[beatNum].removeLastNote(forNewRhythm: newRhythm)
     }
-    
+}
+
+extension Score{
+    static let empty = Score(rhythm: .four)
 }

@@ -17,6 +17,7 @@ class PartySequencerVC: SequencerVC {
         didSet {
             print("SET PARTYID, CALLING OBSERVE FUNCTION")
             PartyManager.sharedInstance.observe(partyWithID: partyID)
+            PartyManager.sharedInstance.observeAllScoresIn(partyID: partyID)
         }
     }
     
@@ -32,6 +33,7 @@ class PartySequencerVC: SequencerVC {
     
     override func returnToDashboard() {
         guard let currentUser = currentUser else {return}
+        sequencerEngine.generateSequence(fromScore: Score.empty)
         PartyManager.sharedInstance.remove(member: currentUser, fromPartyID: partyID) {
             super.returnToDashboard()
             MultipeerManager.sharedInstance.startAdvertising()
@@ -47,15 +49,10 @@ extension PartySequencerVC: PartyDelegate {
                 sequencerEngine.generateSequence(fromScore: score, forUserNumber: index + 1)
             }
         }
-        removeEmptyScores()
     }
     
     func partyChange() {
         self.connectedPeers = PartyManager.sharedInstance.party.members
-    }
-    
-    private func removeEmptyScores() {
-        
     }
 }
 

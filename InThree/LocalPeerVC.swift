@@ -49,6 +49,11 @@ class LocalPeerVC: UIViewController {
             print(peer.name)
         }
         DispatchQueue.main.async {
+            if self.localPeers.count > 0 {
+                self.localPeerView.changeTitle(to: "Invite your friends to join:")
+            } else {
+                self.localPeerView.changeTitle(to: "Finding friends to join the party...")
+            }
             self.localPeerView.peerTable.reloadData()
         }
     }
