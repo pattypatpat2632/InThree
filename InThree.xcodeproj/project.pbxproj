@@ -66,7 +66,6 @@
 		ECDADFE41ECCD1F300480BA3 /* InstructionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECDADFE31ECCD1F300480BA3 /* InstructionsVC.swift */; };
 		ECF32BB41EC3EAE500135EEB /* BlipTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BB31EC3EAE500135EEB /* BlipTextField.swift */; };
 		ECF32BB61EC3F17900135EEB /* ResetNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BB51EC3F17900135EEB /* ResetNavController.swift */; };
-		ECF32BB81EC4A35000135EEB /* Pixeled.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECF32BB71EC4A35000135EEB /* Pixeled.ttf */; };
 		ECF32BBC1EC4E82B00135EEB /* UserAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BBB1EC4E82B00135EEB /* UserAlert.swift */; };
 		ECF32BBE1EC4FE2600135EEB /* CreditsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BBD1EC4FE2600135EEB /* CreditsView.swift */; };
 		ECF32BC01EC500ED00135EEB /* CreditsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECF32BBF1EC500ED00135EEB /* CreditsVC.swift */; };
@@ -151,7 +150,6 @@
 		EC9028B51EC398D000027FCE /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		EC9559751EA59EFB008FA5FA /* SequencerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequencerView.swift; sourceTree = "<group>"; };
 		ECA6D4A61EB914AB008A027B /* ScoreIndex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreIndex.swift; sourceTree = "<group>"; };
-		ECA6D4A91EBA31A3008A027B /* FlatironLocation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = FlatironLocation.gpx; sourceTree = "<group>"; };
 		ECAE16ED1EA6FCD10013696C /* KeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = KeyboardView.xib; sourceTree = "<group>"; };
 		ECAE16EF1EA6FD210013696C /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		ECB181651EB2424E0025F017 /* MultipeerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipeerManager.swift; sourceTree = "<group>"; };
@@ -165,7 +163,6 @@
 		ECDADFE31ECCD1F300480BA3 /* InstructionsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionsVC.swift; sourceTree = "<group>"; };
 		ECF32BB31EC3EAE500135EEB /* BlipTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlipTextField.swift; sourceTree = "<group>"; };
 		ECF32BB51EC3F17900135EEB /* ResetNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetNavController.swift; sourceTree = "<group>"; };
-		ECF32BB71EC4A35000135EEB /* Pixeled.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pixeled.ttf; sourceTree = "<group>"; };
 		ECF32BBB1EC4E82B00135EEB /* UserAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAlert.swift; sourceTree = "<group>"; };
 		ECF32BBD1EC4FE2600135EEB /* CreditsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsView.swift; sourceTree = "<group>"; };
 		ECF32BBF1EC500ED00135EEB /* CreditsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditsVC.swift; sourceTree = "<group>"; };
@@ -214,7 +211,6 @@
 			isa = PBXGroup;
 			children = (
 				EC4472181EC2AD00009EB271 /* timeburnerbold.ttf */,
-				ECF32BB71EC4A35000135EEB /* Pixeled.ttf */,
 				EC4472161EC2ABE9009EB271 /* timeburnernormal.ttf */,
 			);
 			name = Resources;
@@ -361,7 +357,6 @@
 				EC5B3FA41EB0E31100410BD2 /* FirebaseManager.swift */,
 				ECDADFDD1ECB5B6C00480BA3 /* PartyManager.swift */,
 				ECB181651EB2424E0025F017 /* MultipeerManager.swift */,
-				ECA6D4A91EBA31A3008A027B /* FlatironLocation.gpx */,
 			);
 			name = Utility;
 			sourceTree = "<group>";
@@ -514,7 +509,6 @@
 			files = (
 				EC5B3F9D1EB0DB0000410BD2 /* GoogleService-Info.plist in Resources */,
 				EC4BD1E71EA29ECC0076B4D0 /* LaunchScreen.storyboard in Resources */,
-				ECF32BB81EC4A35000135EEB /* Pixeled.ttf in Resources */,
 				ECCE22F41EA84C95006691D8 /* CircleOfFifthsView.xib in Resources */,
 				EC4BD1E41EA29ECC0076B4D0 /* Assets.xcassets in Resources */,
 				EC4472171EC2ABE9009EB271 /* timeburnernormal.ttf in Resources */,

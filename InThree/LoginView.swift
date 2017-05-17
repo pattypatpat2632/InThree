@@ -17,7 +17,6 @@ class LoginView: UIView, BlipBloopView {
     let createUserButton = BlipButton()
     let forgotPasswordButton = BlipButton()
     let creditsButton = BlipButton()
-    let batButton = BlipButton()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -83,13 +82,6 @@ class LoginView: UIView, BlipBloopView {
         creditsButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         creditsButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
         creditsButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
-        
-        addSubview(batButton)
-        batButton.translatesAutoresizingMaskIntoConstraints = false
-        batButton.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: 10).isActive = true
-        batButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        batButton.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5).isActive = true
-        batButton.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.1).isActive = true
 
     }
     
@@ -116,7 +108,6 @@ class LoginView: UIView, BlipBloopView {
         creditsButton.layer.borderWidth = 0
         creditsButton.changeFontSize(to: 18)
         
-        batButton.setTitle("Batman", for: .normal)
     }
 
 }

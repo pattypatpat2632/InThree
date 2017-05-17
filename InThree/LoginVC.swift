@@ -29,7 +29,6 @@ class LoginVC: UIViewController, UserAlert {
         loginView.loginButton.addTarget(self, action: #selector(loginTapped), for: .touchUpInside)
         loginView.forgotPasswordButton.addTarget(self, action: #selector(forgotPasswordTapped), for: .touchUpInside)
         loginView.creditsButton.addTarget(self, action: #selector(creditsButtonTapped), for: .touchUpInside)
-        loginView.batButton.addTarget(self, action: #selector(batButton), for: .touchUpInside)
     }
     
     func createUserTapped() {
@@ -62,12 +61,6 @@ class LoginVC: UIViewController, UserAlert {
                 })
             }
         }
-    }
-    
-    func batButton() {
-        loginView.emailField.text = "Batman@batman.com"
-        loginView.passwordField.text = "Batman1234"
-        loginTapped()
     }
     
     func forgotPasswordTapped() {
