@@ -76,7 +76,10 @@ struct SequencerEngine {
     func send(score: Score) {
         switch mode {
         case .party:
-            PartyManager.sharedInstance.send(score: score)
+            if let partyID = PartyManager.sharedInstance.party.id {
+                print("valid party iD for upload: \(partyID)")
+                PartyManager.sharedInstance.send(score: score, toPartyID: partyID)
+            }
         case .neighborhood(let hoodString):
             FirebaseManager.sharedInstance.send(score: score, toUUID: hoodString)
         case .solo:

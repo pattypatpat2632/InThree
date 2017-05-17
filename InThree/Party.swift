@@ -31,10 +31,20 @@ struct Party {
     }
     
     func asDictionary() -> [String: Any] {
+        
+        var membersDict = [String: Any]()
+        for member in members {
+            for (key, value) in member.asDictionary() {
+                membersDict[key] = value
+            }
+            
+        }
+        
         let dictionary: [String: Any] = [
-            "members": members.map{$0.asDictionary()},
+            "members": membersDict,
             "userTurnID": userTurnID,
-            "turnCount": turnCount
+            "turnCount": turnCount,
+            "creator": creator?.uid ?? "No Creator"
         ]
        return dictionary
     }
@@ -48,6 +58,8 @@ struct Party {
             return nil
         }
     }
+    
+    
 }
 
 extension Party {
@@ -72,13 +84,17 @@ extension Party {
         self.turnCount = turnCount
         self.creator = creator
         
-        guard let membersArray = dictionary["members"] as? [[String: [String: String]]] else {return nil}
-        self.members.removeAll()
-        for member in membersArray {
-            if let newMember = BlipUser(dictionary: member) {
-                self.members.append(newMember)
-            }
+        var members = [BlipUser]()
+        guard let membersDict = dictionary["members"] as? [String: [String: String]] else {return nil}
+        for (key, value) in membersDict {
+            let newMember = BlipUser(uid: key, dictionary: value )
+            members.append(newMember)
         }
+        self.members = members
+        
     }
     
+    
+    
 }
+

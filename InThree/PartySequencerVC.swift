@@ -12,8 +12,12 @@ import AudioKit
 class PartySequencerVC: SequencerVC {
     
     let allBlipUsers = FirebaseManager.sharedInstance.allBlipUsers
-    var party = Party()
-    var connectedPeers = [BlipUser]()
+    var connectedPeers = PartyManager.sharedInstance.party.members
+    var partyID: String = ""{
+        didSet {
+            PartyManager.sharedInstance.observe(partyWithID: partyID)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,23 +30,31 @@ class PartySequencerVC: SequencerVC {
     }
     
     override func returnToDashboard() {
-        super.returnToDashboard()
-        MultipeerManager.sharedInstance.startAdvertising()
+        guard let currentUser = currentUser else {return}
+        PartyManager.sharedInstance.remove(member: currentUser, fromPartyID: partyID) {
+            super.returnToDashboard()
+            MultipeerManager.sharedInstance.startAdvertising()
+        }
     }
-
 }
 
 extension PartySequencerVC: PartyDelegate {
     
-    func musicChanged(forUID uid: String, score: Score, manager: MultipeerManager) {
+    func scoreChange(forUID uid: String, score: Score) {
         for (index, blipUser) in connectedPeers.enumerated() {
             if blipUser.uid == uid {
                 sequencerEngine.generateSequence(fromScore: score, forUserNumber: index + 1)
             }
         }
+        removeEmptyScores()
     }
     
-    func connectionLost(forUID uid: String, manager: MultipeerManager) {
+    func partyChange() {
+        self.connectedPeers = PartyManager.sharedInstance.party.members
+    }
+    
+    private func removeEmptyScores() {
         
     }
 }
+

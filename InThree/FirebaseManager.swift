@@ -101,7 +101,7 @@ extension FirebaseManager {
     }
     
     fileprivate func observeCurrentBlipUser(uid: String, completion: @escaping () -> Void) {
-        userRef.child("uid").observe(.value, with: { (snapshot) in
+        userRef.child(uid).observe(.value, with: { (snapshot) in
             let userProperties = snapshot.value as? [String: String] ?? [:]
             self.currentBlipUser = BlipUser(uid: uid, dictionary: userProperties)
             completion()

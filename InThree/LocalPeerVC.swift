@@ -48,7 +48,9 @@ class LocalPeerVC: UIViewController {
         for peer in self.localPeers {
             print(peer.name)
         }
-        localPeerView.peerTable.reloadData()
+        DispatchQueue.main.async {
+            self.localPeerView.peerTable.reloadData()
+        }
     }
     
 }
@@ -98,8 +100,16 @@ extension LocalPeerVC: UITableViewDelegate, UITableViewDataSource {
 extension LocalPeerVC: LocalPeerViewDelegate {
     
     func goToPartySquencer() {
-        let partySequencerVC = PartySequencerVC()
-        navigationController?.pushViewController(partySequencerVC, animated: true)
+        guard let currentUser = self.currentUser else {return} //TODO: return user to dashboard because no valid login
+        PartyManager.sharedInstance.newParty(byUser: currentUser) { (partyID) in
+            MultipeerManager.sharedInstance.invite(blipUsers: self.selectedPeers, toParty: PartyManager.sharedInstance.party)
+            let partySequencerVC = PartySequencerVC()
+            partySequencerVC.connectedPeers = self.selectedPeers
+            partySequencerVC.partyID = partyID
+            DispatchQueue.main.async {
+                self.navigationController?.pushViewController(partySequencerVC, animated: true)
+            }
+        }
     }
     
     func returnToDashboard() {

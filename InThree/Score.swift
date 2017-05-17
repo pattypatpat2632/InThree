@@ -43,12 +43,12 @@ extension Score {
     
     func asDictionary() -> [String: Any] {
         
-        var beatDict = [[String: Any]]()
+        var beatArray = [[String: Any]]()
         for beat in beats {
-            beatDict.append(beat.asDictionary())
+            beatArray.append(beat.asDictionary())
         }
         let scoreDict = [
-            "beats": beatDict
+            "beats": beatArray
         ]
         return scoreDict
     }

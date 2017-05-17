@@ -90,4 +90,29 @@ extension DashboardVC: MultipeerDelegate {
         alertController.addAction(yesAction)
         self.present(alertController, animated: true, completion: nil)
     }
+    
+    func respondToInvite(fromUser blipUser: BlipUser, withPartyID partyID: String) {
+        print("asked to join party: \(partyID)")
+        let alertController = UIAlertController(title: "\(blipUser.name) has invited you to party!", message: "Would you like to join?", preferredStyle: .alert)
+        
+        let noAction = UIAlertAction(title: "No", style: .cancel) { (action) in
+            print("User did not join party :(")
+        }
+        alertController.addAction(noAction)
+        
+        let yesAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+            PartyManager.sharedInstance.join(partyWithID: partyID) {
+                let partyVC = PartySequencerVC()
+                partyVC.partyID = partyID
+                DispatchQueue.main.async {
+                    self.navigationController?.pushViewController(partyVC, animated: true)
+                }
+                
+            }
+        }
+        alertController.addAction(yesAction)
+        
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
 }

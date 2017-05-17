@@ -43,8 +43,8 @@ class SequencerVC: UIViewController, NoteButtonDelegate {
                 padView.delegate = self
             }
         }
-        
     }
+    
 //MARK: Note button delegate
     func respondTo(noteNumber: MIDINoteNumber, scoreIndex: ScoreIndex) {
         score.beats[scoreIndex.beatIndex].notes[scoreIndex.noteIndex].noteNumber = noteNumber

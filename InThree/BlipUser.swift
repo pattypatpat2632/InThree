@@ -53,7 +53,7 @@ extension BlipUser {
     }
     
     func asDictionary() -> [String: Any] {
-        let dictionary = [
+        let dictionary: [String: Any] = [
             self.uid: [
                 "name": self.name,
                 "email": self.email

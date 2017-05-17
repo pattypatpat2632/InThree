@@ -12,33 +12,84 @@ import Firebase
 final class PartyManager {
     
     static let sharedInstance = PartyManager()
+    let currentUser = FirebaseManager.sharedInstance.currentBlipUser
     let partiesRef = FIRDatabase.database().reference().child("parties")
     var delegate: PartyDelegate?
+    var party = Party()
+    var partyScores = [Score]()
     private init() {}
     
-    func send(score: Score) {
-//        let dictionary = [
-//            "score": score.asDictionary()
-//        ]
-//        do {
-//            let scoreData = try JSONSerialization.data(withJSONObject: dictionary, options: [])
-//            if session.connectedPeers.count > 0 {
-//                do {
-//                    try self.session.send(scoreData, toPeers: session.connectedPeers, with: .reliable)
-//                    print("Sent score to connected peers")
-//                } catch{
-//                    print("Errah")
-//                }
-//            }
-//        } catch {
-//            print("Could not JSONSerialize the score dictionary")
-//        }
+    func newParty(byUser user: BlipUser, completion: @escaping (String) -> Void) { //Create new party in firebase
+        let partyID = partiesRef.childByAutoId().key
+        let party = Party(id: partyID, members: [user], creator: user, userTurnID: user.uid, turnCount: 0)
+        partiesRef.child(partyID).setValue(party.asDictionary())
+        self.party.id = partyID
+        completion(partyID)
+        print("new party with party id: \(partyID)")
     }
     
+    func observe(partyWithID partyID: String) {
+        partiesRef.child(partyID).observe(.value, with: { (snapshot) in
+            if let partyValues = snapshot.value as? [String: Any]{
+                guard let party = Party(dictionary: partyValues) else {return}
+                self.party = party
+                self.party.id = partyID
+            }
+            self.delegate?.partyChange()
+        })
+    }
+    
+    func add(member: BlipUser, toPartyWithID partyID: String, completion: @escaping () -> Void) {
+        
+        
+    }
+    
+    func remove(member: BlipUser, fromPartyID partyID: String, completion: @escaping () -> Void) {
+        partiesRef.child(partyID).child("members").child(member.uid).removeValue { (error, reference) in
+            completion()
+        }
+    }
+    
+    func join(partyWithID partyID: String, completion: @escaping () -> Void) {
+        if let currentUserDict = currentUser?.asDictionary() {
+            for (key, value) in currentUserDict {
+                partiesRef.child(partyID).child("members").child(key).setValue(value)
+            }
+        }
+        completion()
+    }
+}
+
+//MARK: Score functions
+extension PartyManager {
+    
+    func send(score: Score, toPartyID partyID: String) {
+        print("SEND SCORE CALLED")
+        guard let uid = currentUser?.uid else {return} //TODO: error
+        print("CURRENT USER HAS VALID ID, SENDING SCORE")
+        partiesRef.child(partyID).child("scores").child(uid).updateChildValues(score.asDictionary())
+    }
+    
+    func observeAllScoresIn(partyID: String) {
+        partiesRef.child(partyID).child("scores").observe(.value, with: { (snapshot) in
+            self.partyScores.removeAll()
+            if let userScores = snapshot.value as? [String: Any] {
+                for (uid, score) in userScores {
+                    let newScore = Score(dictionary: score as! [String: Any]) //TODO: refactor
+                    if uid != self.currentUser?.uid {
+                        self.delegate?.scoreChange(forUID: uid, score: newScore!)
+                    }
+                }
+            }
+        })
+    }
 }
 
 protocol PartyDelegate {
     
-    func musicChanged(forUID uid: String, score: Score, manager: MultipeerManager)
+    func scoreChange(forUID uid: String, score: Score)
+    func partyChange()
     
 }
+
+
